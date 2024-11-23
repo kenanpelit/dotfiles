@@ -1,0 +1,46 @@
+# Current theme: kenp
+
+[[colors.indexed_colors]]
+color = "#ffb86c"
+index = 16
+
+[[colors.indexed_colors]]
+color = "#ffb3c1"
+index = 17
+
+[colors.primary]
+background = "#282a36"
+foreground = "#d8dae9"
+dim_foreground = "#6272a4"
+bright_foreground = "#ffffff"
+
+[colors.normal]
+black = "#44475a"
+red = "#ffb3c1"
+green = "#50fa7b"
+yellow = "#f1fa8c"
+blue = "#bd93f9"
+magenta = "#ff79c6"
+cyan = "#8be9fd"
+white = "#f8f8f2"
+
+[colors.bright]
+black = "#565b70"
+red = "#ffc1d0"
+green = "#69ff94"
+yellow = "#ffffa5"
+blue = "#d6acff"
+magenta = "#ff92df"
+cyan = "#a4ffff"
+white = "#ffffff"
+
+[colors.cursor]
+cursor = "CellForeground"
+text = "CellBackground"
+
+[colors.selection]
+background = "#44475a"
+text = "CellForeground"
+[[colors.indexed_colors]]
+color = "#d18616"
+index = 16

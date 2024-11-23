@@ -1,0 +1,36 @@
+# Font konfigürasyonu
+[font]
+size = 13.0                # Font boyutu
+builtin_box_drawing = true # Yerleşik box-drawing karakterlerini kullan
+
+# Normal font ayarları
+[font.normal]
+family = "Hack Nerd Font"
+style = "Regular"
+
+# Kalın font ayarları
+[font.bold]
+family = "Hack Nerd Font"
+style = "Bold"
+
+# İtalik font ayarları
+[font.italic]
+family = "Hack Nerd Font"
+style = "Italic"
+
+# Kalın italik font ayarları
+[font.bold_italic]
+family = "Hack Nerd Font"
+style = "Bold Italic"
+
+# Font konumlandırma ayarları
+[font.offset]
+x = 0  # Yatay offset
+y = 0  # Dikey offset
+
+# Glyph konumlandırma ayarları
+[font.glyph_offset]
+x = 0  # Yatay glyph offset
+y = 0  # Dikey glyph offset
+
+

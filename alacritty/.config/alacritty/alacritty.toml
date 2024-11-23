@@ -1,0 +1,82 @@
+# Ana Alacritty konfigürasyon dosyası
+[general]
+# Harici konfigürasyon dosyalarının yolları
+import = [
+    "~/.config/alacritty/fonts.toml",    # Font ayarları
+    "~/.config/alacritty/colors.toml"    # Renk şeması
+]
+
+# Wayland ve Intel UHD Graphics 620 için optimizasyonlar
+[env]
+WINIT_UNIX_BACKEND = "wayland"           # Wayland backend kullan
+WINIT_X11_SCALE_FACTOR = "1.0"           # HiDPI için ölçekleme faktörü
+LIBGL_DRI3_DISABLE = "1"                 # Intel GPU için DRI3 devre dışı
+WLR_NO_HARDWARE_CURSORS = "1"            # Hyprland cursor fix
+XCURSOR_SIZE = "24"                      # Cursor boyutu
+MESA_GL_VERSION_OVERRIDE = "4.6"         # Mesa sürümünüzle uyumlu OpenGL
+MESA_LOADER_DRIVER_OVERRIDE = "iris"     # Intel iris driver'ı kullan
+LIBVA_DRIVER_NAME = "iHD"            # VA-API driver seçimi
+__GL_GSYNC_ALLOWED = "0"             # GSync'i devre dışı bırak
+__GL_VRR_ALLOWED = "0"               # Variable refresh rate'i devre dışı bırak
+
+# Pencere ayarları
+[window]
+decorations = "None"        # Pencere dekorasyonlarını kaldır
+startup_mode = "Windowed"   # Başlangıç modu
+title = "Terminal"          # Varsayılan başlık
+dynamic_title = true        # Dinamik başlık
+#opacity = 0.98             # Şeffaflık
+opacity = 1             # Şeffaflık
+
+# Hyprland için pencere boyutları
+[window.dimensions]
+columns = 240              # Yatay karakter sayısı
+lines = 60                 # Dikey satır sayısı
+
+# Kenar boşlukları
+[window.padding]
+x = 8                      # Yatay iç boşluk
+y = 8                      # Dikey iç boşluk
+
+# İmleç ayarları
+[cursor]
+style = {shape = "Block", blinking = "On"}  # İmleç şekli ve yanıp sönme
+thickness = 0.18                            # İmleç kalınlığı
+blink_interval = 750                        # Yanıp sönme aralığı
+unfocused_hollow = true                     # Odak kaybolduğunda içi boş
+vi_mode_style = "Block"                     # Vi modu imleç stili
+
+# Fare ayarları
+[mouse]
+hide_when_typing = true    # Yazarken fareyi gizle
+bindings = [
+    {mouse = "Middle", action = "PasteSelection"}  # Orta tık yapıştırma
+]
+
+# Metin seçimi
+[selection]
+save_to_clipboard = true   # Otomatik kopyala
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"  # Kelime ayırıcılar
+
+# Kaydırma ayarları
+[scrolling]
+history = 10000           # Geçmiş büyüklüğü
+multiplier = 3            # Kaydırma hızı
+
+# Klavye kısayolları
+[keyboard]
+bindings = [
+    {key = "V", mods = "Control", action = "Paste"},              # Yapıştır
+    {key = "C", mods = "Control", action = "Copy"},               # Kopyala
+    {key = "Insert", mods = "Shift", action = "PasteSelection"},  # Seçimi yapıştır
+    {key = "Key0", mods = "Control", action = "ResetFontSize"},   # Font boyutunu sıfırla
+    {key = "Equals", mods = "Control", action = "IncreaseFontSize"}, # Font boyutunu artır
+    {key = "Minus", mods = "Control", action = "DecreaseFontSize"},  # Font boyutunu azalt
+]
+
+# Performans ayarları
+[debug]
+render_timer = false       # Render zamanlamasını kapat
+persistent_logging = false # Kalıcı loglama kapalı
+log_level = "Warn"        # Sadece uyarıları logla
+print_events = false      # Event loglamayı kapat
