@@ -1,0 +1,16 @@
+# BEGIN_KITTY_THEME
+include theme.conf
+include font.conf
+hide_window_decorations yes
+#hide_window_decorations titlebar-only
+window_padding_width 8
+tab_bar_style    separator
+tab_separator    " "
+map f1 launch ~/.bin/t
+enable_audio_bell no
+# END_KITTY_THEME
+shell_integration disable
+shell_integration no-cursor
+shell_integration no-prompt-mark
+allow_remote_control no
+listen_on none
