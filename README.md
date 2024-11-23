@@ -1,40 +1,47 @@
-# Dotfiles
+# Dotfiles 🏠
 
-Bu repo, Linux sistemim için yapılandırma dosyalarımı (dotfiles) içerir. GNU Stow kullanılarak yönetilmektedir.
+Bu repo, Arch Linux sistemim için yapılandırma dosyalarımı (dotfiles) içerir. GNU Stow kullanılarak yönetilmektedir.
+
+<div align="center">
+  <img src="screenshots/review.png" alt="Desktop Screenshot"/>
+</div>
 
 ## 📁 Mevcut Yapılandırmalar
 
-- `alacritty/` - Alacritty terminal emülatörü yapılandırması
-- `bin/` - Kişisel script ve yardımcı programlar
-- `fish/` - Fish shell yapılandırması
-- `hypr/` - Hyprland pencere yöneticisi yapılandırması
-- `kitty/` - Kitty terminal emülatörü yapılandırması
-- `mpv/` - MPV medya oynatıcı yapılandırması
-- `nvim/` - Neovim editör yapılandırması
-- `ranger/` - Ranger dosya yöneticisi yapılandırması
-- `rofi/` - Rofi uygulama başlatıcı yapılandırması
-- `sesh/` - Sesh oturum yöneticisi yapılandırması
-- `tmux/` - Tmux terminal multiplexer yapılandırması
-- `zsh/` - Zsh shell yapılandırması
+- [x] `alacritty/` - Alacritty terminal emülatörü yapılandırması
+- [x] `fish/` - Fish shell yapılandırması
+- [x] `kitty/` - Kitty terminal emülatörü yapılandırması
+- [x] `mpv/` - MPV medya oynatıcı yapılandırması
+
+## 🔜 Yakında Eklenecekler
+
+- [ ] `bin/` - Kişisel script ve yardımcı programlar
+- [ ] `hypr/` - Hyprland pencere yöneticisi yapılandırması
+- [ ] `nvim/` - Neovim editör yapılandırması
+- [ ] `ranger/` - Ranger dosya yöneticisi yapılandırması
+- [ ] `rofi/` - Rofi uygulama başlatıcı yapılandırması
+- [ ] `sesh/` - Sesh oturum yöneticisi yapılandırması
+- [ ] `tmux/` - Tmux terminal multiplexer yapılandırması
+- [ ] `zsh/` - Zsh shell yapılandırması
+- [ ] `waybar/` - Wayland bar yapılandırması
+- [ ] `mako/` - Notification daemon yapılandırması
 
 ## 🚀 Hızlı Başlangıç
 
 ### Ön Gereksinimler
 
-```bash
-# Arch Linux için
-sudo pacman -S git stow
+Bu dotfiles yapılandırması Arch Linux için optimize edilmiştir.
 
-# Debian/Ubuntu için
-sudo apt update
-sudo apt install git stow
+```bash
+# Arch Linux için gerekli paketler
+sudo pacman -S git stow
 ```
 
 ### Kurulum
 
 1. Repoyu klonlayın:
 ```bash
-git clone git@github.com:kullanıcıadınız/.dotfiles.git ~/.dotfiles
+git clone git@github.com:kenanpelit/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ```
 
@@ -45,14 +52,14 @@ make install  # Tüm yapılandırmaları kurar
 
 Ya da tek bir programın yapılandırmasını kurmak için:
 ```bash
-stow nvim  # Sadece neovim yapılandırmasını kurar
+stow alacritty  # Sadece alacritty yapılandırmasını kurar
 ```
 
 ## 🔧 Yönetim
 
 ### Yapılandırma Kaldırma
 ```bash
-stow -D nvim  # nvim yapılandırmasını kaldırır
+stow -D alacritty  # alacritty yapılandırmasını kaldırır
 # veya
 make uninstall  # Tüm yapılandırmaları kaldırır
 ```
@@ -85,15 +92,6 @@ yeni_program/
 ```bash
 stow yeni_program
 ```
-
-## 🔄 Gelecek Güncellemeler
-
-Bu repo aktif olarak güncellenmektedir. Gelecekte eklenecek yapılandırmalar:
-- [ ] Waybar
-- [ ] Mako
-- [ ] Swaylock
-- [ ] Dunst
-- [ ] ... (diğer eklemek istediğiniz programlar)
 
 ## ⚙️ Makefile Komutları
 
