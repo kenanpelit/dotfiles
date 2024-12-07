@@ -1,0 +1,44 @@
+## Wofi Base Config
+show=drun
+prompt=Search:
+insensitive=true
+normal_window=false
+layer=overlay
+term=kitty
+columns=1
+
+## Geometry
+width=600
+height=500
+location=center
+orientation=vertical
+halign=fill
+line_wrap=word
+dynamic_lines=true
+
+## Style
+allow_markup=true
+allow_images=true
+image_size=24
+hide_scroll=false
+no_actions=true
+matching=fuzzy
+sort_order=alphabetical
+gtk_dark=true
+filter_rate=100
+drun-display_generic=false
+drun-always_parse_args=true
+search_executables=true
+
+## Keys
+key_down=Down,Tab,Control+j
+key_up=Up,ISO_Left_Tab,Control+k
+key_left=Left,Control+h
+key_right=Right,Control+l
+key_forward=Down,Tab
+key_backward=Up,ISO_Left_Tab
+key_pgup=Page_Up
+key_pgdn=Page_Down
+key_exit=Escape
+key_submit=Return,KP_Enter
+key_hide_search=false

@@ -1,0 +1,34 @@
+## Wofi Config - Font Manager
+show=dmenu
+prompt=Font Size:
+normal_window=false
+layer=overlay
+columns=1
+
+## Geometry
+width=400
+height=500
+location=center
+orientation=vertical
+halign=fill
+line_wrap=off
+dynamic_lines=true
+
+## Style
+allow_markup=true
+allow_images=true
+image_size=24
+hide_scroll=true
+no_actions=true
+matching=fuzzy
+sort_order=default
+gtk_dark=true
+filter_rate=100
+
+## Keys
+key_down=Down,Tab,Control+j
+key_up=Up,ISO_Left_Tab,Control+k
+key_forward=Down,Tab
+key_backward=Up,ISO_Left_Tab
+key_exit=Escape
+key_submit=Return,KP_Enter
