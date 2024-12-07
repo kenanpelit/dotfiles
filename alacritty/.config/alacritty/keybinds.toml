@@ -1,0 +1,7 @@
+[keyboard]
+bindings = [
+    # Kopyalama için Ctrl+Shift+C
+    { key = "C", mods = "Control|Shift", action = "Copy" },
+    # Yapıştırma için Ctrl+Shift+V
+    { key = "V", mods = "Control|Shift", action = "Paste" }
+]
