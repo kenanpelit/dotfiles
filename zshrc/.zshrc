@@ -59,5 +59,9 @@ fpath=($HOME/.zsh/completion $fpath)
 # Disable bracketed paste
 unset zle_bracketed_paste
 
+# Home ve End tuşları için
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[4~" end-of-line
+
 # Prompt (en son yüklenmeli)
 eval "$(starship init zsh)"
