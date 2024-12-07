@@ -25,6 +25,11 @@ path = "~/"
 startup_command = "ssh terminal -t 'byobu has -t kenan || byobu new-session -d -s kenan && byobu a -t kenan'"
 
 [[session]]
+name = "Tunnelshow  "
+path = "~/"
+startup_command = "tunnelshow"
+
+[[session]]
 name = "Anote  "
 path = "~/"
 startup_command = "anote_snippets.sh"
