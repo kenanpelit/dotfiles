@@ -52,3 +52,10 @@ bin/.bin/*
 # Alacritty ve Kitty yedekleri
 alacritty/.config/alacritty/*.bak
 kitty/.config/kitty/*.bak
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+
