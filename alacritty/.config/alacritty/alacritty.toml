@@ -63,17 +63,6 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"  # Kelime ayırıcılar
 history = 10000           # Geçmiş büyüklüğü
 multiplier = 3            # Kaydırma hızı
 
-# Klavye kısayolları
-[keyboard]
-bindings = [
-    {key = "V", mods = "Control", action = "Paste"},              # Yapıştır
-    {key = "C", mods = "Control", action = "Copy"},               # Kopyala
-    {key = "Insert", mods = "Shift", action = "PasteSelection"},  # Seçimi yapıştır
-    {key = "Key0", mods = "Control", action = "ResetFontSize"},   # Font boyutunu sıfırla
-    {key = "Equals", mods = "Control", action = "IncreaseFontSize"}, # Font boyutunu artır
-    {key = "Minus", mods = "Control", action = "DecreaseFontSize"},  # Font boyutunu azalt
-]
-
 # Performans ayarları
 [debug]
 render_timer = false       # Render zamanlamasını kapat
