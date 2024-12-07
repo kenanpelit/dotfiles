@@ -1,0 +1,36 @@
+{
+    "label" : "lock",
+    "action" : "/usr/bin/hyprlock",
+    "text" : "Lock",
+    "keybind" : "l"
+}
+{
+    "label" : "hibernate",
+    "action" : "systemctl hibernate",
+    "text" : "Hibernate",
+    "keybind" : "h"
+}
+{
+    "label" : "logout",
+    "action" : "~/.bin/zen_terminate_sessions.sh terminate",
+    "text" : "Logout",
+    "keybind" : "e"
+}
+{
+    "label" : "shutdown",
+    "action" : "~/.bin/zen_terminate_sessions.sh poweroff",
+    "text" : "Shutdown",
+    "keybind" : "x"
+}
+{
+    "label" : "suspend",
+    "action" : "systemctl suspend -i",
+    "text" : "Suspend",
+    "keybind" : "s"
+}
+{
+    "label" : "reboot",
+    "action" : "~/.bin/zen_terminate_sessions.sh reboot",
+    "text" : "Reboot",
+    "keybind" : "r"
+}

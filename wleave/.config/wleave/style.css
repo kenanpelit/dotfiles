@@ -1,0 +1,56 @@
+* {
+    background-image: none;
+    font-family: "Hack Nerd Font", "JetBrainsMono Nerd Font", sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+window {
+    background-color: rgba(30, 30, 44, 0.9); /* Mocha Mantle */
+}
+
+button {
+    color: #F5E0DC; /* Mocha Text */
+    background-color: #1E1E2E; /* Mocha Crust */
+    border-style: solid;
+    border-width: 2px;
+    border-color: #45475A; /* Mocha Surface1 */
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 8px;
+    margin: 5px;
+    padding: 10px;
+    font-family: "Hack Nerd Font", "JetBrainsMono Nerd Font", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+button:focus, button:active, button:hover {
+    background-color: #6D6070; /* Daha pastel mor ton */
+    border-color: #CBA6F7; /* Mocha Mauve */
+    outline-style: none;
+}
+
+#lock {
+    background-image: image(url("/usr/share/wleave/icons/lock.svg"), url("/usr/local/share/wleave/icons/lock.svg"));
+}
+
+#logout {
+    background-image: image(url("/usr/share/wleave/icons/logout.svg"), url("/usr/local/share/wleave/icons/logout.svg"));
+}
+
+#suspend {
+    background-image: image(url("/usr/share/wleave/icons/suspend.svg"), url("/usr/local/share/wleave/icons/suspend.svg"));
+}
+
+#hibernate {
+    background-image: image(url("/usr/share/wleave/icons/hibernate.svg"), url("/usr/local/share/wleave/icons/hibernate.svg"));
+}
+
+#shutdown {
+    background-image: image(url("/usr/share/wleave/icons/shutdown.svg"), url("/usr/local/share/wleave/icons/shutdown.svg"));
+}
+
+#reboot {
+    background-image: image(url("/usr/share/wleave/icons/reboot.svg"), url("/usr/local/share/wleave/icons/reboot.svg"));
+}
