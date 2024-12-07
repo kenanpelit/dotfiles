@@ -1,4 +1,54 @@
+# Sistem dosyaları
 .DS_Store
+Thumbs.db
+desktop.ini
 *.log
+
+# Geçici dosyalar
+*.tmp
+*.bak
+*.swp
+*~
+
+# Fish shell
 fish/.local/share/fish/fish_history
-fish/.local/share/fish/fish_history
+fish/.local/share/fish/generated_completions/
+fish/.local/share/fish/fishd.*
+fish/.config/fish/fishd.tmp.*
+
+# Zsh
+zsh/.config/zsh/.zcompdump*
+zsh/.config/zsh/.zsh_history
+zsh/.config/zsh/.zsh_sessions
+
+# Mpv
+mpv/.config/mpv/watch_later/
+mpv/.config/mpv/mpvBookmark.log
+mpv/.config/mpv/mpvHistory.log
+
+# Ranger
+ranger/.config/ranger/history
+ranger/.config/ranger/bookmarks
+ranger/.config/ranger/tagged
+
+# Neovim
+nvim/.config/nvim/autoload/plug.vim
+nvim/.config/nvim/.netrwhist
+nvim/.config/nvim/plugged/
+nvim/.config/nvim/undo/
+nvim/.config/nvim/swap/
+
+# Özel scriptler (sadece wofi scriptleri dahil)
+bin/.bin/*
+!bin/.bin/wofi-*
+
+# Terminal geçmişi ve cache
+.bash_history
+.zsh_history
+.python_history
+.cache/
+*.cache
+
+# Alacritty ve Kitty yedekleri
+alacritty/.config/alacritty/*.bak
+kitty/.config/kitty/*.bak
