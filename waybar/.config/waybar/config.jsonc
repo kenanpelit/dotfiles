@@ -1,0 +1,596 @@
+[
+  {
+    "layer": "top", // Üst panel için ayar
+    "position": "top", // Panelin konumu
+    "gtk-layer-shell": true,
+    "exclusive": true, // Diğer pencerelerle paylaşılmamasını sağlar
+    "passthrough": false, // Giriş olaylarının geçmesini engeller
+    "spacing": 4, // Modüller arasındaki boşluk
+    "margin": 0, // Kenar boşlukları
+    "margin-top": 0,
+    "margin-bottom": 6,
+    "margin-left": 1,
+    "margin-right": 1,
+    "fixed-center": true,
+    "ipc": true,
+    "height": 32, // Panelin yüksekliği
+
+    "modules-left": [ // Sol tarafta gösterilecek modüller
+      "hyprland/workspaces", // Çalışma alanlarını gösterir
+      "custom/blank", // Boş modül
+      "hyprland/window" // Aktif pencereyi gösterir
+    ],
+    "modules-center": [ // Ortada gösterilecek modüller
+      "custom/todo", // Todo listesi
+      "clock", // Saat
+      "custom/weather", // Hava durumu
+      "custom/notifications" // Bildirimleri kaldırma
+    ],
+    "modules-right": [ // Sağ tarafta gösterilecek modüller
+      "cpu", // CPU kullanımı
+      "temperature", // Sıcaklık durumu
+      "memory", // Bellek kullanımı
+      "custom/vpnstatus", // VPN durumu
+      "custom/vpnmullvad", // mullvad bağlantı durumu
+      "custom/vpnother", // Other vpn bağlantı durumu
+      "network", // Ağ durumu
+      "tray", // Sistem tepsisi simgeleri
+      "battery" // Pil durumu
+    ],
+    "custom/blank": {
+      "format": " ",
+      "tooltip": false
+    },
+    "custom/separator": {
+      "format": "|",
+      "interval": "once",
+      "tooltip": false
+    },
+    "hyprland/workspaces": {
+        "show-special": true,
+        "disable-scroll": false,
+        "on-click": "activate",
+        "all-outputs": true,
+        "sort-by-number": true,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "urgent": "󰀨",
+            "focused": "",
+            "default": "",
+            "special": "󰣇",
+            "empty": "󰝦"
+        },
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "persistent-workspaces": {
+            "DP-5": [1, 2, 3, 4, 5, 6],
+            "eDP-1": [7, 8, 9]
+        },
+        "active-only": false,
+        "numeric-first": true,
+        "format-active": " {icon} ",
+        "format-occupied": " {icon} ",
+        "format-empty": " {icon} ",
+        "format-urgent": " {icon} ",
+        "on-click-right": "hyprctl dispatch workspace e+1",
+        "on-click-middle": "hyprctl dispatch togglespecialworkspace",
+        "smooth-scrolling-threshold": 1
+    },
+    "hyprland/window": {
+      "format": "  {}",
+      "max-length": 30 // Gösterilecek pencere adı uzunluğu
+    },
+    "custom/todo": {
+      "exec": "awk 1 ORS=' | ' ~/.todo | head -c -3", // Todo dosyasını okur
+      "on-click": "kitty --title todo --hold -e vim ~/.todo", // Todo listesine tıkladığında açılır
+      "on-click-right": "kitty -e calcurse", // Sağ tıklama ile calcurse açılır
+      "format": "   {} ",
+      "interval": "once",
+      "signal": 7
+    },
+    "clock": {
+        "format": "<span color='#cba6f7'>󱑎</span> {:%H:%M}",
+        "format-alt": "<span color='#cba6f7'>󰃰</span> {:%Y-%m-%d %A %H:%M}",
+        "timezone": "Europe/Istanbul",
+        "tooltip-format": "<big><span color='#cba6f7'>{:%Y %B}</span></big>\n<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "on-click-right": "mode",
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            },
+            "actions": {
+                "on-click-right": "mode",
+                "on-click-forward": "tz_up",
+                "on-click-backward": "tz_down",
+                "on-scroll-up": "shift_up",
+                "on-scroll-down": "shift_down"
+            }
+        },
+        "actions": {
+            "on-click-left": "mode",
+            "on-click-middle": "calendar",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        },
+        "interval": 1,
+        "tooltip": true,
+        "max-length": 25,
+        "locale": "tr_TR.UTF-8"
+    },
+    "custom/weather": {
+      "format": "{} ",
+      "tooltip": true,
+      "interval": 1800,  // 30 dakikada bir güncelle
+      "exec": "~/.bin/waybar-wttr.py",
+      "on-click": "xdg-open https://weather.com/en-IN/weather/today/l/03c92bfe03c8b4c7981131bd1a83fec2328c9e23fcedec819e69868fa0b39d63",
+      "on-click-right": "~/.bin/waybar-weather-full.sh",
+      "on-click-middle": "~/.bin/waybar-weather-update.sh",
+      "return-type": "json",
+      "signal": 8
+    },
+    "cpu": {
+      "states": {
+        "good": 0,
+        "warning": 80,
+        "critical": 90
+      },
+      "interval": 1,
+      "on-click-right": "kitty -e btop",
+      "format": " 󰍛 {usage:2} % ",
+      "format-alt": "{icon0}{icon1}{icon2}{icon3}",
+      "format-icons": [
+        "▁",
+        "▂",
+        "▃",
+        "▄",
+        "▅",
+        "▆",
+        "▇",
+        "█"
+      ]
+    },
+    "temperature": {
+      "thermal-zone": 3,
+      "interval": 1,
+      "on-click-right": "alacritty --class btop -e btop",
+      "critical-threshold": 85,
+      "tooltip": false,
+      "format": "  {temperatureC}°C ",
+      "format-icons": [
+        "", // Icon: temperature-empty
+        "", // Icon: temperature-quarter
+        "", // Icon: temperature-half
+        "", // Icon: temperature-three-quarters
+        "" // Icon: temperature-full
+      ]
+    },
+    "memory": {
+      "states": {
+        "good": 0,
+        "warning": 95,
+        "critical": 98
+      },
+      "interval": 30,
+      "format": " 󰾆 {percentage} % ",
+      "format-alt": " 󰾅 {used}GB ",
+      "max-length": 10,
+      "tooltip": true,
+      "tooltip-format": "  {used:0.1f}GB/{total:0.1f}GB ",
+      "on-click-right": "kitty -e btop"
+    },
+    "network": {
+      "interval": 5,
+      "format-wifi": "<span foreground='#61AF1F'></span> {essid} ({signalStrength}%)",
+      "format-ethernet": "<span foreground='#61AF1F'></span> {ifname}: {ipaddr}/{cidr} link | {bandwidthUpBits} up | {bandwidthDownBits} down | ",
+      "format-linked": "<span foreground='#61AF1F'></span> {ifname} (No IP)  睊⚠ no_entry",
+      "on-click-right": "~/.bin/waybar-wofi-wifi.sh",
+      "on-click-middle": "nm-connection-editor",
+      "format-icons": [
+        "󰤯",
+        "󰤟",
+        "󰤢",
+        "󰤥",
+        "󰤨"
+    ],
+    "format-disconnected": "睊 ⚠ ",
+    "format-alt": "<span foreground='#61AF1F'></span> {ifname}: {ipaddr}/{cidr} link | {bandwidthUpBits} up | {bandwidthDownBits} down | ",
+    "tooltip-format": "󰢮 {ifname}\n󰩟 {ipaddr}/{cidr}\n{icon} {essid}\n󱑽 {signalStrength}% {signaldBm} dBm {frequency} MHz\n󰞒 {bandwidthDownBytes}\n󰞕 {bandwidthUpBytes}"
+    },
+    "custom/vpnmullvad": {
+        "interval": 5,
+        "format": "{}",
+        "exec": "~/.bin/waybar-vpn-mullvad-check.sh",
+        "return-type": "json",
+        "on-click-right": "mullvad connect",
+        "on-click-middle": "mullvad disconnect"
+    },
+    "custom/vpnother": {
+        "interval": 5,
+        "format": "{}",
+        "exec": "~/.bin/waybar-vpn-other-check.sh",
+        "return-type": "json"
+    },
+    "custom/vpnstatus": {
+        "interval": 5,
+        "format": "{}",
+        "exec": "~/.bin/waybar-vpn-status-check.sh",
+        "return-type": "json"
+    },
+    "battery": {
+      "interval": 30, // 30 saniyede bir güncellenir
+      "states": { // Pil durumu için eşik değerleri
+        "warning": 40,
+        "critical": 10,
+        "tooltip-format": "{icon} {capacity}%"
+      },
+      "format": " {capacity}%", // Pil kapasitesi formatı
+      "format-full": "{icon} {capacity}%", // Tam dolu durumda gösterim
+      "format-charging": " {capacity}%", // Şarj olurken gösterim
+      "format-discharging": " {capacity}%", // Deşarj olurken gösterim
+      "format-icons": [ // Pil durumu simgeleri
+        "", "", "", "", "", "", "", "", ""
+      ]
+    },
+    "tray": {
+      "icon-size": 15,
+      "spacing": 5,
+      "show-passive-items": true,         // Pasif ikonları göster
+      "reverse-direction": true,          // Sağdan sola sıralama
+      "smooth-scrolling-threshold": 0,    // Kaydırma animasyonunu devre dışı bırak
+      "format": "{icon}",
+      "tooltip": true,
+      "tooltip-format": "{title}",
+      "tray-light-mode": "auto",         // Açık tema desteği
+      "require-input": true,             // Aktif alandayken görünsün
+      "special-icons": {
+          "firefox": "󰈹",
+          "zen-browser": "󰈹",
+          "telegram": "󰔁"
+      }
+    }
+  },
+  {
+    "layer": "top", // Alt panel için ayar
+    "position": "bottom", // Panelin konumu
+    "gtk-layer-shell": true, // GTK katman kabuğu desteği
+    "exclusive": true, // Diğer pencerelerle paylaşılmamasını sağlar
+    "passthrough": false, // Giriş olaylarının geçmesini engeller
+    "spacing": 4, // Modüller arasındaki boşluk
+    "margin": 0, // Kenar boşlukları
+    "margin-top": 0, // Üst kenar boşluğu
+    "margin-bottom": 0, // Alt kenar boşluğu
+    "margin-left": 1, // Sol kenar boşluğu
+    "margin-right": 1, // Sağ kenar boşluğu
+    "fixed-center": true, // Merkezde sabitlenmesini sağlar
+    "ipc": true, // IPC (Inter-Process Communication) desteği
+    "output": [ // Kullanılan çıkışlar
+      "eDP-1",
+      "DP-5"
+    ],
+    "height": 32, // Panelin yüksekliği
+
+    "modules-left": [ // Sol tarafta gösterilecek modüller
+      "custom/chatgpt", // ChatGPT başlatıcı
+      "custom/launcher", // Uygulama başlatıcı
+      "custom/updates", // Güncellemeleri kontrol eden modül
+      "custom/blank", // Boş modül
+      "custom/blank", // Boş modül
+      "custom/waybar-mpris", // MPRIS (Media Player Remote Interface Specification) modülü
+      "mpd",
+      "custom/blank" // Boş modül
+    ],
+    "modules-center": [ // Ortada gösterilecek modüller
+      "hyprland/submap", // Alt harita bilgisi
+      "custom/mic" // Mikrofon durumu
+    ],
+    "modules-right": [ // Sağ tarafta gösterilecek modüller
+      "bluetooth", // Bluetooth durumu
+      "pulseaudio#sink", // Ses çıkışı durumu
+      "pulseaudio#source", // Ses girişi durumu
+      "backlight", // Ekran parlaklığı durumu
+      "disk#one", // Birinci disk durumu
+      "idle_inhibitor", // Boşta kalmayı önleyici
+      "custom/hyprshade", // Ekran filtresi durumu
+      "custom/displays", // Ekran ayarları
+      //"custom/powerprofil", // Güç profil durumu
+      "custom/cliphist", // Kopyalanan öğelerin geçmişi
+      "custom/firewall",
+      "custom/recorder",
+      "custom/blank", // Boş modül
+      "custom/powermenu" // Güç menüsü
+    ],
+    "custom/blank": { // Boş modül ayarları
+      "format": " ",
+      "tooltip": false
+    },
+    "custom/separator": {
+      "format": "|",
+      "interval": "once",
+      "tooltip": false
+    },
+    "custom/recorder": {
+      "format": "{}",
+      "interval": "once",
+      "exec": "echo ''",
+      "tooltip": "false",
+      "exec-if": "pgrep 'wf-recorder'",
+      "on-click": "exec ~/.bin/waybar-wl-record.sh",
+      "signal": 8
+    },
+    "hyprland/window": {
+      "format": "👉 {}",
+      "max-length": 30
+    },
+    "hyprland/submap": {
+      "format": "{}",
+      //"max-length": 30,
+      "tooltip": false
+    },
+    "custom/todo": { // Todo listesi için modül
+      "exec": "awk 1 ORS=' | ' ~/.local/share/todo.txt | head -c -3", // Todo dosyasını okur
+      "format": "  {} ", // Format ayarı
+      "interval": "once", // Tek seferlik güncelleme
+      "signal": 7
+    },
+    "custom/waybar-mpris": {
+      "return-type": "json",
+      "exec": "waybar-mpris --position --autofocus",
+      "on-click": "waybar-mpris --send toggle",
+      // This option will switch between players on right click.
+      //"on-click-right": "waybar-mpris --send player-next",
+      // The options below will switch the selected player on scroll
+      //"on-scroll-up": "waybar-mpris --send player-next",
+      //"on-scroll-down": "waybar-mpris --send player-prev",
+      // The options below will go to next/previous track on scroll
+       "on-click-right": "waybar-mpris --send next",
+       "on-click-middle": "waybar-mpris --send prev",
+       "max-length": 100,
+       "escape": true
+    },
+    "custom/mic": {
+      "format": "{}",
+      "return-type": "json",
+      "interval": 1,
+      "exec": "echo '{ \"text\": \"  \", \"class\": \"used\"}'",
+      "exec-if": "~/.bin/waybar-mic.sh"
+    },
+    "custom/updates": {
+      "format": "{} {icon}",
+      "return-type": "json",
+      "format-icons": {
+        "has-updates": "󰮯 ",
+        //"has-updates": "󰮯󱍷",
+        "updated": "󰂪 "
+      },
+      "exec-if": "which waybar-module-pacman-updates",
+      "exec": "waybar-module-pacman-updates --no-zero-output --interval-seconds 300 --network-interval-seconds 360",
+    },
+    "custom/chatgpt": { // ChatGPT başlatıcı
+      "format": "  ",
+      //"on-click": "chromium --app=https://chat.openai.com", // Tıklandığında ChatGPT açar
+      //"on-click": "GDK_BACKEND=wayland MOZ_CRASHREPORTER_DISABLE=1 /usr/bin/mullvad-exclude /usr/bin/zen-browser -P NoVpn https://chat.openai.com", // Tıklandığında ChatGPT açar
+      "on-click": "GDK_BACKEND=wayland MOZ_CRASHREPORTER_DISABLE=1 /usr/bin/mullvad-exclude /usr/bin/zen-browser -P NoVpn https://chat.openai.com || makoctl show 'ChatGPT is already open!'",
+      "on-click-right": "GDK_BACKEND=wayland MOZ_CRASHREPORTER_DISABLE=1 /usr/bin/mullvad-exclude /usr/bin/zen-browser -P NoVpn https://claude.ai/new || makoctl show 'ClaudeAI is already open!'",
+      "tooltip-format": "Open ChatGPT" // Araç ipucu
+    },
+    "mpd": {
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+        "format-disconnected": " 󰎊 Disconnected",
+        "format-stopped": " 󰓛 Stopped",
+        "unknown-tag": "",
+        "interval": 2,
+        "consume-icons": {
+            "on": " "
+        },
+        "random-icons": {
+            "off": "<span color=\"#F38BA8\"></span> ",
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": " 󰏤",
+            "playing": " 󰐊"
+        },
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)",
+        "on-click": "~/.bin/mpc-control toggle",
+        "on-click-right": "~/.bin/mpc-control next",
+        "on-click-middle": "~/.bin/mpc-control prev"
+    },
+    "pulseaudio#sink": {
+      "format": "{icon} {volume}%",
+      "format-muted": " 󰝟 ",
+      "format-bluetooth": "<span foreground='#74c7ec'> 󰂱 </span> {volume}% ",         // Mavi bluetooth ikonu
+      "format-bluetooth-muted": "<span foreground='#ff6b6b'> 󰂲 </span> {volume}% ",   // Pastel kırmızı sessiz ikonu
+      "format-headphone": "<span foreground='#928374'>{icon}</span> {volume}% ",
+      "format-headphone-muted": "{icon} {volume}% ",
+      "format-icons": {
+        "headphone": [
+          "󰋋",
+          "󰋋",
+          "󰋋"
+        ],
+        "hands-free": "󰋎",
+        "headset": [
+          "󰋎",
+          "󰋎",
+          "󰋎"
+        ],
+        "phone": [
+          "󰏲",
+          "󰏲",
+          "󰏲"
+        ],
+        "default": [
+          "󰕿",
+          "󰖀",
+          "󰕾"
+        ]
+      },
+      "scroll-step": 5,                                              // Hassas ses kontrolü için
+      "max-volume": 100,                                            // Maksimum ses sınırı
+      "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+      "on-click-middle": "pactl set-sink-volume @DEFAULT_SINK@ 50%", // Orta tıklama ile %50 ses
+      "on-click-right": "/usr/bin/pavucontrol",
+      "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1%",
+      "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1%",
+      "tooltip": true,                                              // Tooltip aktif
+      "tooltip-format": "Ses: {volume}%\nCihaz: {desc}"            // Tooltip içeriği
+    },
+    "pulseaudio#source": {
+      "format": "{format_source}",
+      "format-source": " 󰍬 {volume}% ",
+      "format-source-muted": "<span foreground='#ff6b6b'> 󰍭 </span>",
+      "max-volume": 40,                                            // Maksimum mikrofon sesi
+      "scroll-step": 5,                                              // Hassas mikrofon kontrolü
+      "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+      "on-click-middle": "pactl set-source-volume @DEFAULT_SOURCE@ 40%",
+      "on-click-right": "/usr/bin/pavucontrol",
+      "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -1%",
+      "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +1%",
+      "tooltip": true,
+      "tooltip-format": "Mikrofon: {volume}%\nCihaz: {source_desc}"
+    },
+    "backlight": { // Ekran parlaklığı durumu
+      "device": "intel_backlight", // Parlaklık aygıtı
+      "on-scroll-up": "light -A 5", // Yukarı kaydırıldığında parlaklığı artırır
+      "on-scroll-down": "light -U 5", // Aşağı kaydırıldığında parlaklığı azaltır
+      "format": "<span foreground='#b48ead'>{icon}</span> {percent}%", // Parlaklık formatı
+      "format-icons": [
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    "disk#one": { // Birinci disk durumu
+      "states": {
+        "good": 0,
+        "warning": 90,
+        "critical": 95
+      },
+      "interval": 600, // 10 dakikada bir güncellenir
+      "format": "  {percentage_used:2}% ", // Disk kullanımı formatı
+      "path": "/" // Disk yolu
+    },
+    "disk#two": { // İkinci disk durumu
+      "states": {
+        "good": 0,
+        "warning": 90,
+        "critical": 95
+      },
+      "interval": 600, // 10 dakikada bir güncellenir
+      "format": "  {percentage_used:2}% ", // Disk kullanımı formatı
+      "path": "/kenp" // Disk yolu
+    },
+    "bluetooth": {
+        "format": "{icon}",
+        "format-disabled": "<span foreground='#ff6b6b'>󰂲</span>",
+        "format-off": "<span foreground='#ff6b6b'>󰂲</span>",
+        "format-on": "<span foreground='#ff8787'>󰂯</span>",
+        "format-connected": "<span foreground='#74c7ec'>{icon} {device_alias}</span>",
+        "format-connected-battery": "<span foreground='#74c7ec'>{icon} {device_alias} {device_battery_percentage}%</span>",
+        "format-icons": {
+            "default": "󰂱",
+            "headset": "󰋋",
+            "headphone": "󰋋",
+            "earbuds": "󰋎",
+            "speaker": "󰓃",
+            "phone": "󰏲",
+            "portable": "󰄋",
+            "computer": "󰟀",
+            "keyboard": "󰌌",
+            "mouse": "󰍽",
+            "gamepad": "󰊱",
+            "watch": "󰖉"
+        },
+        "tooltip": true,
+        "tooltip-format": "Bluetooth Durumu: {status}\nDenetleyici: {controller_alias}",
+        "tooltip-format-connected": "Bağlı: {device_alias}",
+        "tooltip-format-enumerate-connected": "Cihaz: {device_alias}\nMAC: {device_address}",
+        "tooltip-format-enumerate-connected-battery": "Cihaz: {device_alias}\nPil: {device_battery_percentage}%",
+        "on-click": "~/.bin/waybar-bluetooth-menu.sh toggle",
+        "on-click-right": "~/.bin/waybar-bluetooth-menu.sh menu",
+        "on-click-middle": "blueberry",
+        "interval": 1
+    },
+    "idle_inhibitor": {
+      "exec": "~/.bin/waybar-idle-inhibitor.sh", // Scriptin yolu
+      "tooltip": false,
+      "format": "{icon}",
+      "format-icons": {
+        "activated": "  ",
+        "deactivated": "  "
+      }
+    },
+    "custom/hyprshade": {
+    "format": "   ", // Her iki simgeyi de gösterir
+    "interval": 10, // Güncelleme aralığı
+    "return-type": "json", // JSON formatında dönüş
+    "exec": "~/.bin/waybar-bluelightfilter-monitor.sh", // Bluelight filter scripti
+    "on-click": "~/.bin/waybar-bluelightfilter-toggle.sh", // Tıklandığında gammastep'i aç/kapa
+    "on-click-right": "~/.bin/waybar-hyprshade_blue_light_toggle.sh kenp", // Sağ tıklama ile birinci işlev
+    "on-click-middle": "~/.bin/waybar-hyprshade_blue_light_toggle.sh gnome", // Orta tıklama ile GNOME ayarı
+    "signal": 10 // Güncellemeleri beklemek için sinyal
+    },
+    "custom/displays": {
+      "format": "   ",
+      "interval": 10,
+      "on-click": "hdisplays",
+      "signal": 10,
+      "tooltip": "hdisplays"
+    },
+    "custom/powerprofil": {
+      "format": "  ",
+      "signal": 7,
+      "tooltip": "powerprofil"
+    },
+    "custom/cliphist": {
+      "format": "  {}", // Kopyalanan öğelerin formatı
+      "exec": "echo ; echo 󰅇 clipboard history", // Panodaki geçmişi çeker
+      "on-click": "sleep 0.1 && ~/.bin/waybar-wofi-cliphist.sh", // Tıklandığında kopya yöneticisini açar
+      //"interval": "once",                                          // Sadece başlangıçta çalıştır
+      "interval": 86400, // Her gün bir kez günceller
+      "tooltip": true
+    },
+    "custom/firewall": {
+      "format": "{}",
+      "exec": "sh -c 'if systemctl is-active ufw >/dev/null 2>&1; then echo \"<span foreground=\\\"#98c379\\\"> 󰕥 </span>\"; else echo \"<span foreground=\\\"#e06c75\\\"> 󰕥 </span>\"; fi'",
+      "on-click": "pkexec systemctl start ufw && notify-send 'Güvenlik Duvarı' 'UFW başlatıldı' -i security-high",
+      "on-click-right": "pkexec systemctl restart ufw && notify-send 'Güvenlik Duvarı' 'UFW yeniden başlatıldı' -i security-high",
+      "on-click-middle": "pkexec systemctl stop ufw && notify-send 'Güvenlik Duvarı' 'UFW durduruldu' -i security-low",
+      "interval": 5,
+      "tooltip": true,
+      "tooltip-format": "Güvenlik Duvarı Durumu\n\n󱎫 Sol tık: Başlat\n󰦝 Orta tık: Durdur\n󰑐 Sağ tık: Yeniden başlat\n\n<span foreground='#98c379'>Aktif olduğunda sisteminiz korunur</span>",
+    },
+    "custom/powermenu": {
+      "format": " ⏻ ",
+      "signal": 7,
+      "on-click-right": "wleave",
+      "on-click-middle": "~/.bin/waybar-wofi-powerprofiles.sh",
+      "tooltip": "powermenu - powerprofil"
+    }
+  }
+]
