@@ -1,0 +1,91 @@
+format = """
+[](fg:#090c0c)\
+$os\
+$directory\
+$git_branch\
+$git_status\
+[](fg:#1C2128 bg:#090c0c)\
+$fill\
+$nodejs\
+$rust\
+$golang\
+$python\
+$docker_context\
+$cmd_duration\
+$time\
+[](fg:#090c0c)\
+$line_break\
+$character"""
+
+[os]
+format = "[$symbol]($style)"
+style = "fg:#81A1C1 bg:#090c0c"
+
+[directory]
+style = "fg:#88C0D0 bg:#090c0c"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncate_to_repo = true
+fish_style_pwd_dir_length = 1
+
+[character]
+success_symbol = "[󰁔](bold #A3BE8C)"
+error_symbol = "[󰁔](bold #BF616A)"
+vimcmd_symbol = "[󰁕](bold #81A1C1)"
+
+[git_branch]
+format = "[ $symbol$branch(:$remote_branch) ]($style)"
+symbol = "󰘬 "
+style = "fg:#8FBCBB bg:#090c0c"
+
+[git_status]
+format = '[$all_status$ahead_behind]($style)'
+style = "fg:#BF616A bg:#090c0c"
+conflicted = "≠"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕"
+untracked = "?${count}"
+stashed = "≡"
+modified = "!${count}"
+staged = "+${count}"
+renamed = "»${count}"
+deleted = "✘${count}"
+
+[cmd_duration]
+format = "[ 󱎫 $duration]($style)"
+style = "fg:#D08770 bg:#090c0c"
+min_time = 1000
+
+[time]
+format = '[ 󰥔 $time ]($style)'
+style = "fg:#B48EAD bg:#090c0c"
+time_format = "%R"
+
+[docker_context]
+symbol = " "
+style = "fg:#81A1C1 bg:#090c0c"
+format = "[ $symbol$context ]($style)"
+
+[nodejs]
+symbol = "󰎙 "
+style = "fg:#A3BE8C bg:#090c0c"
+format = '[ $symbol($version) ]($style)'
+
+[rust]
+symbol = "󱘗 "
+style = "fg:#D08770 bg:#090c0c"
+format = '[ $symbol($version) ]($style)'
+
+[golang]
+symbol = "󰟓 "
+style = "fg:#81A1C1 bg:#090c0c"
+format = '[ $symbol($version) ]($style)'
+
+[python]
+symbol = "󰌠 "
+style = "fg:#EBCB8B bg:#090c0c"
+format = '[ $symbol($version) ]($style)'
+
+[fill]
+symbol = " "
