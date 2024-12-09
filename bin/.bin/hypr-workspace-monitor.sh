@@ -29,6 +29,7 @@
 # Note:
 #   Script uses $HOME/.cache/hypr/toggle directory
 #   Directory will be created automatically if it doesn't exist
+#   Also, hyperland gestures must be turned off
 
 #######################################
 # Workspace Management Functions
