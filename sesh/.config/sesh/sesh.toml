@@ -30,6 +30,11 @@ path = "~/"
 startup_command = "tunnelshow"
 
 [[session]]
+name = "Podman-Tui 󱘖 "
+path = "~/"
+startup_command = "podman-tui"
+
+[[session]]
 name = "Anote  "
 path = "~/"
 startup_command = "anote_snippets.sh"
