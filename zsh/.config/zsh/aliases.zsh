@@ -93,10 +93,10 @@ alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacma
 alias mirrord="sudo reflector --latest 30 --number 10 --sort delay --save /etc/pacman.d/mirrorlist"
 alias mirrors="sudo reflector --latest 30 --number 10 --sort score --save /etc/pacman.d/mirrorlist"
 alias mirrora="sudo reflector --latest 30 --number 10 --sort age --save /etc/pacman.d/mirrorlist"
-alias mirrorx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 5 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
-alias mirrorxx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 20 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
+alias mirrorx="sudo reflector --age 6 --latest 20 --fastest 20 --threads 5 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
+alias mirrorxx="sudo reflector --age 6 --latest 20 --fastest 20 --threads 20 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
 alias ram='rate-mirrors --allow-root --disable-comments arch | sudo tee /etc/pacman.d/mirrorlist'
-alias rams='rate-mirrors --allow-root --disable-comments --protocol https arch  | sudo tee /etc/pacman.d/mirrorlist'
+alias rams='rate-mirrors --allow-root --disable-comments --protocol https arch | sudo tee /etc/pacman.d/mirrorlist'
 
 # Directory & File Operations
 alias ls='ls --color=auto'
@@ -244,3 +244,46 @@ alias vbm="sudo /usr/local/bin/arcolinux-vbox-share"
 alias unhblock="hblock -S none -D none"
 alias subdown="OpenSubtitlesDownload --cli -l tur"
 alias takeover="tmux detach -a"
+
+# Transmission aliasları
+alias tsm='~/.bin/tsm'
+alias tsml='tsm list'
+alias tsma='tsm add'
+alias tsms='tsm speed'
+alias tsmst='tsm start'
+alias tsmp='tsm stop'
+alias tsmr='tsm remove'
+alias tsmi='tsm info'
+alias tsmf='tsm files'
+alias tsmpurge='tsm purge'
+alias tsmsa='tsm start all'
+alias tsmpa='tsm stop all'
+alias tsmra='tsm remove all'
+
+# Completion tanımlamaları
+compdef _gnu_generic tsm
+
+# Alias açıklamalarını tanımla
+zstyle ':completion:*:*:tsm:*' list-colors '=(#b)(*)=0=94'
+zstyle ':completion:*:aliases' list-colors '=*=94'
+
+# Her komut için açıklamalar
+compctl -K _tsm_commands tsm
+function _tsm_commands() {
+ local commands=(
+ "tsm:Transmission yönetim aracı"
+ "tsml:Torrent listesini göster"
+ "tsma:Yeni torrent ekle"
+ "tsms:İndirme/yükleme hızlarını göster"
+ "tsmst:Torrent başlat"
+ "tsmp:Torrent durdur"
+ "tsmr:Torrent sil"
+ "tsmi:Torrent detaylarını göster"
+ "tsmf:Torrent dosyalarını listele"
+ "tsmpurge:Torrent ve dosyalarını sil"
+ "tsmsa:Tüm torrentleri başlat"
+ "tsmpa:Tüm torrentleri durdur"
+ "tsmra:Tüm torrentleri sil"
+ )
+ reply=("${(@f)$(printf "%s\n" "${commands[@]}")}")
+}

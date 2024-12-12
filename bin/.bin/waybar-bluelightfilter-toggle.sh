@@ -16,7 +16,7 @@ else
   LOCATION="41.0108:29.0219" # Enlem:Boylam (manuel olarak ayarlanmış)
   TEMP_DAY=4500              # Gündüz renk sıcaklığı
   TEMP_NIGHT=4000            # Gece renk sıcaklığı
-  BRIGHTNESS_DAY=0.9         # Gündüz parlaklık
+  BRIGHTNESS_DAY=0.7         # Gündüz parlaklık
   BRIGHTNESS_NIGHT=0.7       # Gece parlaklık
   GAMMA="1,0.2,0.1"          # RGB gamma ayarları
 

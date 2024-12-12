@@ -15,6 +15,13 @@ fish/.local/share/fish/fish_history
 fish/.local/share/fish/generated_completions/
 fish/.local/share/fish/fishd.*
 fish/.config/fish/fishd.tmp.*
+fish/.config/fish/alias.fish
+fish/.config/fish/completions/assh.fish
+fish/.config/fish/functions/assh.fish
+fish/.config/fish/functions/cfg.fish
+fish/.config/fish/functions/history_cleaner.fish
+fish/.config/fish/functions/ssb.fish
+fish/.local
 
 # Zsh
 zsh/.config/zsh/.zcompdump*
@@ -41,6 +48,11 @@ nvim/.config/nvim/swap/
 # Özel scriptler (sadece wofi scriptleri dahil)
 bin/.bin/*
 !bin/.bin/wofi-*
+#!bin/.bin/hypr-*
+!bin/.bin/waybar-*
+!bin/.bin/hypr-workspace-monitor.sh
+!bin/.bin/starship-switch.sh
+!bin/.bin/theme-*
 
 # Terminal geçmişi ve cache
 .bash_history
@@ -59,3 +71,4 @@ __pycache__/
 *$py.class
 .Python
 
+touchegg/.config/touchegg/.touchegg*

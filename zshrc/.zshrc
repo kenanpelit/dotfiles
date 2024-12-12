@@ -20,7 +20,7 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 # FZF ayarları
-export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
+export FZF_DEFAULT_OPTS="--height 80% --layout=reverse --border"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 # Path tanımlamaları
@@ -31,7 +31,7 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 # Oh-My-Zsh
 export ZSH="/home/$USER/.oh-my-zsh"
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo command-not-found history copypath dirhistory colored-man-pages aliases ssh-agent fzf docker docker-compose)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting z sudo command-not-found history copypath dirhistory colored-man-pages aliases ssh-agent fzf docker docker-compose)
 [[ -f $ZSH/oh-my-zsh.sh ]] && source $ZSH/oh-my-zsh.sh
 
 # ZSH ayarları ve completion
@@ -65,3 +65,4 @@ bindkey "^[[4~" end-of-line
 
 # Prompt (en son yüklenmeli)
 eval "$(starship init zsh)"
+

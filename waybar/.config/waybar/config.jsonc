@@ -381,6 +381,7 @@
       },
       "exec-if": "which waybar-module-pacman-updates",
       "exec": "waybar-module-pacman-updates --no-zero-output --interval-seconds 300 --network-interval-seconds 360",
+      "on-click-right": "~/.bin/hypr-start-update.sh"
     },
     "custom/chatgpt": { // ChatGPT başlatıcı
       "format": "  ",
@@ -549,10 +550,8 @@
     "format": "   ", // Her iki simgeyi de gösterir
     "interval": 10, // Güncelleme aralığı
     "return-type": "json", // JSON formatında dönüş
-    "exec": "~/.bin/waybar-bluelightfilter-monitor.sh", // Bluelight filter scripti
-    "on-click": "~/.bin/waybar-bluelightfilter-toggle.sh", // Tıklandığında gammastep'i aç/kapa
-    "on-click-right": "~/.bin/waybar-hyprshade_blue_light_toggle.sh kenp", // Sağ tıklama ile birinci işlev
-    "on-click-middle": "~/.bin/waybar-hyprshade_blue_light_toggle.sh gnome", // Orta tıklama ile GNOME ayarı
+    "on-click": "~/.bin/hypr-gammastep-manager.sh toggle", // Tıklandığında gammastep'i aç/kapa
+    "on-click-right": "~/.bin/hypr-hyprshade-manager.sh toggle", // Sağ tıklama ile birinci işlev
     "signal": 10 // Güncellemeleri beklemek için sinyal
     },
     "custom/displays": {
