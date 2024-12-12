@@ -1,0 +1,35 @@
+{
+  "Bash Header": {
+    "prefix": "header",
+    "body": [
+      "#!/bin/bash",
+      "",
+      "#===============================================================================",
+      "#",
+      "#   Script Adı: $1",
+      "#   Versiyon: 1.0.0",
+      "#   Tarih: $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE",
+      "#   Yazar: $2",
+      "#   E-posta: $3",
+      "#   ",
+      "#   Açıklama: $4",
+      "#   ",
+      "#   Gereksinimler:",
+      "#   - $5",
+      "#   ",
+      "#   Kullanım: ",
+      "#   bash script.sh [PARAMETRELER]",
+      "#   ",
+      "#   Lisans: MIT",
+      "#   ",
+      "#===============================================================================",
+      "",
+      "VERSION=\"1.0.0\"",
+      "SCRIPT_NAME=\\$(basename \"\\$0\")",
+      "",
+      "[[ \"\\${BASH_SOURCE[0]}\" != \"\\$0\" ]] && echo \"Script source edilemez!\" && exit 1",
+      ""
+    ],
+    "description": "Add bash script header"
+  }
+}
