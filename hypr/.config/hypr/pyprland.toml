@@ -1,0 +1,86 @@
+# ===========================================================================
+# Pyprland Temel Yapılandırması
+# ===========================================================================
+
+# -----------------------------
+# Aktif Eklentiler
+# -----------------------------
+[pyprland]
+plugins = [
+    "scratchpads",           # Hızlı erişim pencereleri
+    "lost_windows",          # Kayıp pencereleri bulma
+    "monitors",              # Monitör yönetimi
+    "shift_monitors",        # Monitör geçişi
+    "toggle_dpms",           # Ekran güç yönetimi
+    "expose",                # Pencere önizleme
+    "workspaces_follow_focus" # Odak takibi
+]
+
+# -----------------------------
+# Çalışma Alanı Takibi
+# -----------------------------
+[workspaces_follow_focus]
+max_workspaces = 9           # Maksimum çalışma alanı sayısı
+
+# -----------------------------
+# Expose Ayarları
+# -----------------------------
+[expose]
+include_special = false      # Özel pencereleri dahil etme
+
+# -----------------------------
+# Scratchpad Yapılandırmaları
+# -----------------------------
+# Ses Kontrolü
+[scratchpads.volume]
+animation = "fromRight"
+command = "pavucontrol"
+class = "org.pulseaudio.pavucontrol"
+size = "40% 90%"
+unfocus = "hide"
+lazy = true
+
+# Terminal Dosya Yöneticisi
+[scratchpads.ranger]
+animation = "fromTop"
+command = "kitty --class ranger ranger"
+class = "ranger"
+size = "75% 60%"
+unfocus = "hide"
+lazy = true
+
+# Müzik Oynatıcı
+[scratchpads.music]
+animation = "fromTop"
+command = "spotify"
+class = "Spotify"
+size = "80% 80%"
+unfocus = "hide"
+lazy = true
+
+# Terminal
+[scratchpads.terminal]
+animation = "fromTop"
+command = "kitty --class kitty-scratch"
+class = "kitty-scratch"
+size = "75% 60%"
+unfocus = "hide"
+lazy = true
+
+# Sistem İzleme
+[scratchpads.ncmpcpp]
+animation = "fromRight"
+command = "__kitty-ncmpcpp.sh"
+class = "ncmpcpp"
+size = "70% 70%"
+unfocus = "hide"
+lazy = true
+
+# Not Defteri
+[scratchpads.notes]
+animation = "fromBottom"
+command = "kitty --class notes nvim"
+class = "notes"
+size = "70% 50%"
+unfocus = "hide"
+lazy = true
