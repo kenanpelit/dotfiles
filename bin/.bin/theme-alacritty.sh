@@ -1,5 +1,44 @@
 #!/bin/bash
-
+#######################################
+#
+# Version: 1.0.0
+# Date: 2024-12-12
+# Author: Kenan Pelit
+# Repository: github.com/kenanpelit/dotfiles
+# Description: AlacrittyThemeManager - Alacritty Terminal Renk Teması Yöneticisi
+#
+# Bu script Alacritty terminal için tema yönetimini sağlayan bir araçtır.
+# Temel özellikleri:
+#
+# - 4 Farklı Tema Desteği:
+#   - Kenp (Özel tema)
+#   - Tokyo Night
+#   - Catppuccin Mocha
+#   - Dracula
+#
+# - Tema Yönetimi:
+#   - TOML formatında tema tanımları
+#   - Tema değiştirme ve geçiş
+#   - Otomatik yedekleme
+#   - Kolay tema ekleme
+#
+# - Renk Özellikleri:
+#   - İndeksli renkler
+#   - Birincil renkler (arka plan/ön plan)
+#   - Normal ve parlak renkler
+#   - İmleç ve seçim renkleri
+#
+# - Sistem Entegrasyonu:
+#   - Bildirim sistemi
+#   - Renkli terminal çıktıları
+#   - Kolay kullanım için CLI
+#
+# Dizin: ~/.config/alacritty/
+# Dosya: colors.toml
+#
+# License: MIT
+#
+#######################################
 ALACRITTY_DIR="/home/kenan/.config/alacritty"
 THEME_FILE="$ALACRITTY_DIR/colors.toml"
 THEME_MARKER="# Current theme: "

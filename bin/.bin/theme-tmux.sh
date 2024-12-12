@@ -1,5 +1,41 @@
 #!/bin/bash
-
+#######################################
+#
+# Version: 1.0.0
+# Date: 2024-12-12
+# Author: Kenan Pelit
+# Repository: github.com/kenanpelit/dotfiles
+# Description: TmuxThemeManager - Tmux Renk Teması Yönetim Aracı
+#
+# Bu script tmux için renk tema yönetimini sağlayan kapsamlı bir araçtır.
+# Temel özellikleri:
+#
+# - Tema Yönetimi:
+#   - 6 farklı özel tema (kenp, tokyo_night, dracula, kanagawa, nord, catppuccin)
+#   - Tek komutla tema değiştirme
+#   - Temalar arası geçiş yapma
+#   - Mevcut tema sorgulama
+#
+# - Tema Yapılandırması:
+#   - Her tema için 18 renk tanımı
+#   - Arka plan renkleri
+#   - Yazı renkleri
+#   - Vurgulama renkleri
+#
+# - Sistem Entegrasyonu:
+#   - Otomatik yapılandırma yedekleme
+#   - Bildirim sistemi entegrasyonu
+#   - Tmux oturum yenileme
+#   - Renkli terminal çıktıları
+#
+# Dizin: ~/.config/tmux/
+# Dosyalar:
+#   - tmux.conf: Ana yapılandırma
+#   - tmux.conf.local: Yerel tema ayarları
+#
+# License: MIT
+#
+#######################################
 # Kenp theme definition
 declare -A kenp=(
   # Background colors

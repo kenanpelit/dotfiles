@@ -1,5 +1,42 @@
 #!/bin/bash
-
+#######################################
+#
+# Version: 1.0.0
+# Date: 2024-12-12
+# Author: Kenan Pelit
+# Repository: github.com/kenanpelit/dotfiles
+# Description: StarshipThemeManager - Starship Prompt Tema Yöneticisi
+#
+# Bu script Starship prompt için tema yönetimini sağlayan kapsamlı bir araçtır.
+# Temel özellikleri:
+#
+# - Tema Yönetimi:
+#   - 4 farklı hazır tema (Original, Pastel, Ultimate, Ultimate Pro)
+#   - Otomatik tema döngüsü
+#   - İlk kurulum desteği
+#   - Durum kontrolü ve geçiş
+#
+# - Tema Özellikleri:
+#   - Git entegrasyonu ve özel semboller
+#   - Programlama dili göstergeleri
+#   - Komut süresi ve saat gösterimi
+#   - Özelleştirilmiş karakter sembolleri
+#   - Nerd Font desteği
+#
+# - Dizin Yapısı:
+#   ~/.config/starship/
+#     - starship.toml.original
+#     - starship.toml.pastel
+#     - starship.toml.ultimate
+#     - starship.toml.ultimate-pro
+#
+# - Gereksinimler:
+#   - Starship yüklü olmalı
+#   - Ultimate temalar için Nerd Font gerekli
+#
+# License: MIT
+#
+#######################################
 # Yapılandırma dosyalarının yolları
 CONFIG_DIR="$HOME/.config/starship"
 ORIGINAL_CONFIG="$CONFIG_DIR/starship.toml.original"
@@ -453,37 +490,37 @@ EOL
 
 # Mevcut yapılandırmayı kontrol et ve geçiş yap
 check_current_config() {
-	if cmp -s "$ACTIVE_CONFIG" "$ORIGINAL_CONFIG"; then
-		echo "Pastel yapılandırmaya geçiliyor..."
-		cp "$PASTEL_CONFIG" "$ACTIVE_CONFIG"
-		echo "✨ Pastel tema aktif edildi!"
-	elif cmp -s "$ACTIVE_CONFIG" "$PASTEL_CONFIG"; then
-		echo "Ultimate yapılandırmaya geçiliyor..."
-		cp "$ULTIMATE_CONFIG" "$ACTIVE_CONFIG"
-		echo "✨ Ultimate tema aktif edildi!"
-	elif cmp -s "$ACTIVE_CONFIG" "$ULTIMATE_CONFIG"; then
-		echo "Ultimate Pro yapılandırmaya geçiliyor..."
-		cp "$ULTIMATE_PRO_CONFIG" "$ACTIVE_CONFIG"
-		echo "✨ Ultimate Pro tema aktif edildi!"
-	else
-		echo "Orijinal yapılandırmaya geçiliyor..."
-		cp "$ORIGINAL_CONFIG" "$ACTIVE_CONFIG"
-		echo "✨ Orijinal tema aktif edildi!"
-	fi
+  if cmp -s "$ACTIVE_CONFIG" "$ORIGINAL_CONFIG"; then
+    echo "Pastel yapılandırmaya geçiliyor..."
+    cp "$PASTEL_CONFIG" "$ACTIVE_CONFIG"
+    echo "✨ Pastel tema aktif edildi!"
+  elif cmp -s "$ACTIVE_CONFIG" "$PASTEL_CONFIG"; then
+    echo "Ultimate yapılandırmaya geçiliyor..."
+    cp "$ULTIMATE_CONFIG" "$ACTIVE_CONFIG"
+    echo "✨ Ultimate tema aktif edildi!"
+  elif cmp -s "$ACTIVE_CONFIG" "$ULTIMATE_CONFIG"; then
+    echo "Ultimate Pro yapılandırmaya geçiliyor..."
+    cp "$ULTIMATE_PRO_CONFIG" "$ACTIVE_CONFIG"
+    echo "✨ Ultimate Pro tema aktif edildi!"
+  else
+    echo "Orijinal yapılandırmaya geçiliyor..."
+    cp "$ORIGINAL_CONFIG" "$ACTIVE_CONFIG"
+    echo "✨ Orijinal tema aktif edildi!"
+  fi
 }
 
 # Ana fonksiyon
 main() {
-	if [ ! -f "$ACTIVE_CONFIG" ]; then
-		echo "İlk kurulum yapılıyor..."
-		cp "$ORIGINAL_CONFIG" "$ACTIVE_CONFIG"
-		echo "✨ Orijinal tema aktif edildi!"
-	else
-		check_current_config
-	fi
+  if [ ! -f "$ACTIVE_CONFIG" ]; then
+    echo "İlk kurulum yapılıyor..."
+    cp "$ORIGINAL_CONFIG" "$ACTIVE_CONFIG"
+    echo "✨ Orijinal tema aktif edildi!"
+  else
+    check_current_config
+  fi
 
-	echo "⚠️  Not: Yeni temanın aktif olması için terminal penceresini yeniden açmanız gerekebilir."
-	echo "💡 İpucu: Ultimate, Ultimate Pro ve SUMO temaları için Nerd Font kurulu olması gereklidir."
+  echo "⚠️  Not: Yeni temanın aktif olması için terminal penceresini yeniden açmanız gerekebilir."
+  echo "💡 İpucu: Ultimate, Ultimate Pro ve SUMO temaları için Nerd Font kurulu olması gereklidir."
 }
 
 # Scripti çalıştır

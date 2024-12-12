@@ -1,5 +1,51 @@
 #!/bin/bash
-
+#######################################
+#
+# Version: 1.0.0
+# Date: 2024-12-12
+# Author: Kenan Pelit
+# Repository: github.com/kenanpelit/dotfiles
+# Description: KittyThemeManager - Kitty Terminal Renk Teması Yöneticisi
+#
+# Bu script Kitty terminal için kapsamlı bir renk teması yönetim sistemi sağlar.
+# Temel özellikleri:
+#
+# - 9 Farklı Tema Desteği:
+#   - Kenp (Özel tema)
+#   - Tokyo Night
+#   - Catppuccin Mocha
+#   - Dracula Enhanced
+#   - Rosé Pine Moon
+#   - Kanagawa
+#   - Nord
+#   - Gruvbox Dark
+#   - Everforest Dark
+#
+# - Tema Yönetimi:
+#   - Tema değiştirme
+#   - Temalar arası geçiş
+#   - Otomatik yedekleme
+#   - Canlı yenileme
+#
+# - Renk Özellikleri:
+#   - Terminal renkleri (16 renk)
+#   - İmleç renkleri
+#   - Seçim renkleri
+#   - Tab çubuğu renkleri
+#   - URL ve işaretleme renkleri
+#   - Pencere kenar renkleri
+#
+# - Sistem Entegrasyonu:
+#   - Bildirim sistemi
+#   - Kitty soket desteği
+#   - Yapılandırma yedekleme
+#
+# Dizin: ~/.config/kitty/
+# Dosya: theme.conf
+#
+# License: MIT
+#
+#######################################
 KITTY_DIR="/home/kenan/.config/kitty"
 THEME_FILE="$KITTY_DIR/theme.conf"
 THEME_MARKER="# Current theme: "

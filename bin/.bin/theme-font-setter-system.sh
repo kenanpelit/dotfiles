@@ -1,5 +1,44 @@
 #!/usr/bin/env bash
-
+#######################################
+#
+# Version: 1.0.0
+# Date: 2024-12-12
+# Author: Kenan Pelit
+# Repository: github.com/kenanpelit/dotfiles
+# Description: GnomeThemeSetter - GNOME Tema ve Font Yönetim Aracı
+#
+# Bu script GNOME masaüstü ortamı için tema ve font ayarlarını yönetir.
+# Temel özellikleri:
+#
+# - Tema Yönetimi:
+#   - GTK temaları
+#   - İkon temaları
+#   - İmleç temaları
+#   - Renk şemaları
+#
+# - Font Yönetimi:
+#   - Arayüz fontları
+#   - Doküman fontları
+#   - Sabit genişlikli fontlar
+#   - Başlık fontları
+#   - Font ölçekleme
+#   - Antialiasing ve hinting
+#
+# - GSettings Entegrasyonu:
+#   - Otomatik ayar kontrolü
+#   - Tema varlık kontrolü
+#   - Anlık uygulama
+#   - Hata yönetimi
+#
+# - Araç Özellikleri:
+#   - Komut satırı arayüzü
+#   - Mevcut tema listesi
+#   - Mevcut font ayarları
+#   - Renkli terminal çıktıları
+#
+# License: MIT
+#
+#######################################
 ## Varsayılan ayarlarla çalıştır
 #./system-theme-font-setter.sh
 
