@@ -1,106 +1,114 @@
-# Dotfiles 🏠
+# ~/.dotfiles 🚀
 
-Bu repo, Arch Linux sistemim için yapılandırma dosyalarımı (dotfiles) içerir. GNU Stow kullanılarak yönetilmektedir.
+> My cozy corner in the command line universe
 
 <div align="center">
-  <img src="screenshots/review.png" alt="Desktop Screenshot"/>
+  <img src="screenshots/review.png" alt="Desktop Preview"/>
 </div>
 
-## 📁 Mevcut Yapılandırmalar
+## ⚡️ Stack
 
-- [x] `alacritty/` - Alacritty terminal emülatörü yapılandırması
-- [x] `fish/` - Fish shell yapılandırması
-- [x] `kitty/` - Kitty terminal emülatörü yapılandırması
-- [x] `mpv/` - MPV medya oynatıcı yapılandırması
+- **WM**: Hyprland
+- **Terminal**: Alacritty/Kitty
+- **Editor**: Neovim
+- **Shell**: Fish/Zsh
+- **Bar**: Waybar
+- **Launcher**: Wofi
+- **Session**: Wleave
+- **Multiplexer**: Tmux
 
-## 🔜 Yakında Eklenecekler
-
-- [ ] `bin/` - Kişisel script ve yardımcı programlar
-- [ ] `hypr/` - Hyprland pencere yöneticisi yapılandırması
-- [ ] `nvim/` - Neovim editör yapılandırması
-- [ ] `ranger/` - Ranger dosya yöneticisi yapılandırması
-- [ ] `rofi/` - Rofi uygulama başlatıcı yapılandırması
-- [ ] `sesh/` - Sesh oturum yöneticisi yapılandırması
-- [ ] `tmux/` - Tmux terminal multiplexer yapılandırması
-- [ ] `zsh/` - Zsh shell yapılandırması
-- [ ] `waybar/` - Wayland bar yapılandırması
-- [ ] `mako/` - Notification daemon yapılandırması
-
-## 🚀 Hızlı Başlangıç
-
-### Ön Gereksinimler
-
-Bu dotfiles yapılandırması Arch Linux için optimize edilmiştir.
+## 🛠 Current Setup
 
 ```bash
-# Arch Linux için gerekli paketler
+.
+├── alacritty/   # GPU-accelerated terminal
+├── bin/         # Custom scripts
+├── fish/        # Fish shell config
+├── hypr/        # Hyprland config
+├── kitty/       # Modern terminal emulator
+├── mpv/         # Media player
+├── nvim/        # Editor of the gods
+├── ranger/      # CLI file manager
+├── starship/    # Cross-shell prompt
+├── sesh/        # Terminal session manager
+├── tmux/        # Terminal multiplexer
+├── waybar/      # Wayland bar
+└── wofi/        # Application launcher
+```
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+This dotfiles configuration is optimized for Arch Linux.
+
+```bash
+# Required packages for Arch Linux
 sudo pacman -S git stow
 ```
 
-### Kurulum
+### Installation
 
-1. Repoyu klonlayın:
+We provide an interactive installation script that makes managing your dotfiles a breeze:
+
 ```bash
+# Clone the repository
 git clone git@github.com:kenanpelit/dotfiles.git ~/.dotfiles
+
+# Navigate to the directory
 cd ~/.dotfiles
+
+# Make the install script executable
+chmod +x install.sh
+
+# Run the installation script
+./install.sh
 ```
 
-2. Make kullanarak kurulum yapın:
-```bash
-make install  # Tüm yapılandırmaları kurar
-```
+The script provides the following options:
+- Install all configurations
+- Install specific configurations
+- Uninstall all configurations
+- Uninstall specific configurations
+- Reinstall all configurations
+- Create backup of existing configurations
 
-Ya da tek bir programın yapılandırmasını kurmak için:
-```bash
-stow alacritty  # Sadece alacritty yapılandırmasını kurar
-```
+## 🔧 Manual Management
 
-## 🔧 Yönetim
+If you prefer manual control, you can still use stow directly:
 
-### Yapılandırma Kaldırma
 ```bash
-stow -D alacritty  # alacritty yapılandırmasını kaldırır
-# veya
-make uninstall  # Tüm yapılandırmaları kaldırır
-```
+# Install specific config
+stow [package]
 
-### Güncelleme
-```bash
-cd ~/.dotfiles
+# Uninstall specific config
+stow -D [package]
+
+# Update everything
 git pull
-make reinstall  # Tüm yapılandırmaları yeniden yükler
 ```
 
-## 📝 Yeni Yapılandırma Ekleme
+## 💫 Add New Configs
 
-Yeni bir program için yapılandırma eklemek:
-
-1. Yeni dizin oluşturun:
 ```bash
-mkdir yeni_program
-```
+# Create new config dir
+mkdir my_awesome_tool
 
-2. Yapılandırma dosyalarını doğru yol yapısıyla yerleştirin:
-```bash
-yeni_program/
+# Structure it right
+my_awesome_tool/
 └── .config/
-    └── yeni_program/
+    └── my_awesome_tool/
         └── config
+
+# Deploy
+stow my_awesome_tool
 ```
 
-3. Stow ile bağlayın:
-```bash
-stow yeni_program
-```
+## 📝 License
 
-## ⚙️ Makefile Komutları
+MIT, do whatever you want with it! 🤘
 
-```bash
-make install    # Tüm yapılandırmaları kurar
-make uninstall  # Tüm yapılandırmaları kaldırır
-make reinstall  # Tüm yapılandırmaları yeniden yükler
-```
-
-## 📜 Lisans
-
-Bu repo MIT lisansı altında dağıtılmaktadır.
+---
+<div align="center">
+  <i>powered by caffeine and late night coding sessions</i>
+</div>
