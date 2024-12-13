@@ -1,0 +1,13 @@
+[Unit]
+Description=Set WiFi Power Save Mode for wlp2s0 (%i)
+After=sys-subsystem-net-devices-wlp2s0.device
+Wants=sys-subsystem-net-devices-wlp2s0.device
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+# Güç tasarrufu modunu ayarlamak için iw komutunu çalıştır
+ExecStart=/sbin/iw dev wlp2s0 set power_save %i
+
+[Install]
+WantedBy=sys-subsystem-net-devices-wlp2s0.device

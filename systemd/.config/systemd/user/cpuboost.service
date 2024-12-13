@@ -1,0 +1,10 @@
+[Unit]
+Description=Disable Turbo Boost on Intel CPU
+
+[Service]
+ExecStart=/bin/sh -c "echo "1" | sudo tee /sys/devices/system/cpu/intel_pstate/no_turbo"
+ExecStop=/bin/sh -c "echo "0" | sudo tee /sys/devices/system/cpu/intel_pstate/no_turbo"
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target

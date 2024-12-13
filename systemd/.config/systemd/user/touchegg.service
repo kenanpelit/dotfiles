@@ -1,0 +1,14 @@
+[Unit]
+Description=Touchégg Gesture Program
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/touchegg
+Restart=always
+RestartSec=5
+StartLimitBurst=0
+
+[Install]
+WantedBy=graphical-session.target

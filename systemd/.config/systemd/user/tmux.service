@@ -1,0 +1,37 @@
+[Unit]
+Description=Tmux Session Manager for kenan
+Documentation=man:tmux(1)
+After=network.target
+Wants=network-online.target
+AssertPathExists=/usr/bin/tmux
+
+[Service]
+Type=forking
+
+# Tmux socket dizinini oluşturma
+ExecStartPre=/usr/bin/mkdir -p /tmp/tmux-1000
+ExecStartPre=/usr/bin/chmod 700 /tmp/tmux-1000
+
+# Ana tmux komutları
+ExecStartPre=-/usr/bin/tmux kill-session -t KENP
+ExecStart=/usr/bin/tmux new-session -d -s KENP
+ExecStop=/usr/bin/tmux kill-session -t KENP
+
+# Servis yönetimi
+Restart=always
+RestartSec=3
+TimeoutStartSec=30
+TimeoutStopSec=30
+
+# Güvenlik sınırlamaları
+ProtectSystem=full
+PrivateTmp=no
+
+# Kaynak sınırlamaları - daha gerçekçi limitler
+#CPUQuota=50%
+#MemoryMax=2G # 16GB RAM'in %12.5'i
+#MemoryHigh=1.5G # Soft limit olarak 1.5GB
+
+[Install]
+WantedBy=default.target
+

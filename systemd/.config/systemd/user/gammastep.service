@@ -1,0 +1,26 @@
+[Unit]
+Description=Adjust Display Colour Temperature with Gammastep
+Documentation=https://github.com/jeremysanders/gammastep
+PartOf=graphical-session.target
+After=graphical-session.target NetworkManager-wait-online.service
+
+[Service]
+# Gammastep ayarları
+#MODE="wayland"             # Çalışma modu
+#LOCATION="41.0108:29.0219" # Enlem:Boylam (manuel olarak ayarlanmış)
+#TEMP_DAY=4500              # Gündüz renk sıcaklığı
+#TEMP_NIGHT=4000            # Gece renk sıcaklığı
+#BRIGHTNESS_DAY=0.9         # Gündüz parlaklık
+#BRIGHTNESS_NIGHT=0.7       # Gece parlaklık
+#GAMMA="1,0.2,0.1"          # RGB gamma ayarları
+
+ExecStart=/usr/bin/gammastep \
+    -m wayland \
+    -l manual \
+    -t 4500:4000 \
+    -b 0.9:0.7 \
+    -l 41.0108:29.0219 \
+    -g 1,0.2,0.1
+
+[Install]
+WantedBy=graphical-session.target

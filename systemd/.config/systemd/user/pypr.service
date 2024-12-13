@@ -1,0 +1,15 @@
+[Unit]
+Description=Pypr Debug Service
+After=network.target
+
+[Service]
+ExecStartPre=/bin/rm -f /tmp/pypr.log
+ExecStartPre=/bin/sh -c 'rm -f /run/user/1000/hypr/*/.pyprland.sock'
+ExecStart=/usr/bin/pypr --debug /tmp/pypr.log
+Restart=on-failure
+StandardOutput=file:/tmp/pypr.log
+StandardError=file:/tmp/pypr.log
+RemainAfterExit=no
+
+[Install]
+WantedBy=graphical-session.target

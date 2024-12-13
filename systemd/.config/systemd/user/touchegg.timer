@@ -1,0 +1,10 @@
+[Unit]
+Description=Timer for Touchégg Gesture Program
+
+[Timer]
+OnStartupSec=10
+OnUnitActiveSec=600
+Unit=touchegg.service
+
+[Install]
+WantedBy=timers.target
