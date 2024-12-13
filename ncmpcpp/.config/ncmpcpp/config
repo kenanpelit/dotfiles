@@ -20,7 +20,6 @@ mouse_list_scroll_whole_page = "no"
 jump_to_now_playing_song_at_start = "yes"
 clock_display_seconds = "yes"
 display_volume_level = "yes"
-follow_now_playing_lyrics = "yes"
 
 # Renk Şeması (Catppuccin Mocha)
 colors_enabled = "yes"
@@ -72,3 +71,23 @@ search_engine_default_search_mode = "2"
 playlist_disable_highlight_delay = "1"
 media_library_primary_tag = "album_artist"
 allow_for_physical_item_deletion = "yes"
+
+# Lyrics
+#lyrics_directory = "~/.lyrics"
+#lyrics_directory = "~/.config/ncmpcpp/lyrics"
+external_editor = vim
+use_console_editor = "yes"
+follow_now_playing_lyrics = "yes"
+fetch_lyrics_for_current_song_in_background = "yes"
+store_lyrics_in_song_dir = "yes"
+
+# Lyrics kaynağı için
+lyrics_directory = ~/.config/ncmpcpp/lyrics
+#external_lyrics_viewer = less
+
+# Şarkı sözlerini internetten almak için (örneğin, Genius)
+#use_lyrics_sites = yes
+
+# Kaynak siteler (Varsayılan Genius ve AZLyrics)
+#lyrics_sites = "genius.com azlyrics.com"
+

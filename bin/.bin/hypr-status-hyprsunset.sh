@@ -15,7 +15,7 @@
 sleep=1
 
 service_exists() {
-  local n="hyprshade"
+  local n="hyprsunset"
   if [[ $(systemctl --user list-units --all -t service --full --no-legend "$n.service" | sed 's/^\s*//g' | cut -f1 -d' ') == $n.service ]]; then
     return 0
   else
@@ -29,9 +29,9 @@ done
 # Kısa bir bekleme süresi
 sleep $sleep
 if service_exists; then
-  echo "Hyprshade service bulundu, başlatılıyor..."
-  systemctl --user restart hyprshade.service
+  echo "Hyprsunset service bulundu, başlatılıyor..."
+  systemctl --user restart hyprsunset.service
 else
-  echo "HATA: Hyprshade service bulunamadı!"
-  notify-send -u critical "Hyprshade" "Service bulunamadı!"
+  echo "HATA: Hyprsunset service bulunamadı!"
+  notify-send -u critical "Hyprsunset" "Service bulunamadı!"
 fi

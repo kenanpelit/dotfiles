@@ -240,6 +240,7 @@ hyprpanel
 hyprpaper
 hyprpicker-git
 hyprshot
+hyprsunset
 iftop
 imagemagick
 incus
@@ -404,6 +405,7 @@ python-feedparser
 python-isodate
 python-libtmux
 python-memoization
+python-mpd2
 python-musicbrainzngs
 python-mutagen
 python-pip
@@ -426,6 +428,9 @@ rofi-wayland
 rp-pppoe
 rsync
 rtl8821cu-morrownr-dkms-git
+ruby-fusuma
+ruby-fusuma-plugin-keypress
+ruby-fusuma-plugin-sendkey
 scrcpy
 screen
 sddm

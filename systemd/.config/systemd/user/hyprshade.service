@@ -1,16 +1,17 @@
 [Unit]
-Description=Hyprland Shader Manager Service
+Description=Hyprland shader manager
 After=graphical-session.target
 PartOf=graphical-session.target
 
 [Service]
-Type=simple
+Type=forking
 Environment=DISPLAY=:0
 Environment=WAYLAND_DISPLAY=wayland-1
 Environment=XDG_RUNTIME_DIR=/run/user/1000
-ExecStart=/home/kenan/.bin/hypr-hyprshade-manager.sh
+ExecStart=/bin/bash -c '/usr/bin/env bash /home/kenan/.bin/hypr-hyprshade-manager.sh start --shader blue-light-filter --strength 0.8'
+ExecStop=/bin/bash -c '/usr/bin/env bash /home/kenan/.bin/hypr-hyprshade-manager.sh stop'
 Restart=on-failure
-RestartSec=3
+RestartSec=30
 
 [Install]
 WantedBy=graphical-session.target
