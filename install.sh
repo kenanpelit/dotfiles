@@ -71,6 +71,7 @@ packages=(
   "hypr"
   "kitty"
   "mpv"
+  "ncmpcpp"
   "nvim"
   "ranger"
   "starship"
