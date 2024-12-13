@@ -45,6 +45,10 @@ nvim/.config/nvim/plugged/
 nvim/.config/nvim/undo/
 nvim/.config/nvim/swap/
 
+# Ncmpcpp
+ncmpcpp/.config/ncmpcpp/lyrics
+ncmpcpp/.config/ncmpcpp/error.log
+
 # Özel scriptler (sadece wofi scriptleri dahil)
 bin/.bin/*
 !bin/.bin/wofi-*
