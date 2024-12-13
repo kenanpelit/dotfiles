@@ -2,7 +2,7 @@
 
 #######################################
 #
-# Version: 1.0.0
+# Version: 1.0.1
 # Date: 2024-12-13
 # Author: Kenan Pelit
 # Repository: github.com/kenanpelit/dotfiles
@@ -107,23 +107,57 @@ get_current_hour() {
   date +%H
 }
 
+# Servisi başlat
+start_sunset() {
+  if [ ! -f "$STATE_FILE" ]; then
+    touch "$STATE_FILE"
+    start_daemon
+    notify-send -t 2000 "Hypr Sunset" "Başlatıldı"
+    return 0
+  fi
+  return 1
+}
+
+# Servisi durdur
+stop_sunset() {
+  if [ -f "$STATE_FILE" ]; then
+    # Önce state dosyasını kaldır
+    rm -f "$STATE_FILE"
+
+    # Tüm hyprsunset process'lerini bul ve öldür
+    pkill -f hyprsunset || true
+
+    # PID dosyasını kontrol et ve process'i öldür
+    if [ -f "$PID_FILE" ]; then
+      pid=$(cat "$PID_FILE")
+      kill -9 "$pid" 2>/dev/null || true
+      rm -f "$PID_FILE"
+    fi
+
+    # Son olarak rengi sıfırla ve bildirim gönder
+    sleep 0.5 # Küçük bir bekleme ekle
+    hyprsunset -i
+    notify-send -t 2000 "Hypr Sunset" "Durduruldu"
+    return 0
+  fi
+  return 1
+}
+
 # Toggle fonksiyonu
 toggle_sunset() {
   if [ -f "$STATE_FILE" ]; then
-    # Eğer çalışıyorsa, durdur
-    if [ -f "$PID_FILE" ]; then
-      pid=$(cat "$PID_FILE")
-      kill "$pid" 2>/dev/null
-      rm "$PID_FILE"
+    # Eğer state file varsa ama PID file yoksa, servisi yeniden başlat
+    if [ ! -f "$PID_FILE" ]; then
+      start_daemon
+      notify-send -t 2000 "Hypr Sunset" "Servis yeniden başlatıldı"
+      return
     fi
-    hyprsunset -i # Renk sıcaklığını sıfırla
-    rm "$STATE_FILE"
-    notify-send -t 2000 "Hypr Sunset" "Devre dışı bırakıldı"
+
+    # PID file varsa, servisi durdur
+    stop_sunset
   else
-    # Başlat
-    touch "$STATE_FILE"
-    start_daemon
-    notify-send -t 2000 "Hypr Sunset" "Etkinleştirildi"
+    # State file yoksa, servisi başlat
+    start_sunset
   fi
 }
 
@@ -159,8 +193,11 @@ start_daemon() {
 # Detaylı durum bilgisi göster
 show_status() {
   if [ -f "$STATE_FILE" ]; then
+    local pid=""
+    [ -f "$PID_FILE" ] && pid=$(cat "$PID_FILE")
+
     echo "Hypr Sunset: AKTİF"
-    echo "PID: $(cat "$PID_FILE")"
+    echo "PID: $pid"
     echo "Son başlatma: $(stat -c %y "$STATE_FILE")"
     echo "Ayarlar:"
     echo "  Gündüz sıcaklığı: ${TEMP_DAY}K (${TIME_DAY_START}:00'dan itibaren)"
@@ -168,6 +205,11 @@ show_status() {
     echo "  Gece sıcaklığı: ${TEMP_NIGHT}K (${TIME_NIGHT_START}:00'dan itibaren)"
     echo "  Geç gece sıcaklığı: ${TEMP_LATE_NIGHT}K (${TIME_LATE_NIGHT_START}:00'dan itibaren)"
     echo "  Kontrol aralığı: ${CHECK_INTERVAL} saniye"
+
+    # PID dosyası yoksa uyarı göster
+    if [ ! -f "$PID_FILE" ]; then
+      echo "UYARI: Servis durumu tutarsız (PID dosyası bulunamadı)"
+    fi
   else
     echo "Hypr Sunset: KAPALI"
   fi
@@ -217,33 +259,11 @@ main() {
       shift
       ;;
     start)
-      if [ ! -f "$STATE_FILE" ]; then
-        touch "$STATE_FILE"
-        start_daemon
-        notify-send -t 2000 "Hypr Sunset" "Başlatıldı"
-      fi
+      start_sunset
       exit $?
       ;;
     stop)
-      if [ -f "$STATE_FILE" ]; then
-        # Önce state dosyasını kaldır
-        rm -f "$STATE_FILE"
-
-        # Tüm hyprsunset process'lerini bul ve öldür
-        pkill -f hyprsunset || true
-
-        # PID dosyasını kontrol et ve process'i öldür
-        if [ -f "$PID_FILE" ]; then
-          pid=$(cat "$PID_FILE")
-          kill -9 "$pid" 2>/dev/null || true
-          rm -f "$PID_FILE"
-        fi
-
-        # Son olarak rengi sıfırla ve bildirim gönder
-        sleep 0.5 # Küçük bir bekleme ekle
-        hyprsunset -i
-        notify-send -t 2000 "Hypr Sunset" "Durduruldu"
-      fi
+      stop_sunset
       exit $?
       ;;
     toggle)
@@ -282,5 +302,6 @@ main() {
 # Son renk değerini sakla ve çıkışta uygulama
 declare -r LAST_TEMP_FILE="$HOME/.cache/hyprsunset.last"
 trap 'echo "Program sonlandırılıyor..."; [ -f "$LAST_TEMP_FILE" ] && hyprsunset -t $(cat "$LAST_TEMP_FILE"); [ -f "$STATE_FILE" ] && rm "$STATE_FILE"; [ -f "$PID_FILE" ] && rm "$PID_FILE"; exit 0' SIGINT SIGTERM
+
 # Programı başlat
 main "$@"
