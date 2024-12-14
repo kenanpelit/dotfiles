@@ -1,6 +1,6 @@
 # Font konfigürasyonu
 [font]
-size = 13.0                # Font boyutu
+size = 12.8                # Font boyutu
 builtin_box_drawing = true # Yerleşik box-drawing karakterlerini kullan
 
 # Normal font ayarları
