@@ -1,5 +1,4 @@
 # ~/.dotfiles 🚀
-
 > My cozy corner in the command line universe
 
 <div align="center">
@@ -7,7 +6,6 @@
 </div>
 
 ## ⚡️ Stack
-
 - **WM**: Hyprland
 - **Terminal**: Alacritty/Kitty
 - **Editor**: Neovim
@@ -18,39 +16,41 @@
 - **Multiplexer**: Tmux
 
 ## 🛠 Current Setup
-
 ```bash
 .
 ├── alacritty/   # GPU-accelerated terminal
-├── bin/         # Custom scripts
-├── fish/        # Fish shell config
-├── hypr/        # Hyprland config
-├── kitty/       # Modern terminal emulator
-├── mpv/         # Media player
-├── nvim/        # Editor of the gods
-├── ranger/      # CLI file manager
-├── starship/    # Cross-shell prompt
-├── sesh/        # Terminal session manager
-├── tmux/        # Terminal multiplexer
-├── waybar/      # Wayland bar
-└── wofi/        # Application launcher
+├── bin/   # Custom scripts
+├── fish/   # Fish shell config
+├── hypr/   # Hyprland config
+├── kitty/   # Modern terminal emulator
+├── mpv/   # Media player
+├── ncmpcpp/
+├── nvim/   # Editor of the gods
+├── ranger/   # CLI file manager
+├── sem/
+├── sesh/   # Terminal session manager
+├── starship/   # Cross-shell prompt
+├── starship.toml/
+├── systemd/
+├── tmux/   # Terminal multiplexer
+├── touchegg/
+├── waybar/   # Wayland bar
+├── wleave/
+├── wofi/   # Application launcher
+├── zsh/
+├── zshrc/
 ```
 
 ## 🚀 Quick Start
-
 ### Prerequisites
-
 This dotfiles configuration is optimized for Arch Linux.
-
 ```bash
 # Required packages for Arch Linux
 sudo pacman -S git stow
 ```
 
 ### Installation
-
 We provide an interactive installation script that makes managing your dotfiles a breeze:
-
 ```bash
 # Clone the repository
 git clone git@github.com:kenanpelit/dotfiles.git ~/.dotfiles
@@ -74,9 +74,7 @@ The script provides the following options:
 - Create backup of existing configurations
 
 ## 🔧 Manual Management
-
 If you prefer manual control, you can still use stow directly:
-
 ```bash
 # Install specific config
 stow [package]
@@ -89,7 +87,6 @@ git pull
 ```
 
 ## 💫 Add New Configs
-
 ```bash
 # Create new config dir
 mkdir my_awesome_tool
@@ -105,7 +102,6 @@ stow my_awesome_tool
 ```
 
 ## 📝 License
-
 MIT, do whatever you want with it! 🤘
 
 ---
