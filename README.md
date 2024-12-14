@@ -1,5 +1,6 @@
 # ~/.dotfiles 🚀
-> My cozy corner in the command line universe
+
+> My Arch Linux Configuration Files
 
 <div align="center">
   <img src="screenshots/review.png" alt="Desktop Preview"/>
@@ -17,40 +18,43 @@
 
 ## 🛠 Current Setup
 ```bash
-.
+~/.dotfiles
 ├── alacritty/   # GPU-accelerated terminal
-├── bin/   # Custom scripts
-├── fish/   # Fish shell config
-├── hypr/   # Hyprland config
-├── kitty/   # Modern terminal emulator
-├── mpv/   # Media player
-├── ncmpcpp/
-├── nvim/   # Editor of the gods
-├── ranger/   # CLI file manager
-├── sem/
-├── sesh/   # Terminal session manager
-├── starship/   # Cross-shell prompt
-├── starship.toml/
-├── systemd/
-├── tmux/   # Terminal multiplexer
-├── touchegg/
-├── waybar/   # Wayland bar
-├── wleave/
-├── wofi/   # Application launcher
-├── zsh/
-├── zshrc/
+├── bin/         # Custom scripts
+├── fish/        # Fish shell config
+├── hypr/        # Hyprland config
+├── kitty/       # Modern terminal emulator
+├── mpv/         # Media player
+├── ncmpcpp/     # Terminal music player
+├── nvim/        # Editor of the gods
+├── ranger/      # CLI file manager
+├── sem/         # System enhancement modules
+├── sesh/        # Terminal session manager
+├── starship/    # Cross-shell prompt
+├── starship.toml/ 
+├── systemd/     # Service configuration
+├── tmux/        # Terminal multiplexer
+├── touchegg/    # Gesture control
+├── waybar/      # Wayland bar
+├── wleave/      # Session manager
+├── wofi/        # Application launcher
+├── zsh/         # Zsh config
+└── zshrc/       # Zsh runtime config
 ```
 
 ## 🚀 Quick Start
+
 ### Prerequisites
-This dotfiles configuration is optimized for Arch Linux.
+This configuration is specifically designed for Arch Linux. Make sure you have these packages installed:
+
 ```bash
-# Required packages for Arch Linux
-sudo pacman -S git stow
+# Install required packages
+sudo pacman -S git stow base-devel
 ```
 
 ### Installation
-We provide an interactive installation script that makes managing your dotfiles a breeze:
+Clone and setup the configuration:
+
 ```bash
 # Clone the repository
 git clone git@github.com:kenanpelit/dotfiles.git ~/.dotfiles
@@ -65,7 +69,7 @@ chmod +x install.sh
 ./install.sh
 ```
 
-The script provides the following options:
+The installation script provides the following options:
 - Install all configurations
 - Install specific configurations
 - Uninstall all configurations
@@ -74,7 +78,8 @@ The script provides the following options:
 - Create backup of existing configurations
 
 ## 🔧 Manual Management
-If you prefer manual control, you can still use stow directly:
+For manual control using GNU Stow:
+
 ```bash
 # Install specific config
 stow [package]
@@ -87,24 +92,26 @@ git pull
 ```
 
 ## 💫 Add New Configs
+Create and structure new configuration packages:
+
 ```bash
-# Create new config dir
+# Create new config directory
 mkdir my_awesome_tool
 
-# Structure it right
+# Follow the stow structure
 my_awesome_tool/
 └── .config/
     └── my_awesome_tool/
         └── config
 
-# Deploy
+# Deploy with stow
 stow my_awesome_tool
 ```
 
 ## 📝 License
-MIT, do whatever you want with it! 🤘
+MIT License - Use as you wish!
 
 ---
 <div align="center">
-  <i>powered by caffeine and late night coding sessions</i>
+  <i>Crafted for Arch Linux</i>
 </div>

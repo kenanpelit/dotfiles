@@ -9,7 +9,8 @@ NC='\033[0m' # No Color
 generate_readme() {
   cat >README.md <<'EOF'
 # ~/.dotfiles 🚀
-> My cozy corner in the command line universe
+
+> My Arch Linux Configuration Files
 
 <div align="center">
   <img src="screenshots/review.png" alt="Desktop Preview"/>
@@ -49,7 +50,7 @@ EOF
 
 ## 🛠 Current Setup
 ```bash
-.
+~/.dotfiles
 EOF
 
   # Dizinleri listele ve açıklamalarını ekle
@@ -58,43 +59,58 @@ EOF
       dir_name="${dir%/}"
       case "$dir_name" in
       "alacritty")
-        echo "├── $dir_name/   # GPU-accelerated terminal" >>README.md
+        echo "├── $dir_name/       # GPU-accelerated terminal" >>README.md
         ;;
       "bin")
-        echo "├── $dir_name/   # Custom scripts" >>README.md
+        echo "├── $dir_name/         # Custom scripts" >>README.md
         ;;
       "fish")
-        echo "├── $dir_name/   # Fish shell config" >>README.md
+        echo "├── $dir_name/         # Fish shell config" >>README.md
         ;;
       "hypr")
-        echo "├── $dir_name/   # Hyprland config" >>README.md
+        echo "├── $dir_name/         # Hyprland config" >>README.md
         ;;
       "kitty")
-        echo "├── $dir_name/   # Modern terminal emulator" >>README.md
+        echo "├── $dir_name/        # Modern terminal emulator" >>README.md
         ;;
       "mpv")
-        echo "├── $dir_name/   # Media player" >>README.md
+        echo "├── $dir_name/          # Media player" >>README.md
+        ;;
+      "ncmpcpp")
+        echo "├── $dir_name/      # Terminal music player" >>README.md
         ;;
       "nvim")
-        echo "├── $dir_name/   # Editor of the gods" >>README.md
+        echo "├── $dir_name/         # Editor of the gods" >>README.md
         ;;
       "ranger")
-        echo "├── $dir_name/   # CLI file manager" >>README.md
+        echo "├── $dir_name/       # CLI file manager" >>README.md
         ;;
-      "starship")
-        echo "├── $dir_name/   # Cross-shell prompt" >>README.md
+      "sem")
+        echo "├── $dir_name/          # System enhancement modules" >>README.md
         ;;
       "sesh")
-        echo "├── $dir_name/   # Terminal session manager" >>README.md
+        echo "├── $dir_name/         # Terminal session manager" >>README.md
+        ;;
+      "starship")
+        echo "├── $dir_name/     # Cross-shell prompt" >>README.md
+        ;;
+      "systemd")
+        echo "├── $dir_name/      # Service configuration" >>README.md
         ;;
       "tmux")
-        echo "├── $dir_name/   # Terminal multiplexer" >>README.md
+        echo "├── $dir_name/         # Terminal multiplexer" >>README.md
+        ;;
+      "touchegg")
+        echo "├── $dir_name/     # Gesture control" >>README.md
         ;;
       "waybar")
-        echo "├── $dir_name/   # Wayland bar" >>README.md
+        echo "├── $dir_name/       # Wayland bar" >>README.md
+        ;;
+      "wleave")
+        echo "├── $dir_name/       # Session manager" >>README.md
         ;;
       "wofi")
-        echo "├── $dir_name/   # Application launcher" >>README.md
+        echo "├── $dir_name/         # Application launcher" >>README.md
         ;;
       *)
         echo "├── $dir_name/" >>README.md
@@ -108,15 +124,18 @@ EOF
 ```
 
 ## 🚀 Quick Start
+
 ### Prerequisites
-This dotfiles configuration is optimized for Arch Linux.
+This configuration is specifically designed for Arch Linux. Make sure you have these packages installed:
+
 ```bash
-# Required packages for Arch Linux
-sudo pacman -S git stow
+# Install required packages
+sudo pacman -S git stow base-devel
 ```
 
 ### Installation
-We provide an interactive installation script that makes managing your dotfiles a breeze:
+Clone and setup the configuration:
+
 ```bash
 # Clone the repository
 git clone git@github.com:kenanpelit/dotfiles.git ~/.dotfiles
@@ -131,7 +150,7 @@ chmod +x install.sh
 ./install.sh
 ```
 
-The script provides the following options:
+The installation script provides the following options:
 - Install all configurations
 - Install specific configurations
 - Uninstall all configurations
@@ -140,7 +159,8 @@ The script provides the following options:
 - Create backup of existing configurations
 
 ## 🔧 Manual Management
-If you prefer manual control, you can still use stow directly:
+For manual control using GNU Stow:
+
 ```bash
 # Install specific config
 stow [package]
@@ -153,26 +173,28 @@ git pull
 ```
 
 ## 💫 Add New Configs
+Create and structure new configuration packages:
+
 ```bash
-# Create new config dir
+# Create new config directory
 mkdir my_awesome_tool
 
-# Structure it right
+# Follow the stow structure
 my_awesome_tool/
 └── .config/
     └── my_awesome_tool/
         └── config
 
-# Deploy
+# Deploy with stow
 stow my_awesome_tool
 ```
 
 ## 📝 License
-MIT, do whatever you want with it! 🤘
+MIT License - Use as you wish!
 
 ---
 <div align="center">
-  <i>powered by caffeine and late night coding sessions</i>
+  <i>Crafted for Arch Linux</i>
 </div>
 EOF
 
