@@ -11,8 +11,8 @@ Environment=XDG_RUNTIME_DIR=/run/user/1000
 PIDFile=%h/.cache/hyprsunset.pid
 ExecStartPre=-/usr/bin/rm -f %h/.cache/hyprsunset.pid
 ExecStartPre=-/usr/bin/rm -f %h/.cache/hyprsunset.state
-ExecStart=/home/kenan/.bin/hypr-hyprsunset-manager.sh start
-ExecStop=/home/kenan/.bin/hypr-hyprsunset-manager.sh stop
+ExecStart=/home/kenan/.bin/hypr-blue-hyprsunset-manager.sh start
+ExecStop=/home/kenan/.bin/hypr-blue-hyprsunset-manager.sh stop
 TimeoutStopSec=5
 KillMode=mixed
 Restart=on-failure

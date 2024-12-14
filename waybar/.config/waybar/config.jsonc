@@ -550,8 +550,9 @@
     "format": "   ", // Her iki simgeyi de gösterir
     "interval": 10, // Güncelleme aralığı
     "return-type": "json", // JSON formatında dönüş
-    "on-click": "~/.bin/hypr-gammastep-manager.sh toggle", // Tıklandığında gammastep'i aç/kapa
-    "on-click-right": "~/.bin/hypr-hyprshade-manager.sh toggle", // Sağ tıklama ile birinci işlev
+    "on-click": "~/.bin/hypr-blue-gammastep-manager.sh toggle", // Tıklandığında gammastep'i aç/kapa
+    //"on-click-right": "~/.bin/hypr-blue-hyprshade-manager.sh toggle", // Sağ tıklama ile birinci işlev
+    "on-click-right": "~/.bin/hypr-blue-hyprsunset-manager.sh toggle", // Sağ tıklama ile birinci işlev
     "signal": 10 // Güncellemeleri beklemek için sinyal
     },
     "custom/displays": {

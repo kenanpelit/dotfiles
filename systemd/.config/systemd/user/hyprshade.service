@@ -8,8 +8,8 @@ Type=forking
 Environment=DISPLAY=:0
 Environment=WAYLAND_DISPLAY=wayland-1
 Environment=XDG_RUNTIME_DIR=/run/user/1000
-ExecStart=/bin/bash -c '/usr/bin/env bash /home/kenan/.bin/hypr-hyprshade-manager.sh start --shader blue-light-filter --strength 0.8'
-ExecStop=/bin/bash -c '/usr/bin/env bash /home/kenan/.bin/hypr-hyprshade-manager.sh stop'
+ExecStart=/bin/bash -c '/usr/bin/env bash /home/kenan/.bin/hypr-blue-hyprshade-manager.sh start --shader blue-light-filter --strength 0.8'
+ExecStop=/bin/bash -c '/usr/bin/env bash /home/kenan/.bin/hypr-blue-hyprshade-manager.sh stop'
 Restart=on-failure
 RestartSec=30
 

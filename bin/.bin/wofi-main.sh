@@ -74,8 +74,11 @@ handle_selection() {
   ">>> Semsumo")
     exec "$WOFI_SCRIPTS/semsumo-wofi-start.sh"
     ;;
+  ">>> Window")
+    exec "$WOFI_SCRIPTS/wofi-window-switcher.sh"
+    ;;
   ">>> Browser" | ">>> Run" | ">>> Cliphist" | ">>> Keybinds" | ">>> Media" | ">>> Power" | ">>> Search" | \
-    ">>> System" | ">>> ThemeHypr" | ">>> ThemeWofi" | ">>> Tools" | ">>> Window" | ">>> Zen" | \
+    ">>> System" | ">>> ThemeHypr" | ">>> ThemeWofi" | ">>> Tools" | ">>> Zen" | \
     ">>> Firefox" | ">>> ZenAll")
     local script_name="wofi-${menu_item#'>>> '}"
     script_name=$(echo "$script_name" | tr '[:upper:]' '[:lower:]').sh
