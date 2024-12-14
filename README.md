@@ -19,27 +19,27 @@
 ## 🛠 Current Setup
 ```bash
 ~/.dotfiles
-├── alacritty/   # GPU-accelerated terminal
-├── bin/         # Custom scripts
-├── fish/        # Fish shell config
-├── hypr/        # Hyprland config
-├── kitty/       # Modern terminal emulator
-├── mpv/         # Media player
-├── ncmpcpp/     # Terminal music player
-├── nvim/        # Editor of the gods
-├── ranger/      # CLI file manager
-├── sem/         # System enhancement modules
-├── sesh/        # Terminal session manager
-├── starship/    # Cross-shell prompt
-├── starship.toml/ 
-├── systemd/     # Service configuration
-├── tmux/        # Terminal multiplexer
-├── touchegg/    # Gesture control
-├── waybar/      # Wayland bar
-├── wleave/      # Session manager
-├── wofi/        # Application launcher
-├── zsh/         # Zsh config
-└── zshrc/       # Zsh runtime config
+├── alacritty/       # GPU-accelerated terminal
+├── bin/             # Custom scripts
+├── fish/            # Fish shell config
+├── hypr/            # Hyprland config
+├── kitty/           # Modern terminal emulator
+├── mpv/             # Media player
+├── ncmpcpp/         # Terminal music player
+├── nvim/            # Editor of the gods
+├── ranger/          # CLI file manager
+├── sem/             # System enhancement modules
+├── sesh/            # Terminal session manager
+├── starship/        # Cross-shell prompt
+├── starship.toml/   # Starship configuration
+├── systemd/         # Service configuration
+├── tmux/            # Terminal multiplexer
+├── touchegg/        # Gesture control
+├── waybar/          # Wayland bar
+├── wleave/          # Session manager
+├── wofi/            # Application launcher
+├── zsh/             # Zsh config
+└── zshrc/           # Zsh runtime config
 ```
 
 ## 🚀 Quick Start
@@ -107,6 +107,35 @@ my_awesome_tool/
 # Deploy with stow
 stow my_awesome_tool
 ```
+
+## 🛠️ Dotfiles Manager
+A custom script (`dotfiles-manager.sh`) is included to make dotfiles management even easier:
+
+```bash
+Usage: dotfiles-manager.sh <command> [options]
+
+Commands:
+  addc <name>      Add config file/directory from .config
+  addh <name>      Add dotfile/directory from home
+  rm <name>        Remove config
+  sync             Synchronize all dotfiles
+  ls               List existing dotfiles
+
+Examples:
+  ./dotfiles-manager.sh addc hypr          # Add Hyprland config dir
+  ./dotfiles-manager.sh addc config.txt    # Add single config file
+  ./dotfiles-manager.sh addh .zshrc        # Add .zshrc file
+  ./dotfiles-manager.sh addh .config       # Add .config directory
+  ./dotfiles-manager.sh rm hypr           # Remove config
+```
+
+Features:
+- Automatic GNU Stow dependency checking
+- Color-coded output for better visibility
+- Support for both `.config` and home directory dotfiles
+- Easy synchronization of all configurations
+- Simple listing of managed dotfiles
+- Error handling and helpful messages
 
 ## 📝 License
 MIT License - Use as you wish!
