@@ -1,0 +1,8 @@
+#compdef ssh scp
+_ssh_hosts() {
+   local cache=~/.cache/assh/hosts
+   [[ -f $cache ]] && hosts=(${(f)"$(cat $cache)"}) || hosts=()
+   _describe 'hosts' hosts
+}
+compdef _ssh_hosts ssh
+compdef _ssh_hosts scp
