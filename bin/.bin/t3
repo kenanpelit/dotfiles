@@ -41,7 +41,7 @@
 tmux new-window -n 'kenp' \; \
   split-window -h -l 80%\; \
   select-pane -t 2 \; \
-  split-window -v -l 80%\; \
+  split-window -v -l 85%\; \
   select-pane -t 3
 # Sessiz çalıştırma
 exec 2>/dev/null &
