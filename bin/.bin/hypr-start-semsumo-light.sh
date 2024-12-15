@@ -25,23 +25,20 @@ trap 'echo "Hata oluştu. Satır: $LINENO, Komut: $BASH_COMMAND"' ERR
 
 # Uygulama Grupları - workspace ve başlatma stratejisine göre gruplandırılmış
 declare -A APP_GROUPS
-APP_GROUPS["core"]="start-akenp"                                              # Terminal & Dev
-APP_GROUPS["browsers"]="start-zen-kenp start-zen-novpn start-zen-compecta"    # Ana browserlar
-APP_GROUPS["communication"]="start-zen-discord start-webcord start-zen-whats" # İletişim
-APP_GROUPS["media"]="start-spotify"                                           # Medya
+APP_GROUPS["core"]="start-akenp"                        # Terminal & Dev
+APP_GROUPS["browsers"]="start-zen-kenp start-zen-novpn" # Ana browserlar
+APP_GROUPS["communication"]="start-zen-whats"           # İletişim
+APP_GROUPS["media"]="start-spotify"                     # Medya
 
 # Uygulama Yapılandırması - workspace:fullscreen:togglegroup:vpn:sleep
 declare -A APP_CONFIGS
 # Terminal & Dev (Core)
 APP_CONFIGS["start-akenp"]="2:no:no:always:2" # Tmux session
 # Browsers
-APP_CONFIGS["start-zen-kenp"]="1:yes:no:always:2"     # Main browser
-APP_CONFIGS["start-zen-novpn"]="3:yes:no:always:2"    # No VPN browser
-APP_CONFIGS["start-zen-compecta"]="4:yes:no:always:2" # Work browser
+APP_CONFIGS["start-zen-kenp"]="1:yes:no:always:2"  # Main browser
+APP_CONFIGS["start-zen-novpn"]="3:yes:no:always:2" # No VPN browser
 # Communication
-APP_CONFIGS["start-zen-discord"]="5:no:yes:always:2" # Discord browser
-APP_CONFIGS["start-webcord"]="5:no:yes:always:2"     # Webcord
-APP_CONFIGS["start-zen-whats"]="9:no:yes:always:2"   # WhatsApp
+APP_CONFIGS["start-zen-whats"]="9:no:yes:always:2" # WhatsApp
 # Media
 APP_CONFIGS["start-spotify"]="8:no:no:always:2" # Spotify
 

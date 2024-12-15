@@ -6,8 +6,8 @@ export TERM=xterm-256color
 export HISTCONTROL=ignoreboth:erasedups
 
 # Geçmiş ayarları
-HISTSIZE=30000
-SAVEHIST=30000
+HISTSIZE=10000
+SAVEHIST=10000
 setopt HIST_IGNORE_ALL_DUPS
 setopt EXTENDED_HISTORY
 setopt HIST_VERIFY
