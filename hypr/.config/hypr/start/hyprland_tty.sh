@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
-# ~/.config/hypr/hyprland.sh dosyasının başına ekleyin
+# ~/.config/hypr/start/hyprland.sh dosyasının başına ekleyin
 if [ "$(tty)" != "/dev/tty1" ]; then
-  echo "Bu script sadece tty1'de çalıştırılabilir"
+  echo "This script can only be run on tty1"
   exit 1
 fi
+
 # =================================================================
 # Hyprland Wayland Yapılandırması
 # =================================================================
