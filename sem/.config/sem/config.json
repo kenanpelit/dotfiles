@@ -1,5 +1,29 @@
 {
   "sessions": {
+    "fkenp": {
+      "command": "/usr/bin/foot",
+      "args": [
+        "-a",
+        "TmuxFootKenp",
+        "-T",
+        "Tmux",
+        "-e",
+        "/home/kenan/.bin/tmux_kenp.sh"
+      ],
+      "vpn_mode": "never"
+    },
+    "fcta": {
+      "command": "/usr/bin/foot",
+      "args": [
+        "-a",
+        "TmuxFootCta",
+        "-T",
+        "Tmux",
+        "-e",
+        "/home/kenan/.bin/tmux_cta.sh"
+      ],
+      "vpn_mode": "always"
+    },
     "kkenp": {
       "command": "/usr/bin/kitty",
       "args": [
@@ -47,6 +71,16 @@
         "/home/kenan/.bin/tmux_cta.sh"
       ],
       "vpn_mode": "always"
+    },
+    "foot": {
+      "command": "/usr/bin/foot",
+      "args": [
+        "-a",
+        "foot",
+        "-T",
+        "foot"
+      ],
+      "vpn_mode": "default"
     },
     "kitty-single": {
       "command": "/usr/bin/kitty",
