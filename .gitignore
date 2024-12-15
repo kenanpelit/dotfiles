@@ -90,4 +90,10 @@ __pycache__/
 *$py.class
 .Python
 
+# Touchegg
 touchegg/.config/touchegg/.touchegg*
+
+# Tmux
+oh-my-tmux/.config/oh-my-tmux/.git*
+tmux/.config/tmux/fzf
+tmux/.config/tmux/plugins
