@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# ~/.config/hypr/start/hyprland.sh dosyasının başına ekleyin
+# ~/.config/hypr/start/hyprland_tty.sh dosyasının başına ekleyin
 if [ "$(tty)" != "/dev/tty1" ]; then
   echo "This script can only be run on tty1"
   exit 1
