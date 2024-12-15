@@ -1,6 +1,6 @@
 # How to Start Hyprland from TTY
 
-The Hyprland service didn't work out for me due to some permission issues, so I needed to use a different approach.
+The Hyprland service didn't work out for me due to some permission issues, so I needed to use a different approach. Thanks for the idea though.
 
 This guide explains how to start Hyprland directly from TTY without using a display manager (like GDM, SDDM).
 
@@ -23,23 +23,10 @@ if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
 fi
 ```
 
-3. Create the Hyprland startup script directory:
+3. Make the script executable and create a symlink:
 ```bash
-mkdir -p ~/.config/hypr/start
-```
-
-4. Create and edit the Hyprland startup script:
-```bash
-vim ~/.config/hypr/start/hyprland.sh
-```
-
-5. Make the script executable and create a symlink:
-```bash
-# Make executable
-chmod +x ~/.config/hypr/start/hyprland.sh
-
 # Create symlink in /usr/local/bin
-sudo ln -sf ~/.config/hypr/start/hyprland.sh /usr/local/bin/hyprflow
+sudo ln -sf ~/.config/hypr/start/hyprland_tty.sh /usr/local/bin/hyprflow
 ```
 
 ## Optional Security Check
@@ -92,23 +79,10 @@ if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
 fi
 ```
 
-3. Hyprland başlangıç script dizinini oluşturun:
+3. Sembolik link oluşturun:
 ```bash
-mkdir -p ~/.config/hypr/start
-```
-
-4. Hyprland başlangıç scriptini oluşturun ve düzenleyin:
-```bash
-vim ~/.config/hypr/start/hyprland.sh
-```
-
-5. Scripti çalıştırılabilir yapın ve sembolik link oluşturun:
-```bash
-# Çalıştırılabilir yap
-chmod +x ~/.config/hypr/start/hyprland.sh
-
 # /usr/local/bin altında sembolik link oluştur
-sudo ln -sf ~/.config/hypr/start/hyprland.sh /usr/local/bin/hyprflow
+sudo ln -sf ~/.config/hypr/start/hyprland_tty.sh /usr/local/bin/hyprflow
 ```
 
 ## Opsiyonel Güvenlik Kontrolü
