@@ -1,0 +1,15 @@
+[Unit]
+Description=Wayland compositor %I
+Documentation=man:uwsm(1)
+BindsTo=wayland-wm-env@%i.service
+After=wayland-wm-env@%i.service
+Before=graphical-session.target
+
+[Service]
+Type=simple
+Environment=XDG_SESSION_TYPE=wayland
+ExecStart=/usr/bin/uwsm session %i
+Restart=no
+
+[Install]
+WantedBy=graphical-session.target

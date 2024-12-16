@@ -1,0 +1,20 @@
+# ~/.config/uwsm/config.toml
+[session]
+compositor = "hyprland"
+
+[environment]
+env = [
+    "XDG_CURRENT_DESKTOP=Hyprland",
+    "XDG_SESSION_TYPE=wayland",
+    "XDG_SESSION_DESKTOP=Hyprland",
+    "XCURSOR_THEME=your-cursor-theme",
+    "XCURSOR_SIZE=24",
+    "HYPRCURSOR_THEME=your-cursor-theme",
+    "HYPRCURSOR_SIZE=24"
+]
+
+[autostart]
+wait_for_socket = true
+
+[systemd]
+enable = true

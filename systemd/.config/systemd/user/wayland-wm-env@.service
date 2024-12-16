@@ -1,0 +1,13 @@
+[Unit]
+Description=Environment for Wayland compositor %I
+Documentation=man:uwsm(1)
+Before=wayland-wm@%i.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/uwsm prepare-env %i
+ExecStop=/usr/bin/uwsm cleanup-env %i
+
+[Install]
+RequiredBy=wayland-wm@%i.service
