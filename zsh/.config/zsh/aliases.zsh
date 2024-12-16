@@ -245,45 +245,52 @@ alias unhblock="hblock -S none -D none"
 alias subdown="OpenSubtitlesDownload --cli -l tur"
 alias takeover="tmux detach -a"
 
-# Transmission aliasları
-alias tsm='~/.bin/tsm'
-alias tsml='tsm list'
-alias tsma='tsm add'
-alias tsms='tsm speed'
-alias tsmst='tsm start'
-alias tsmp='tsm stop'
-alias tsmr='tsm remove'
-alias tsmi='tsm info'
-alias tsmf='tsm files'
-alias tsmpurge='tsm purge'
-alias tsmsa='tsm start all'
-alias tsmpa='tsm stop all'
-alias tsmra='tsm remove all'
+#-------- Transmission CLI Aliases ve Fonksiyonlar {{{
+# Ana script konumu
+export TSM_SCRIPT="$HOME/.bin/tsm.sh"
 
-# Completion tanımlamaları
-compdef _gnu_generic tsm
+# Temel komutlar için alias'lar
+alias tsm-list='$TSM_SCRIPT list'
+alias tsm-add='$TSM_SCRIPT add'
+alias tsm-info='$TSM_SCRIPT info'
+alias tsm-speed='$TSM_SCRIPT speed'
+alias tsm-files='$TSM_SCRIPT files'
+alias tsm-config='$TSM_SCRIPT config'
 
-# Alias açıklamalarını tanımla
-zstyle ':completion:*:*:tsm:*' list-colors '=(#b)(*)=0=94'
-zstyle ':completion:*:aliases' list-colors '=*=94'
+# Torrent yönetim alias'ları
+alias tsm-start='$TSM_SCRIPT start'
+alias tsm-stop='$TSM_SCRIPT stop'
+alias tsm-remove='$TSM_SCRIPT remove'
+alias tsm-purge='$TSM_SCRIPT purge'
 
-# Her komut için açıklamalar
-compctl -K _tsm_commands tsm
-function _tsm_commands() {
- local commands=(
- "tsm:Transmission yönetim aracı"
- "tsml:Torrent listesini göster"
- "tsma:Yeni torrent ekle"
- "tsms:İndirme/yükleme hızlarını göster"
- "tsmst:Torrent başlat"
- "tsmp:Torrent durdur"
- "tsmr:Torrent sil"
- "tsmi:Torrent detaylarını göster"
- "tsmf:Torrent dosyalarını listele"
- "tsmpurge:Torrent ve dosyalarını sil"
- "tsmsa:Tüm torrentleri başlat"
- "tsmpa:Tüm torrentleri durdur"
- "tsmra:Tüm torrentleri sil"
- )
- reply=("${(@f)$(printf "%s\n" "${commands[@]}")}")
-}
+# Toplu işlem alias'ları
+alias tsm-start-all='$TSM_SCRIPT start all'
+alias tsm-stop-all='$TSM_SCRIPT stop all'
+alias tsm-remove-all='$TSM_SCRIPT remove all'
+alias tsm-purge-all='$TSM_SCRIPT purge all'
+
+# ZSH Completion için komut açıklamaları
+if [[ -n "$ZSH_VERSION" ]]; then
+    function _tsm_commands() {
+        local commands=(
+            "tsm-list:Torrent listesini göster"
+            "tsm-add:Yeni torrent/magnet ekle"
+            "tsm-info:Torrent detaylarını göster"
+            "tsm-speed:İndirme/yükleme hızını göster"
+            "tsm-files:Torrent dosyalarını listele"
+            "tsm-config:Kimlik bilgilerini yapılandır"
+            "tsm-start:Torrent başlat"
+            "tsm-stop:Torrent durdur"
+            "tsm-remove:Torrent sil"
+            "tsm-purge:Torrent ve dosyaları sil"
+            "tsm-start-all:Tüm torrentleri başlat"
+            "tsm-stop-all:Tüm torrentleri durdur"
+            "tsm-remove-all:Tüm torrentleri sil"
+            "tsm-purge-all:Tüm torrentleri ve dosyaları sil"
+        )
+        _describe 'command' commands
+    }
+
+    compdef _tsm_commands tsm
+fi
+#}}}

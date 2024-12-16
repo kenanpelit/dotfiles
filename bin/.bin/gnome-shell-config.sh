@@ -20,10 +20,6 @@
 #  https://extensions.gnome.org/extension/808/hide-workspace-thumbnails/
 #  https://extensions.gnome.org/extension/805/hide-dash/
 
-# Workspace Bar settings
-gsettings set org.gnome.shell.extensions.workspace-bar show-names false
-gsettings set org.gnome.shell.extensions.workspace-bar show-numbers true
-
 # Basic Settings
 gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled true
 gsettings set org.gnome.desktop.input-sources xkb-options "['caps:ctrl_modifier']"
@@ -42,11 +38,6 @@ gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-autom
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-from 0.0
 gsettings set org.gnome.settings-daemon.plugins.color night-light-schedule-to 0.0
 gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature uint32 4200
-
-# Screenshot shortcuts - Matching Hyprland config
-gsettings set org.gnome.shell.keybindings show-screenshot-ui "['Print']"
-gsettings set org.gnome.screenshot area-screenshot "['<Shift>Print']"
-gsettings set org.gnome.screenshot window-screenshot "['<Alt>Print']"
 
 # System shortcuts
 gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver "['<Super>F12', '<Alt>l']"
@@ -136,51 +127,30 @@ KEY_PATH="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
 
 gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings \
   "['$KEY_PATH/custom0/', '$KEY_PATH/custom1/', '$KEY_PATH/custom2/', '$KEY_PATH/custom3/', \
-'$KEY_PATH/custom4/', '$KEY_PATH/custom5/', '$KEY_PATH/custom6/', '$KEY_PATH/custom7/', \
-'$KEY_PATH/custom8/', '$KEY_PATH/custom9/', '$KEY_PATH/custom10/', '$KEY_PATH/custom11/', \
+'$KEY_PATH/custom9/', '$KEY_PATH/custom10/', '$KEY_PATH/custom11/', \
 '$KEY_PATH/custom12/', '$KEY_PATH/custom13/', '$KEY_PATH/custom14/', '$KEY_PATH/custom15/', \
 '$KEY_PATH/custom16/', '$KEY_PATH/custom17/', '$KEY_PATH/custom18/', '$KEY_PATH/custom19/', \
 '$KEY_PATH/custom20/', '$KEY_PATH/custom21/', '$KEY_PATH/custom22/', '$KEY_PATH/custom23/', \
 '$KEY_PATH/custom24/', '$KEY_PATH/custom25/', '$KEY_PATH/custom26/', '$KEY_PATH/custom27/', \
-'$KEY_PATH/custom28/', '$KEY_PATH/custom29/', '$KEY_PATH/custom30/', '$KEY_PATH/custom31/', '$KEY_PATH/custom32/', '$KEY_PATH/custom33/', '$KEY_PATH/custom34/']"
+'$KEY_PATH/custom28/', '$KEY_PATH/custom29/', '$KEY_PATH/custom30/', '$KEY_PATH/custom31/', \
+'$KEY_PATH/custom32/', '$KEY_PATH/custom33/', '$KEY_PATH/custom34/']"
 
 # Terminal Emulators
 $BEGINNING/custom0/ name "Alacritty"
-$BEGINNING/custom0/ command "$HOME/.bin/sem.sh start alacritty never"
+$BEGINNING/custom0/ command "$HOME/.bin/semsumo.sh start foot never"
 $BEGINNING/custom0/ binding "<Super>Return"
 
-$BEGINNING/custom1/ name "Alacritty Always"
-$BEGINNING/custom1/ command "$HOME/.bin/sem.sh start alacritty always"
+$BEGINNING/custom1/ name "Foot Always"
+$BEGINNING/custom1/ command "$HOME/.bin/semsumo.sh start foot always"
 $BEGINNING/custom1/ binding "<Super><Ctrl>Return"
 
 $BEGINNING/custom2/ name "Kitty Single"
-$BEGINNING/custom2/ command "$HOME/.bin/sem.sh start kitty-single never"
+$BEGINNING/custom2/ command "$HOME/.bin/semsumo.sh start kitty-single never"
 $BEGINNING/custom2/ binding "<Alt>Return"
 
 $BEGINNING/custom3/ name "Kitty Single Always"
-$BEGINNING/custom3/ command "$HOME/.bin/sem.sh start kitty-single always"
+$BEGINNING/custom3/ command "$HOME/.bin/semsumo.sh start kitty-single always"
 $BEGINNING/custom3/ binding "<Ctrl><Alt>Return"
-
-# Screenshot Commands
-$BEGINNING/custom4/ name "Screenshot Full"
-$BEGINNING/custom4/ command "$HOME/.bin/hypr-screenshot.sh ri"
-$BEGINNING/custom4/ binding "Print"
-
-$BEGINNING/custom5/ name "Screenshot Area"
-$BEGINNING/custom5/ command "$HOME/.bin/hypr-screenshot.sh rc"
-$BEGINNING/custom5/ binding "<Ctrl>Print"
-
-$BEGINNING/custom6/ name "Screenshot Full Super"
-$BEGINNING/custom6/ command "$HOME/.bin/hypr-screenshot.sh rf"
-$BEGINNING/custom6/ binding "<Super>Print"
-
-$BEGINNING/custom7/ name "Screenshot Area Shift"
-$BEGINNING/custom7/ command "$HOME/.bin/hypr-screenshot.sh sc"
-$BEGINNING/custom7/ binding "<Shift>Print"
-
-$BEGINNING/custom8/ name "Screenshot Full Super Shift"
-$BEGINNING/custom8/ command "$HOME/.bin/hypr-screenshot.sh sf"
-$BEGINNING/custom8/ binding "<Super><Shift>Print"
 
 # Launchers and Menus
 $BEGINNING/custom9/ name "Wofi"
@@ -240,15 +210,15 @@ $BEGINNING/custom21/ command "$HOME/.bin/mpc-control toggle"
 $BEGINNING/custom21/ binding "<Alt><Ctrl>e"
 
 $BEGINNING/custom22/ name "MPV Toggle"
-$BEGINNING/custom22/ command "$HOME/.bin/hypr-mpv_toggle_play_pause.sh"
+$BEGINNING/custom22/ command "$HOME/.bin/hypr-mpv-manager.sh toggle"
 $BEGINNING/custom22/ binding "<Alt>i"
 
 $BEGINNING/custom23/ name "MPV YTDL"
-$BEGINNING/custom23/ command "$HOME/.bin/hypr-mpv_ytdl.sh"
+$BEGINNING/custom23/ command "$HOME/.bin/hypr-mpv-manager.sh yplay"
 $BEGINNING/custom23/ binding "<Alt>u"
 
-$BEGINNING/custom24/ name "MPV Hyprctl"
-$BEGINNING/custom24/ command "$HOME/.bin/hypr-mpv_hyprctl.sh"
+$BEGINNING/custom24/ name "MPV Cycle"
+$BEGINNING/custom24/ command "$HOME/.bin/hypr-mpv-manager.sh cycle"
 $BEGINNING/custom24/ binding "<Alt><Ctrl>h"
 
 $BEGINNING/custom25/ name "VLC Toggle"
@@ -277,17 +247,17 @@ $BEGINNING/custom30/ command "$HOME/.bin/hypr-start-zen-all.sh"
 $BEGINNING/custom30/ binding "<Super><Alt>Return"
 
 # Terminal with Sem Script
-$BEGINNING/custom31/ name "Terminal AKENP"
-$BEGINNING/custom31/ command "$HOME/.bin/sem.sh start akenp never"
+$BEGINNING/custom31/ name "Terminal FKENP"
+$BEGINNING/custom31/ command "$HOME/.bin/semsumo.sh start fkenp never"
 $BEGINNING/custom31/ binding "<Alt>t"
 
-$BEGINNING/custom32/ name "Terminal ACTA"
-$BEGINNING/custom32/ command "$HOME/.bin/sem.sh start acta always"
+$BEGINNING/custom32/ name "Terminal FCTA"
+$BEGINNING/custom32/ command "$HOME/.bin/semsumo.sh start fcta always"
 $BEGINNING/custom32/ binding "<Alt><Ctrl>c"
 
 # Anote Shortcuts
 $BEGINNING/custom33/ name "Anote Snippets"
-$BEGINNING/custom33/ command "$HOME/.bin/hypr-start_anote_snippets.sh"
+$BEGINNING/custom33/ command "$HOME/.bin/hypr-start-manager.sh anote"
 $BEGINNING/custom33/ binding "<Super>n"
 
 $BEGINNING/custom34/ name "Clipboard Manager"

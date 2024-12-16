@@ -4,7 +4,7 @@
       "command": "/usr/bin/foot",
       "args": [
         "-a",
-        "TmuxFootKenp",
+        "TmuxKenp",
         "-T",
         "Tmux",
         "-e",
@@ -16,7 +16,7 @@
       "command": "/usr/bin/foot",
       "args": [
         "-a",
-        "TmuxFootCta",
+        "TmuxCta",
         "-T",
         "Tmux",
         "-e",
@@ -28,7 +28,7 @@
       "command": "/usr/bin/kitty",
       "args": [
         "--class",
-        "TmuxKittyKenp",
+        "TmuxKenp",
         "-T",
         "Tmux",
         "-e",
@@ -40,7 +40,7 @@
       "command": "/usr/bin/kitty",
       "args": [
         "--class",
-        "TmuxKittyCta",
+        "TmuxCta",
         "-T",
         "Tmux",
         "-e",
@@ -52,7 +52,7 @@
       "command": "/usr/bin/alacritty",
       "args": [
         "--class",
-        "TmuxAlacrittyKenp",
+        "TmuxKenp",
         "--title",
         "Tmux",
         "-e",
@@ -64,7 +64,7 @@
       "command": "/usr/bin/alacritty",
       "args": [
         "--class",
-        "TmuxAlacrittyCta",
+        "TmuxCta",
         "--title",
         "Tmux",
         "-e",

@@ -1,19 +1,18 @@
 # ===========================================================================
 # Pyprland Temel Yapılandırması
 # ===========================================================================
-
 # -----------------------------
 # Aktif Eklentiler
 # -----------------------------
 [pyprland]
 plugins = [
-    "scratchpads",           # Hızlı erişim pencereleri
-    "lost_windows",          # Kayıp pencereleri bulma
-    "monitors",              # Monitör yönetimi
-    "shift_monitors",        # Monitör geçişi
-    "toggle_dpms",           # Ekran güç yönetimi
-    "expose",                # Pencere önizleme
-    "workspaces_follow_focus" # Odak takibi
+   "scratchpads",           # Hızlı erişim pencereleri
+   "lost_windows",          # Kayıp pencereleri bulma
+   "monitors",              # Monitör yönetimi
+   "shift_monitors",        # Monitör geçişi
+   "toggle_dpms",           # Ekran güç yönetimi
+   "expose",                # Pencere önizleme
+   "workspaces_follow_focus" # Odak takibi
 ]
 
 # -----------------------------
@@ -27,6 +26,40 @@ max_workspaces = 9           # Maksimum çalışma alanı sayısı
 # -----------------------------
 [expose]
 include_special = false      # Özel pencereleri dahil etme
+
+# -----------------------------
+# Lost Windows Ayarları
+# -----------------------------
+[lost_windows]
+include_special = false
+
+# -----------------------------
+# Shift Monitors Ayarları
+# -----------------------------
+[shift_monitors]
+raise_monitor = true         # Monitör değiştiğinde pencereyi öne getir
+
+# -----------------------------
+# Toggle DPMS Ayarları
+# -----------------------------
+[toggle_dpms]
+dpms_timeout = 600          # 10 dakika timeout
+
+# -----------------------------
+# Monitör Yapılandırması
+# -----------------------------
+[monitors.placement."Dell Inc. DELL UP2716D KRXTR88N909L"]
+topOf = "AU Optronics 0x2036"
+rate = 59
+resolution = "2560x1440"
+
+[monitors.placement."AU Optronics 0x2036"]
+rate = 60
+resolution = "2560x1440"
+
+[monitors]
+startup_relayout = true
+new_monitor_delay = 1
 
 # -----------------------------
 # Scratchpad Yapılandırmaları

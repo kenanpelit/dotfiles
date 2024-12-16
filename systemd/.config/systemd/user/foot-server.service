@@ -1,0 +1,15 @@
+[Unit]
+Description=Foot Terminal Server
+Documentation=man:foot(1)
+
+[Service]
+Environment=WAYLAND_DISPLAY=wayland-1
+ExecStart=/usr/bin/linux64 /usr/bin/foot --server
+Restart=always
+RestartSec=3
+Nice=-1
+MemoryDenyWriteExecute=yes
+NoNewPrivileges=yes
+
+[Install]
+WantedBy=default.target
