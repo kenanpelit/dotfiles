@@ -24,9 +24,7 @@ fish/.config/fish/functions/ssb.fish
 fish/.local
 
 # Zsh
-zsh/.config/zsh/.zcompdump*
-zsh/.config/zsh/.zsh_history
-zsh/.config/zsh/.zsh_sessions
+zsh/.config/zsh/history
 
 # Mpv
 mpv/.config/mpv/watch_later/

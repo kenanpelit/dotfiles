@@ -1,6 +1,0 @@
-# .zshrc başına:
-start_time=$(date +%s.%N)
-
-# .zshrc sonuna:
-end_time=$(date +%s.%N)
-echo "Startup time: $(echo "$end_time - $start_time" | bc) seconds"
