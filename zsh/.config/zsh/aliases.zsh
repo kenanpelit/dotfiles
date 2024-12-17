@@ -37,6 +37,7 @@ alias cfgs-loader="sudo $EDITOR /boot/efi/loader/loader.conf"
 
 # Application Config Aliases
 alias cfg-alacritty="$EDITOR ~/.config/alacritty/alacritty.yml"
+alias cfg-foot="$EDITOR ~/.config/foot/foot.ini"
 alias cfg-assh="$EDITOR ~/.ssh/assh.yml"
 alias cfg-key="$EDITOR ~/.bin/gnome-shell-config.sh"
 alias cfg-mpv="$EDITOR ~/.config/mpv/mpv.conf"
