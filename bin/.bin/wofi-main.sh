@@ -40,7 +40,7 @@ generate_menu() {
 show_menu() {
   generate_menu | wofi \
     --dmenu \
-    --style "$WOFI_DIR/styles/mainblue.css" \
+    --style "$WOFI_DIR/styles/main.css" \
     --conf "$WOFI_DIR/configs/main" \
     --cache-file=/dev/null \
     --prompt "Launch:" \

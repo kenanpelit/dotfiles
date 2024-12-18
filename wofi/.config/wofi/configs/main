@@ -1,8 +1,8 @@
-width=400
+width=600
 height=500
 location=center
 show=dmenu
-prompt=Menu:
+prompt=Launch:
 filter_rate=100
 allow_markup=true
 no_actions=true
@@ -11,3 +11,4 @@ insensitive=true
 matching=contains
 sort_order=default
 gtk_dark=true
+columns=2
