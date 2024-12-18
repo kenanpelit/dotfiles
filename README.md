@@ -7,14 +7,16 @@
 </div>
 
 ## ⚡️ Stack
-- **WM**: Hyprland
-- **Terminal**: Alacritty/Kitty
-- **Editor**: Neovim
-- **Shell**: Fish/Zsh
-- **Bar**: Waybar
-- **Launcher**: Wofi
-- **Session**: Wleave
-- **Multiplexer**: Tmux
+* **WM**: Hyprland
+* **Terminal**: Foot/Alacritty/Kitty
+* **Editor**: Neovim
+* **Shell**: Zsh/Fish
+* **Bar**: Waybar
+* **Launcher**: Wofi
+* **File Manager**: Ranger
+* **Workspace Manager**: Uwsm
+* **Logout Manager**: Wleave
+* **Multiplexer**: Tmux/Sesh
 
 ## 🛠 Current Setup
 ```bash
@@ -22,6 +24,8 @@
 ├── alacritty/       # GPU-accelerated terminal
 ├── bin/             # Custom scripts
 ├── fish/            # Fish shell config
+├── fonts/           # Custom fonts
+├── foot/            # Fast, lightweight wayland terminal
 ├── hypr/            # Hyprland config
 ├── kitty/           # Modern terminal emulator
 ├── mpv/             # Media player
@@ -31,15 +35,14 @@
 ├── sem/             # System enhancement modules
 ├── sesh/            # Terminal session manager
 ├── starship/        # Cross-shell prompt
-├── starship.toml/   # Starship configuration
 ├── systemd/         # Service configuration
 ├── tmux/            # Terminal multiplexer
 ├── touchegg/        # Gesture control
+├── uwsm/            # User workspace manager
 ├── waybar/          # Wayland bar
 ├── wleave/          # Session manager
 ├── wofi/            # Application launcher
-├── zsh/             # Zsh config
-└── zshrc/           # Zsh runtime config
+└── zsh/             # Zsh runtime config
 ```
 
 ## 🚀 Quick Start
@@ -112,7 +115,6 @@ stow my_awesome_tool
 A custom script [kenanpelit/dotstow](https://github.com/kenanpelit/dotstow) is included to make dotfiles management even easier:
 
 ```bash
-
 Dotfiles Management with GNU Stow
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -121,11 +123,11 @@ Usage: dotfiles-manager.sh <command> [options]
 Commands:
   add <path>                     Add file/directory from home or .config
   rm <name>                      Remove config files and symlinks
-  sync                           Synchronize all dotfiles
-  ls                             List existing dotfiles
-  import                         Import all configs from groups.conf
-  import <group1> <group2>       Import specific groups
-  import --dry-run [group]       Show what would be imported
+  sync                          Synchronize all dotfiles
+  ls                            List existing dotfiles
+  import                        Import all configs from groups.conf
+  import <group1> <group2>      Import specific groups
+  import --dry-run [group]      Show what would be imported
 
 Group Management:
   group add <name> <files> [dir] Add group to groups.conf
@@ -141,7 +143,6 @@ Examples:
   dotfiles-manager.sh group rm zsh                               # Remove only group definition
   dotfiles-manager.sh import --dry-run zsh                       # Preview zsh import
   dotfiles-manager.sh import nvim zsh                            # Import selected groups
-
 ```
 
 Features:
