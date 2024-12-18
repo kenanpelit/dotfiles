@@ -112,21 +112,36 @@ stow my_awesome_tool
 A custom script (`dotfiles-manager.sh`) is included to make dotfiles management even easier:
 
 ```bash
+
+Dotfiles Management with GNU Stow
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 Usage: dotfiles-manager.sh <command> [options]
 
 Commands:
-  addc <name>      Add config file/directory from .config
-  addh <name>      Add dotfile/directory from home
-  rm <name>        Remove config
-  sync             Synchronize all dotfiles
-  ls               List existing dotfiles
+  add <path>                     Add file/directory from home or .config
+  rm <name>                      Remove config files and symlinks
+  sync                           Synchronize all dotfiles
+  ls                             List existing dotfiles
+  import                         Import all configs from groups.conf
+  import <group1> <group2>       Import specific groups
+  import --dry-run [group]       Show what would be imported
+
+Group Management:
+  group add <name> <files> [dir] Add group to groups.conf
+  group rm <name>                Remove group from groups.conf only
+  group ls                       List all group configurations
 
 Examples:
-  ./dotfiles-manager.sh addc hypr          # Add Hyprland config dir
-  ./dotfiles-manager.sh addc config.txt    # Add single config file
-  ./dotfiles-manager.sh addh .zshrc        # Add .zshrc file
-  ./dotfiles-manager.sh addh .config       # Add .config directory
-  ./dotfiles-manager.sh rm hypr           # Remove config
+  dotfiles-manager.sh group add zsh '.zshrc,.zprofile' zsh       # Add group definition
+  dotfiles-manager.sh group add nvim '' nvim                     # Add config-only group
+  dotfiles-manager.sh group add starship '.config/starship.toml,.config/starship' starship
+  dotfiles-manager.sh add .zshrc                                 # Add single file
+  dotfiles-manager.sh rm zsh                                     # Remove files and symlinks
+  dotfiles-manager.sh group rm zsh                               # Remove only group definition
+  dotfiles-manager.sh import --dry-run zsh                       # Preview zsh import
+  dotfiles-manager.sh import nvim zsh                            # Import selected groups
+
 ```
 
 Features:
