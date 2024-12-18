@@ -109,7 +109,7 @@ stow my_awesome_tool
 ```
 
 ## 🛠️ Dotfiles Manager
-A custom script (`dotfiles-manager.sh`) is included to make dotfiles management even easier:
+A custom script [kenanpelit/dotstow](https://github.com/kenanpelit/dotstow) is included to make dotfiles management even easier:
 
 ```bash
 
