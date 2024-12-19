@@ -193,6 +193,7 @@ gnome-calculator
 gnome-control-center
 gnome-disk-utility
 gnome-keyring
+gnome-screenshot
 gnome-shell-extension-pop-shell-git
 gnome-terminal-transparency
 gnome-tweaks
@@ -205,6 +206,7 @@ gpm
 gptfdisk
 gpu-screen-recorder-git
 gpu-screen-recorder-gtk-git
+greetd-tuigreet
 grim
 grimshot
 grub
@@ -227,12 +229,15 @@ hardcode-fixer-git
 hardinfo-gtk3
 hdisplays
 hdparm
+hgrep-bin
 htop
 hw-probe
 hwinfo
 hyperv
 hyprdim
+hyprgraphics-git
 hyprland-git
+hyprlauncher-bin
 hyprlock
 hyprnome
 hyprnotify
@@ -296,6 +301,7 @@ luarocks
 lvm2
 lxappearance
 lxrandr
+ly
 lynx
 lz4json
 mako
@@ -382,11 +388,11 @@ pipewire-alsa
 pipewire-jack
 pipewire-pulse
 pipewire-zeroconf
+pirate-get
 pkgfile
 places-status-indicator-applet-for-cosmic-git
 playerctl
 plocate
-plymouth
 pngcheck
 podman-compose
 podman-tui
@@ -424,6 +430,7 @@ refind
 reflector
 reiserfsprogs
 ripgrep
+rmpc
 rofi-wayland
 rp-pppoe
 rsync
