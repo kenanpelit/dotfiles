@@ -1,0 +1,46 @@
+#######################
+# Satty Configuration #
+#######################
+
+[general]
+# Interface Settings
+# -----------------
+fullscreen = false                # Start in fullscreen mode
+default-hide-toolbars = false     # Show/hide toolbars on startup
+disable-notifications = false     # Enable/disable notifications
+
+# Tool Settings
+# ------------
+initial-tool = "brush"            # Default tool on startup
+                                  # Options: pointer, crop, line, arrow, rectangle, 
+                                  # text, marker, blur, brush
+primary-highlighter = "block"     # Primary highlight style (CTRL for alternate)
+                                  # Options: block, freehand
+annotation-size-factor = 2        # Size multiplier for annotations
+
+# Action Settings
+# -------------
+early-exit = true                 # Exit after copy/save action
+copy-command = "wl-copy"          # Command used for copying
+save-after-copy = false           # Save copy to file automatically
+
+# Output Settings
+# -------------
+output-filename = "/tmp/test-%Y-%m-%d_%H:%M:%S.png"    # Save format with timestamp
+                                                       # See: https://docs.rs/chrono/latest/chrono/format/strftime/
+
+[font]
+# Text Annotation Font
+# ------------------
+family = "Roboto"                 # Font family name
+style = "Bold"                    # Font weight style
+
+[color-palette]
+# Custom Color Scheme
+# -----------------
+first  = "#00ffff"    # Cyan
+second = "#a52a2a"    # Brown
+third  = "#dc143c"    # Crimson
+fourth = "#ff1493"    # Deep Pink
+fifth  = "#ffd700"    # Gold
+custom = "#008000"    # Green

@@ -72,6 +72,7 @@ bin/.bin/*
 !bin/.bin/turbo*
 !bin/.bin/zen*
 !bin/.bin/wlsunset-toggle.sh
+!bin/.bin/satty-screenshot.sh
 
 # Terminal geçmişi ve cache
 .bash_history
