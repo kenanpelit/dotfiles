@@ -30,6 +30,7 @@ zsh/.config/zsh/history
 mpv/.config/mpv/watch_later/
 mpv/.config/mpv/mpvBookmark.log
 mpv/.config/mpv/mpvHistory.log
+mpv/.config/mpv/chapters
 
 # Ranger
 ranger/.config/ranger/history
