@@ -67,6 +67,7 @@ bin/.bin/*
 !bin/.bin/todo
 !bin/.bin/transmission*
 !bin/.bin/tsm.sh
+!bin/.bin/tsms.sh
 !bin/.bin/turbo*
 !bin/.bin/zen*
 !bin/.bin/wlsunset-toggle.sh

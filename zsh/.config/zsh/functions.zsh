@@ -83,4 +83,26 @@ ex ()
   fi
 }
 
+# FZF ile gelişmiş fonksiyonlar
+fif() {
+  if [ ! "$#" -gt 0 ]; then echo "Arama terimi gerekli"; return 1; fi
+  fd --type f --hidden --follow --exclude .git \
+  | fzf -m --preview="bat --style=numbers --color=always {} 2>/dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
+}
 
+# Dizin geçmişinde FZF ile arama
+fcd() {
+  local dir
+  dir=$(dirs -v | fzf --height 40% --reverse | cut -f2-)
+  if [[ -n "$dir" ]]; then
+    cd "$dir"
+  fi
+}
+
+# Git commit'lerinde FZF ile arama
+fgco() {
+  local commits commit
+  commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
+  commit=$(echo "$commits" | fzf --tac +s +m -e) &&
+  git checkout $(echo "$commit" | sed "s/ .*//")
+}

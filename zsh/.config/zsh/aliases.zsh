@@ -246,17 +246,23 @@ alias unhblock="hblock -S none -D none"
 alias subdown="OpenSubtitlesDownload --cli -l tur"
 alias takeover="tmux detach -a"
 
-#-------- Transmission CLI Aliases ve Fonksiyonlar {{{
+#-------- Transmission CLI Aliases ve Fonksiyonlar
 # Ana script konumu
 export TSM_SCRIPT="$HOME/.bin/tsm.sh"
 
 # Temel komutlar için alias'lar
+alias tsm='$TSM_SCRIPT'
 alias tsm-list='$TSM_SCRIPT list'
 alias tsm-add='$TSM_SCRIPT add'
 alias tsm-info='$TSM_SCRIPT info'
 alias tsm-speed='$TSM_SCRIPT speed'
 alias tsm-files='$TSM_SCRIPT files'
 alias tsm-config='$TSM_SCRIPT config'
+
+# Arama komutları için alias'lar
+alias tsm-search='$TSM_SCRIPT search'
+alias tsm-search-cat='$TSM_SCRIPT search -l'
+alias tsm-search-recent='$TSM_SCRIPT search -R'
 
 # Torrent yönetim alias'ları
 alias tsm-start='$TSM_SCRIPT start'
@@ -270,28 +276,54 @@ alias tsm-stop-all='$TSM_SCRIPT stop all'
 alias tsm-remove-all='$TSM_SCRIPT remove all'
 alias tsm-purge-all='$TSM_SCRIPT purge all'
 
+# Gelişmiş özellikler için alias'lar
+alias tsm-health='$TSM_SCRIPT health'
+alias tsm-stats='$TSM_SCRIPT stats'
+alias tsm-disk='$TSM_SCRIPT disk-check'
+alias tsm-tracker='$TSM_SCRIPT tracker'
+alias tsm-limit='$TSM_SCRIPT limit'
+alias tsm-auto-remove='$TSM_SCRIPT auto-remove'
+alias tsm-remove-done='$TSM_SCRIPT tsm-remove-done'
+
 # ZSH Completion için komut açıklamaları
 if [[ -n "$ZSH_VERSION" ]]; then
-    function _tsm_commands() {
+    _tsm_completions() {
         local commands=(
-            "tsm-list:Torrent listesini göster"
-            "tsm-add:Yeni torrent/magnet ekle"
-            "tsm-info:Torrent detaylarını göster"
-            "tsm-speed:İndirme/yükleme hızını göster"
-            "tsm-files:Torrent dosyalarını listele"
-            "tsm-config:Kimlik bilgilerini yapılandır"
-            "tsm-start:Torrent başlat"
-            "tsm-stop:Torrent durdur"
-            "tsm-remove:Torrent sil"
-            "tsm-purge:Torrent ve dosyaları sil"
-            "tsm-start-all:Tüm torrentleri başlat"
-            "tsm-stop-all:Tüm torrentleri durdur"
-            "tsm-remove-all:Tüm torrentleri sil"
-            "tsm-purge-all:Tüm torrentleri ve dosyaları sil"
+            # Temel komutlar
+            "list:Torrent listesini göster"
+            "add:Yeni torrent/magnet ekle"
+            "info:Torrent detaylarını göster"
+            "speed:İndirme/yükleme hızını göster"
+            "files:Torrent dosyalarını listele"
+            "config:Kimlik bilgilerini yapılandır"
+            
+            # Arama komutları
+            "search:Torrent ara"
+            "search-cat:Mevcut kategorileri listele"
+            "search-recent:Son 48 saatteki torrentlerde ara"
+            
+            # Torrent yönetim komutları
+            "start:Torrent başlat"
+            "stop:Torrent durdur"
+            "remove:Torrent sil"
+            "purge:Torrent ve dosyaları sil"
+            
+            # Toplu işlem komutları
+            "start-all:Tüm torrentleri başlat"
+            "stop-all:Tüm torrentleri durdur"
+            "remove-all:Tüm torrentleri sil"
+            "purge-all:Tüm torrentleri ve dosyaları sil"
+            
+            # Gelişmiş özellikler
+            "health:Torrent sağlık kontrolü"
+            "stats:Detaylı istatistikleri göster"
+            "disk:Disk kullanım durumunu kontrol et"
+            "tracker:Tracker bilgilerini göster"
+            "limit:Hız limiti ayarla"
+            "auto-remove:Otomatik tamamlanan torrent silme (daemon)"
+            "remove-done:Tamamlanmış torrentleri sil"
         )
-        _describe 'command' commands
+        _describe 'tsm' commands
     }
-
-    compdef _tsm_commands tsm
+    compdef _tsm_completions tsm-
 fi
-#}}}

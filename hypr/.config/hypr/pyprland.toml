@@ -45,21 +45,22 @@ raise_monitor = true         # Monitör değiştiğinde pencereyi öne getir
 [toggle_dpms]
 dpms_timeout = 600          # 10 dakika timeout
 
-# -----------------------------
-# Monitör Yapılandırması
-# -----------------------------
-[monitors.placement."Dell Inc. DELL UP2716D KRXTR88N909L"]
-topOf = "AU Optronics 0x2036"
-rate = 59
-resolution = "2560x1440"
-
-[monitors.placement."AU Optronics 0x2036"]
-rate = 60
-resolution = "2560x1440"
-
-[monitors]
-startup_relayout = true
-new_monitor_delay = 1
+## -----------------------------
+## Monitör Yapılandırması
+## -----------------------------
+#[monitors.placement."Dell Inc. DELL UP2716D KRXTR88N909L"]
+#topCenterOf = "AU Optronics 0x2036"  # Üst monitörü tam ortaya hizalar
+#rate = 59
+#resolution = "2560x1440"
+#
+#[monitors.placement."AU Optronics 0x2036"]
+#rate = 60
+#resolution = "1920x1080"
+##scale = 1.333333
+#
+#[monitors]
+#startup_relayout = true
+#new_monitor_delay = 1
 
 # -----------------------------
 # Scratchpad Yapılandırmaları
