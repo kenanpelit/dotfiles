@@ -62,13 +62,28 @@ case $1 in
 "select-edit")
   # Select area and open in Satty editor
   grim -g "$(slurp)" -t ppm - |
-    satty --filename - --fullscreen --output-filename "$(get_filename)"
+    satty --filename - --output-filename "$(get_filename)"
   ;;
 
 "select-copy")
-  # Select area and copy to clipboard
-  grim -g "$(slurp)" -t ppm - |
-    satty --filename - --copy-command wl-copy --early-exit
+  # Select area and copy to clipboard immediately
+  grim -g "$(slurp)" - | wl-copy &&
+    notify "Screenshot" "Copied to clipboard"
+  ;;
+
+"select-edit-copy")
+  # Capture selection to temp file, then show in satty
+  temp_file=$(mktemp /tmp/screenshot-XXXXXX.png)
+  grim -g "$(slurp)" "$temp_file"
+
+  # Copy to clipboard first
+  wl-copy <"$temp_file"
+
+  # Then open in satty (user can edit or ESC)
+  satty --filename "$temp_file"
+
+  # Clean up temp file
+  rm "$temp_file"
   notify "Screenshot" "Copied to clipboard"
   ;;
 
@@ -80,9 +95,8 @@ case $1 in
   ;;
 
 "full-copy")
-  # Capture full screen and copy to clipboard
-  grim -t ppm - |
-    satty --filename - --copy-command wl-copy --early-exit
+  # Capture full screen and copy to clipboard directly
+  grim - | wl-copy
   notify "Screenshot" "Full screen copied to clipboard"
   ;;
 
@@ -96,11 +110,11 @@ case $1 in
 "full-edit")
   # Capture full screen and open in Satty editor
   grim -t ppm - |
-    satty --filename - --fullscreen --output-filename "$(get_filename)"
+    satty --filename - --output-filename "$(get_filename)"
   ;;
 
 *)
-  echo "Usage: $0 [select-edit|select-copy|select-save|full-copy|full-save|full-edit]"
+  echo "Usage: $0 [select-edit|select-copy|select-edit-copy|select-save|full-copy|full-save|full-edit]"
   exit 1
   ;;
 esac
