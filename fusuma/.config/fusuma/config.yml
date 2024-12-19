@@ -1,0 +1,25 @@
+# Fusuma Touchpad Gesture Configuration | Dokunmatik Yüzey Hareket Yapılandırması
+# sudo gem list fusuma-plugin- | cut -d' ' -f1 | xargs --no-run-if-empty sudo gem update
+# https://github.com/iberianpig/fusuma-plugin-sendkey
+# https://github.com/iberianpig/fusuma
+# For Browsers
+
+# Global sensitivity settings | Global hassasiyet ayarları
+threshold:
+ swipe: 0.7    # Swipe gesture sensitivity (lower = more sensitive) | Kaydırma hareketi hassasiyeti (düşük değer = daha hassas)
+ pinch: 0.3    # Pinch gesture sensitivity | Sıkıştırma/genişletme hareketi hassasiyeti
+
+# Gesture detection intervals (seconds) | Hareket algılama aralıkları (saniye)
+interval:
+ swipe: 0.6    # Minimum time between swipe gestures | Kaydırma hareketleri arası minimum süre
+ pinch: 1.0    # Minimum time between pinch gestures | Sıkıştırma hareketleri arası minimum süre
+
+# Swipe gesture settings | Kaydırma hareket ayarları  
+swipe:
+ 3:    # Three-finger gestures | 3 parmak hareketleri
+   right:    # Swipe right | Sağa kaydırma
+     sendkey: "LEFTCTRL+TAB"           # Switch to next tab | Sonraki sekmeye geç
+     threshold: 0.6                     # Custom sensitivity for this gesture | Bu hareket için özel hassasiyet
+   left:     # Swipe left | Sola kaydırma
+     sendkey: "LEFTCTRL+LEFTSHIFT+TAB" # Switch to previous tab | Önceki sekmeye geç 
+     threshold: 0.6                     # Custom sensitivity for this gesture | Bu hareket için özel hassasiyet
