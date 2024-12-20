@@ -42,7 +42,7 @@ ARROW_MARK="→"
 # Yapılandırma değişkenleri
 SOCKET_PATH="/tmp/mpvsocket"
 DOWNLOADS_DIR="$HOME/Downloads"
-NOTIFICATION_TIMEOUT=3000
+NOTIFICATION_TIMEOUT=1000
 
 # Kullanım kılavuzu
 show_usage() {

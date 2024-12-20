@@ -21,6 +21,7 @@ declare -A MENU_ENTRIES=(
   [">>> Power"]="⚡"
   [">>> Run"]="📱"
   [">>> Search"]="🔍"
+  [">>> Ssh"]="🔒"
   [">>> System"]="⚙️"
   [">>> ThemeHypr"]="🎨"
   [">>> ThemeWofi"]="🎨"
@@ -73,6 +74,9 @@ handle_selection() {
     ;;
   ">>> Semsumo")
     exec "$WOFI_SCRIPTS/semsumo-wofi-start.sh"
+    ;;
+  ">>> Ssh")
+    exec "$WOFI_SCRIPTS/wofi-ssh.sh"
     ;;
   ">>> Window")
     exec "$WOFI_SCRIPTS/wofi-window-switcher.sh"
