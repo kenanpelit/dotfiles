@@ -23,6 +23,9 @@ fish/.config/fish/functions/history_cleaner.fish
 fish/.config/fish/functions/ssb.fish
 fish/.local
 
+# Hyprland
+hypr/.config/hypr/startup
+
 # Zsh
 zsh/.config/zsh/history
 

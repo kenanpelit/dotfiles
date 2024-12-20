@@ -1,0 +1,19 @@
+[Unit]
+Description=Ulauncher service
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=simple
+Environment=DISPLAY=:0
+Environment=WAYLAND_DISPLAY=wayland-1
+Environment=XDG_SESSION_TYPE=wayland
+Environment=GDK_BACKEND=wayland
+ExecStartPre=/usr/bin/sleep 3
+ExecStart=/usr/bin/ulauncher
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=5
+
+[Install]
+WantedBy=graphical-session.target
