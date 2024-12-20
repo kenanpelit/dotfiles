@@ -28,9 +28,6 @@
 # - wl-clipboard: Pano yönetimi
 # - yt-dlp: YouTube video indirme
 # - libnotify: Masaüstü bildirimleri
-# - pulseaudio-utils: Ses bildirimleri
-#
-########################################
 
 # Renk ve sembol tanımları
 SUCCESS='\033[0;32m'
@@ -46,7 +43,6 @@ ARROW_MARK="→"
 SOCKET_PATH="/tmp/mpvsocket"
 DOWNLOADS_DIR="$HOME/Downloads"
 NOTIFICATION_TIMEOUT=3000
-SOUND_THEME_PATH="/usr/share/sounds/freedesktop/stereo"
 
 # Kullanım kılavuzu
 show_usage() {
@@ -65,17 +61,10 @@ Komutlar:
     wallpaper   Panodaki video/URL'yi duvar kağıdı yap
 
 Örnekler:
-    $(basename "$0") move        # Pencereyi bir sonraki köşeye taşır
-    $(basename "$0") play-yt     # Kopyalanan YouTube linkini oynatır
+    $(basename "$0") start     # MPV'yi başlat
+    $(basename "$0") move      # Pencereyi bir sonraki köşeye taşır
+    $(basename "$0") play-yt   # Kopyalanan YouTube linkini oynatır
 EOF
-  exit 1
-}
-
-# Hata mesajı gösterme
-show_error() {
-  echo -e "${ERROR}$CROSS_MARK Hata: $1${NC}" >&2
-  notify-send -u critical -t $NOTIFICATION_TIMEOUT "HyprFlow Hata" "$1"
-  paplay "$SOUND_THEME_PATH/dialog-error.oga" &>/dev/null &
   exit 1
 }
 
@@ -83,7 +72,12 @@ show_error() {
 show_success() {
   echo -e "${SUCCESS}$CHECK_MARK $1${NC}"
   notify-send -t $NOTIFICATION_TIMEOUT "HyprFlow" "$1"
-  paplay "$SOUND_THEME_PATH/complete.oga" &>/dev/null &
+}
+
+# Hata mesajı gösterme
+show_error() {
+  echo -e "${ERROR}$CROSS_MARK Hata: $1${NC}" >&2
+  notify-send -u critical -t $NOTIFICATION_TIMEOUT "HyprFlow Hata" "$1"
 }
 
 # Bilgi mesajı gösterme
@@ -102,16 +96,6 @@ check_process() {
 check_mpv() {
   if ! check_process "mpv"; then
     show_error "MPV çalışmıyor"
-    return 1
-  fi
-  return 0
-}
-
-# YouTube URL kontrolü
-validate_youtube_url() {
-  local url="$1"
-  if ! [[ "$url" =~ ^https?://(www\.)?(youtube\.com|youtu\.?be)/ ]]; then
-    show_error "Geçersiz YouTube URL'si: $url"
     return 1
   fi
   return 0
@@ -215,74 +199,83 @@ toggle_playback() {
   fi
 }
 
-# YouTube videosu oynat
+# YouTube video oynatma fonksiyonu
 play_youtube() {
-  local video_url
-  video_url=$(wl-paste)
-  validate_youtube_url "$video_url" || return 1
+  VIDEO_URL="$(wl-paste)"
 
-  # Video başlığını al
-  local video_title
-  video_title=$(yt-dlp --get-title "$video_url" 2>/dev/null || echo "Video")
-  show_info "Oynatılıyor: $video_title"
+  # YouTube URL'si olup olmadığını kontrol et
+  if ! [[ "$VIDEO_URL" =~ ^https?://(www\.)?(youtube\.com|youtu\.?be)/ ]]; then
+    show_error "Kopyalanan URL geçerli bir YouTube URL'si değil."
+    return 1
+  fi
 
-  # MPV ile oynat
-  /usr/bin/mpv \
-    --player-operation-mode=pseudo-gui \
-    --input-ipc-server="$SOCKET_PATH" \
+  # Video adını al
+  VIDEO_NAME=$(yt-dlp --get-title "$VIDEO_URL" 2>/dev/null)
+  if [[ -z "$VIDEO_NAME" ]]; then
+    VIDEO_NAME=$(basename "$VIDEO_URL")
+  fi
+
+  notify-send -t 5000 "Playing Video" "$VIDEO_NAME"
+
+  /usr/bin/mpv --player-operation-mode=pseudo-gui \
+    --input-ipc-server=/tmp/mpvsocket \
     --idle \
     --no-audio-display \
     --speed=1 \
     --af=rubberband=pitch-scale=0.981818181818181 \
-    "$video_url" &
+    "$VIDEO_URL" &
 
-  # Çalışma alanı bilgisini göster
   sleep 2
+
   local workspace
   workspace=$(hyprctl clients | grep -A 10 "mpv:" | grep "workspace:" | awk '{print $2}' | tr -d '()')
   show_info "Video $workspace numaralı çalışma alanında oynatılıyor"
 }
 
-# YouTube videosu indir
+# YouTube video indirme fonksiyonu
 download_youtube() {
-  local video_url
-  video_url=$(wl-paste)
-  validate_youtube_url "$video_url" || return 1
+  local video_url="$(wl-paste)"
 
-  # Video başlığını al
+  # YouTube URL'si olup olmadığını kontrol et
+  if ! [[ "$video_url" =~ ^https?://(www\.)?(youtube\.com|youtu\.?be)/ ]]; then
+    show_error "Kopyalanan URL geçerli bir YouTube URL'si değil."
+    return 1
+  fi
+
+  # Video adını al
   local video_title
   video_title=$(yt-dlp --get-title "$video_url" 2>/dev/null || echo "Video")
+
+  cd "$DOWNLOADS_DIR" || {
+    show_error "İndirme klasörüne erişilemiyor"
+    return 1
+  }
   show_info "İndiriliyor: $video_title"
 
-  # İndirme klasörüne git
-  cd "$DOWNLOADS_DIR" || show_error "İndirme klasörüne erişilemiyor"
-
-  # En iyi kalitede indir
   if yt-dlp -f "bestvideo+bestaudio/best" \
     --merge-output-format mp4 \
     --embed-thumbnail \
     --add-metadata \
     "$video_url"; then
-    show_success "Video başarıyla indirildi: $video_title"
+    show_success "$video_title başarıyla indirildi!"
   else
     show_error "Video indirilemedi: $video_title"
   fi
 }
 
-# Duvar kağıdı olarak oynat
+# Duvar kağıdı olarak video oynatma fonksiyonu
 set_video_wallpaper() {
-  local video_path
-  video_path=$(wl-paste)
+  local video_path="$(wl-paste)"
   show_info "Duvar kağıdı ayarlanıyor..."
 
   if /usr/bin/mpvpaper "eDP-1" "$video_path"; then
-    show_success "Duvar kağıdı ayarlandı"
+    show_success "Video duvar kağıdı olarak ayarlandı"
   else
-    show_error "Duvar kağıdı ayarlanamadı"
+    show_error "Video duvar kağıdı olarak ayarlanamadı"
   fi
 }
 
-# Ana program
+# Ana program fonksiyonu
 main() {
   case "$1" in
   "start")
@@ -312,6 +305,6 @@ main() {
   esac
 }
 
-# Programı çalıştır
-main "$@"
-
+# Gerekli argüman kontrolü
+[ $# -eq 0 ] && show_usage
+main "$1"
