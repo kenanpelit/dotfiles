@@ -1,0 +1,189 @@
+# Yazi File Manager Configuration
+"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+
+[manager]
+ratio = [1, 3, 4]
+sort_by = "natural"
+sort_sensitive = false
+sort_reverse = false
+sort_dir_first = true
+sort_translit = false
+linemode = "size"
+show_hidden = true
+show_symlink = true
+scrolloff = 8
+mouse_events = ["click", "scroll"]
+title_format = "󰉋 Yazi: {cwd}"
+
+[preview]
+tab_size = 2
+max_width = 1920
+max_height = 1080
+cache_dir = "/tmp/yazi"
+image_delay = 50
+image_filter = "lanczos3"
+image_quality = 90
+sixel_fraction = 18
+ueberzug_scale = 1
+ueberzug_offset = [0, 0, 0, 0]
+
+[opener]
+edit = [
+    {run = '${EDITOR:-nvim} "$@"', desc = "$EDITOR", block = true, for = "unix"},
+]
+open = [
+    # Media Files
+    {mime = "application/pdf", run = "zathura \"$1\"", desc = "PDF Viewer", for = "linux"},
+    {mime = "application/*pdf", run = "zathura \"$1\"", desc = "PDF Viewer", for = "linux"},
+    {mime = "image/*", run = "imv \"$1\"", desc = "Image Viewer", for = "linux"},
+    {mime = "video/*", run = "mpv --profile=low-latency \"$1\"", desc = "Video Player", for = "linux"},
+    {mime = "audio/*", run = "mpv --force-window \"$1\"", desc = "Audio Player", for = "linux"},
+    
+    # Documents
+    {mime = "application/msword", run = "libreoffice \"$1\"", desc = "Word Processor", for = "linux"},
+    {mime = "application/vnd.openxmlformats-officedocument.*", run = "libreoffice \"$1\"", desc = "Office Suite", for = "linux"},
+    
+    # Web and Code
+    {mime = "text/html", run = "firefox \"$1\"", desc = "Web Browser", for = "linux"},
+    {mime = "text/*", run = "nvim \"$1\"", desc = "Text Editor", for = "linux"},
+    
+    # Default
+    {run = 'xdg-open "$1"', desc = "System Default", for = "linux"},
+]
+
+reveal = [
+    {run = 'xdg-open "$(dirname "$1")"', desc = "Reveal in File Manager", for = "linux"},
+    {run = '''exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show Metadata", for = "unix"},
+]
+extract = [
+    {run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix"},
+]
+play = [
+    {run = 'mpv --profile=low-latency --force-window "$@"', orphan = true, for = "unix"},
+    {run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Media Info", for = "unix"},
+]
+
+[open]
+rules = [
+    # Priority rules
+    {mime = "application/pdf", use = ["open"]},
+    {mime = "application/*pdf", use = ["open"]},
+    {mime = "image/*", use = ["open", "reveal"]},
+    {mime = "video/*", use = ["play", "reveal"]},
+    {mime = "audio/*", use = ["play", "reveal"]},
+    
+    # Archives
+    {mime = "application/{zip,x-rar,x-7z-compressed,x-tar}", use = ["extract", "reveal"]},
+    
+    # Documents
+    {mime = "application/msword", use = ["open", "reveal"]},
+    {mime = "application/vnd.openxmlformats-officedocument.*", use = ["open", "reveal"]},
+    
+    # General rules
+    {name = "*/", use = ["edit", "open", "reveal"]},
+    {mime = "text/*", use = ["edit", "reveal"]},
+    {mime = "inode/empty", use = ["edit", "reveal"]},
+    {name = "*", use = ["open", "reveal"]},
+]
+
+[tasks]
+micro_workers = 5
+macro_workers = 10
+bizarre_retry = 3
+image_alloc = 536870912  # 512MB
+image_bound = [0, 0]
+suppress_preload = false
+
+[plugin]
+fetchers = [
+    {id = "mime", name = "*", run = "mime", if = "!mime", prio = "high"},
+]
+
+spotters = [
+    {name = "*/", run = "folder"},
+    {mime = "text/*", run = "code"},
+    {mime = "*/{xml,javascript,wine-extension-ini}", run = "code"},
+    {mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick"},
+    {mime = "image/*", run = "image"},
+    {mime = "video/*", run = "video"},
+    {name = "*", run = "file"},
+]
+
+previewers = [
+    {name = "*/", run = "folder", sync = true},
+    {mime = "text/*", run = "code"},
+    {mime = "*/{xml,javascript,wine-extension-ini}", run = "code"},
+    {mime = "application/json", run = "json"},
+    {mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick"},
+    {mime = "image/*", run = "image"},
+    {mime = "video/*", run = "video"},
+    {mime = "application/pdf", run = "pdf"},
+    {mime = "application/{zip,x-rar,x-7z-compressed,x-tar}", run = "archive"},
+    {mime = "font/*", run = "font"},
+    {name = "*", run = "file"},
+]
+
+preloaders = [
+    {mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick"},
+    {mime = "image/*", run = "image"},
+    {mime = "video/*", run = "video"},
+    {mime = "application/pdf", run = "pdf"},
+    {mime = "font/*", run = "font"},
+    {mime = "application/ms-opentype", run = "font"},
+]
+
+[input]
+cursor_blink = true
+
+cd_title = "󰉋 Change Directory:"
+cd_origin = "top-center"
+cd_offset = [0, 2, 50, 3]
+
+create_title = ["󰝒 Create:", "󰉋 Create Directory:"]
+create_origin = "top-center"
+create_offset = [0, 2, 50, 3]
+
+rename_title = "󰑕 Rename:"
+rename_origin = "hovered"
+rename_offset = [0, 1, 50, 3]
+
+filter_title = "Filter:"
+filter_origin = "top-center"
+filter_offset = [0, 2, 50, 3]
+
+find_title = ["Find next:", "Find previous:"]
+find_origin = "top-center"
+find_offset = [0, 2, 50, 3]
+
+search_title = "Search via {n}:"
+search_origin = "top-center"
+search_offset = [0, 2, 50, 3]
+
+shell_title = ["Shell:", "Shell (block):"]
+shell_origin = "top-center"
+shell_offset = [0, 2, 50, 3]
+
+[confirm]
+trash_title = "🗑️ Move {n} items to trash?"
+trash_origin = "center"
+trash_offset = [0, 0, 70, 20]
+
+delete_title = "⚠️ Permanently delete {n} items?"
+delete_origin = "center"
+delete_offset = [0, 0, 70, 20]
+
+quit_title = "Quit?"
+quit_content = "Are you sure you want to quit?"
+quit_origin = "center"
+quit_offset = [0, 0, 50, 15]
+
+[pick]
+open_title = "Open with:"
+open_origin = "hovered"
+open_offset = [0, 1, 50, 7]
+
+[which]
+sort_by = "none"
+sort_sensitive = false
+sort_reverse = false
+sort_translit = false

@@ -1,0 +1,129 @@
+# Yazi File Manager Keymap Configuration
+"$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
+
+[manager]
+keymap = [
+    # Basic Controls
+    { on = "<Esc>", run = "escape", desc = "Exit visual mode, clear selected" },
+    { on = "<C-[>", run = "escape", desc = "Exit visual mode" },
+    { on = "q",     run = "quit",   desc = "Quit" },
+    { on = "Q",     run = "quit --no-cwd-file", desc = "Quit without saving cwd" },
+    { on = "<C-c>", run = "quit",   desc = "Quit" },
+    
+    # Navigation
+    { on = "k",        run = "arrow -1", desc = "Move cursor up" },
+    { on = "j",        run = "arrow 1",  desc = "Move cursor down" },
+    { on = "<Up>",     run = "arrow -1", desc = "Move cursor up" },
+    { on = "<Down>",   run = "arrow 1",  desc = "Move cursor down" },
+    { on = "<C-u>",    run = "arrow -50%", desc = "Move half page up" },
+    { on = "<C-d>",    run = "arrow 50%",  desc = "Move half page down" },
+    { on = "<C-b>",    run = "arrow -100%", desc = "Move one page up" },
+    { on = "<C-f>",    run = "arrow 100%",  desc = "Move one page down" },
+    { on = "g g",      run = "arrow -99999999", desc = "Move to top" },
+    { on = "G",        run = "arrow 99999999",  desc = "Move to bottom" },
+    
+    # Directory Navigation
+    { on = "h",        run = "leave", desc = "Go to parent directory" },
+    { on = "l",        run = "enter", desc = "Open file/Enter directory" },
+    { on = "H",        run = "back",  desc = "Go back in history" },
+    { on = "L",        run = "forward", desc = "Go forward in history" },
+    
+    # Tab Management (vim style)
+    { on = "t t",      run = "tab_create --current", desc = "New tab" },
+    { on = "t h",      run = "tab_switch -1 --relative", desc = "Previous tab" },
+    { on = "t l",      run = "tab_switch 1 --relative",  desc = "Next tab" },
+    { on = "t q",      run = "tab_close", desc = "Close tab" },
+    { on = "1",        run = "tab_switch 0", desc = "Tab 1" },
+    { on = "2",        run = "tab_switch 1", desc = "Tab 2" },
+    { on = "3",        run = "tab_switch 2", desc = "Tab 3" },
+    { on = "4",        run = "tab_switch 3", desc = "Tab 4" },
+    
+    # Selection Operations
+    { on = "<Space>",  run = ["toggle", "arrow 1"], desc = "Toggle selection and move down" },
+    { on = "v",        run = "visual_mode", desc = "Enter visual mode" },
+    { on = "V",        run = "visual_mode --unset", desc = "Enter visual unset mode" },
+    { on = "<C-a>",    run = "toggle_all", desc = "Toggle all selections" },
+    
+    # File Operations
+    { on = "o",        run = "open", desc = "Open file" },
+    { on = "O",        run = "open --interactive", desc = "Open file interactively" },
+    { on = "<Enter>",  run = "open", desc = "Open file" },
+    { on = "y y",      run = "yank", desc = "Copy files" },
+    { on = "d d",      run = "remove", desc = "Move to trash" },
+    { on = "D",        run = "remove --permanently", desc = "Delete permanently" },
+    { on = "p",        run = "paste", desc = "Paste files" },
+    { on = "P",        run = "paste --force", desc = "Force paste files" },
+    { on = "r",        run = "rename --cursor=before_ext", desc = "Rename file" },
+    { on = "a",        run = "extract", desc = "Extract archive" },
+    
+    # Quick Directory Access
+    { on = ["c", "h"], run = "cd ~",              desc = "Go to home" },
+    { on = ["c", "a"], run = "cd ~/.anote",       desc = "Go to anote" },
+    { on = ["c", "c"], run = "cd ~/.config",      desc = "Go to config" },
+    { on = ["c", "d"], run = "cd ~/Downloads",    desc = "Go to downloads" },
+    { on = ["c", "p"], run = "cd ~/Pictures",     desc = "Go to pictures" },
+    { on = ["c", "v"], run = "cd ~/Videos",       desc = "Go to videos" },
+    { on = ["c", "/"], run = "cd /",              desc = "Go to root" },
+    { on = ["c", "m"], run = "cd /run/media/kenan", desc = "Go to media" },
+    { on = ["c", "t"], run = "cd /repo/tor/transmission", desc = "Go to tor" },
+    
+    # Sorting (using 's' prefix)
+    { on = "s n",      run = "sort natural", desc = "Sort by name" },
+    { on = "s s",      run = "sort size", desc = "Sort by size" },
+    { on = "s t",      run = "sort modified", desc = "Sort by time" },
+    { on = "s r",      run = "sort random", desc = "Sort randomly" },
+    
+    # Search and Filter
+    { on = "/",        run = "find --smart", desc = "Smart find" },
+    { on = "?",        run = "search --previous", desc = "Search previous" },
+    { on = "n",        run = "find_next", desc = "Find next" },
+    { on = "N",        run = "find_prev", desc = "Find previous" },
+    { on = "z",        run = "plugin zoxide", desc = "Jump using zoxide" },
+    { on = "Z",        run = "plugin fzf", desc = "Find with FZF" },
+    
+    # File Creation (using 'n' prefix - "new")
+    { on = ["n", "f"], run = "create",      desc = "Create file" },
+    { on = ["n", "d"], run = "create --dir", desc = "Create directory" },
+    { on = ["n", "s"], run = "create --file sh", desc = "Create shell script" },
+    { on = ["n", "v"], run = "create --file vim", desc = "Create vim file" },
+    
+    # Extra Features
+    { on = ".",        run = "hidden toggle", desc = "Toggle hidden files" },
+    { on = "<C-r>",    run = "reload", desc = "Reload directory" },
+    { on = "w",        run = "tasks_show", desc = "Show tasks" },
+    { on = "?",        run = "help", desc = "Show help" }
+]
+
+[tasks]
+keymap = [
+    { on = "<Esc>", run = "close", desc = "Hide task manager" },
+    { on = "q",     run = "close", desc = "Hide task manager" },
+    { on = "k",     run = "arrow -1", desc = "Previous task" },
+    { on = "j",     run = "arrow 1",  desc = "Next task" },
+    { on = "x",     run = "cancel",   desc = "Cancel task" },
+]
+
+[select]
+keymap = [
+    { on = "<Esc>",   run = "close", desc = "Cancel selection" },
+    { on = "<Space>", run = "close --submit", desc = "Submit selection" },
+    { on = "k",       run = "arrow -1", desc = "Move up" },
+    { on = "j",       run = "arrow 1",  desc = "Move down" },
+]
+
+[input]
+keymap = [
+    { on = "<Esc>",   run = "close", desc = "Cancel input" },
+    { on = "<Enter>", run = "close --submit", desc = "Submit input" },
+    { on = "<C-p>",   run = "history_prev", desc = "Previous history" },
+    { on = "<C-n>",   run = "history_next", desc = "Next history" },
+    { on = "<C-u>",   run = "clear", desc = "Clear input" },
+]
+
+[help]
+keymap = [
+    { on = "<Esc>", run = "escape", desc = "Exit help" },
+    { on = "q",     run = "close",  desc = "Exit help" },
+    { on = "k",     run = "arrow -1", desc = "Move up" },
+    { on = "j",     run = "arrow 1",  desc = "Move down" },
+]

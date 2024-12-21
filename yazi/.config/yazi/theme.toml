@@ -1,0 +1,198 @@
+# Yazi Dracula Theme
+"$schema" = "https://yazi-rs.github.io/schemas/theme.json"
+
+[flavor]
+dark = ""
+light = ""
+
+[manager]
+cwd = { fg = "#bd93f9" }  # Mor
+hovered = { fg = "#f8f8f2", bg = "#44475a" }  # Metin rengi ve seçim arkaplanı
+preview_hovered = { underline = true }
+find_keyword = { fg = "#ffb86c", bold = true }  # Turuncu
+find_position = { fg = "#ff79c6", bold = true }  # Pembe
+marker_copied = { fg = "#50fa7b", bg = "#44475a" }  # Yeşil
+marker_cut = { fg = "#ff5555", bg = "#44475a" }  # Kırmızı
+marker_marked = { fg = "#8be9fd", bg = "#44475a" }  # Cyan
+marker_selected = { fg = "#f1fa8c", bg = "#44475a" }  # Sarı
+tab_active = { fg = "#bd93f9", bg = "#282a36", bold = true }  # Mor üzerine arkaplan
+tab_inactive = { fg = "#6272a4" }  # Yorum rengi
+tab_width = 2
+count_copied = { fg = "#282a36", bg = "#50fa7b" }
+count_cut = { fg = "#282a36", bg = "#ff5555" }
+count_selected = { fg = "#282a36", bg = "#f1fa8c" }
+border_symbol = "│"
+border_style = { fg = "#6272a4" }
+syntect_theme = "Dracula"
+
+[mode]
+normal_main = { fg = "#282a36", bg = "#bd93f9", bold = true }  # Mor
+normal_alt = { fg = "#bd93f9", bg = "#44475a" }
+select_main = { fg = "#282a36", bg = "#ff79c6", bold = true }  # Pembe
+select_alt = { fg = "#ff79c6", bg = "#44475a" }
+unset_main = { fg = "#282a36", bg = "#ff5555", bold = true }  # Kırmızı
+unset_alt = { fg = "#ff5555", bg = "#44475a" }
+
+[status]
+separator_open = ""
+separator_close = ""
+progress_label = { bold = true }
+progress_normal = { fg = "#bd93f9", bg = "#282a36" }
+progress_error = { fg = "#ff5555", bg = "#282a36" }
+perm_sep = { fg = "#f8f8f2" }
+perm_read = { fg = "#50fa7b" }  # Yeşil
+perm_write = { fg = "#f1fa8c" }  # Sarı
+perm_exec = { fg = "#ff5555" }  # Kırmızı
+
+[pick]
+border = { fg = "#bd93f9" }
+active = { fg = "#ff79c6", bold = true }
+inactive = { fg = "#6272a4" }
+
+[input]
+border = { fg = "#bd93f9" }
+title = { fg = "#f8f8f2", bold = true }
+value = { fg = "#bd93f9" }
+selected = { fg = "#282a36", bg = "#bd93f9" }
+
+[completion]
+border = { fg = "#bd93f9" }
+active = { fg = "#282a36", bg = "#bd93f9" }
+inactive = { fg = "#f8f8f2" }
+icon_file = "📄"
+icon_folder = "📂"
+icon_command = "⌘"
+
+[tasks]
+border = { fg = "#bd93f9" }
+title = { fg = "#f8f8f2", bold = true }
+hovered = { fg = "#ff79c6", underline = true }
+
+[which]
+cols = 3
+mask = { bg = "#44475a" }
+cand = { fg = "#f8f8f2" }
+rest = { fg = "#6272a4" }
+desc = { fg = "#bd93f9" }
+separator = "  "
+separator_style = { fg = "#44475a" }
+
+[help]
+on = { fg = "#50fa7b" }  # Yeşil
+run = { fg = "#bd93f9" }  # Mor
+desc = { fg = "#f8f8f2" }
+hovered = { fg = "#282a36", bg = "#bd93f9", bold = true }
+footer = { fg = "#282a36", bg = "#bd93f9" }
+
+[notify]
+title_info = { fg = "#50fa7b" }
+title_warn = { fg = "#f1fa8c" }
+title_error = { fg = "#ff5555" }
+icon_info = "ℹ"
+icon_warn = "⚠"
+icon_error = "✘"
+
+[filetype]
+rules = [
+    # Özel Durumlar
+    { name = "*", type = "symlink", fg = "#8be9fd", style = "bold" },
+    { name = "*", is = "orphan", fg = "#282a36", bg = "#ff5555" },
+    { name = "*", is = "exec", fg = "#50fa7b", bold = true },
+    { name = "*/", fg = "#bd93f9", bold = true },
+
+    # Medya Dosyaları
+    { mime = "image/jpeg", fg = "#ff79c6", icon = " " },
+    { mime = "image/png", fg = "#ff79c6", icon = " " },
+    { mime = "image/gif", fg = "#ff79c6", icon = " " },
+    { mime = "image/svg+xml", fg = "#ff79c6", icon = " " },
+    { mime = "image/*", fg = "#ff79c6", icon = " " },
+    { mime = "audio/*", fg = "#ffb86c", icon = " " },
+    { mime = "video/*", fg = "#ffb86c", icon = " " },
+
+    # Dokümanlar
+    { mime = "application/pdf", fg = "#ff5555", icon = " " },
+    { mime = "application/msword", fg = "#bd93f9", icon = " " },
+    { mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.document", fg = "#bd93f9", icon = " " },
+    { mime = "application/vnd.oasis.opendocument.text", fg = "#bd93f9", icon = " " },
+    { mime = "text/markdown", fg = "#f8f8f2", icon = " " },
+    { mime = "text/plain", fg = "#f8f8f2", icon = " " },
+
+    # Arşivler
+    { mime = "application/zip", fg = "#ff5555", icon = " " },
+    { mime = "application/gzip", fg = "#ff5555", icon = " " },
+    { mime = "application/x-tar", fg = "#ff5555", icon = " " },
+    { mime = "application/x-bzip2", fg = "#ff5555", icon = " " },
+    { mime = "application/x-7z-compressed", fg = "#ff5555", icon = " " },
+    { mime = "application/x-rar", fg = "#ff5555", icon = " " },
+
+    # Programlama Dilleri
+    { name = "*.rs", fg = "#ff5555", icon = " " },  # Rust
+    { name = "*.go", fg = "#8be9fd", icon = " " },  # Go
+    { name = "*.py", fg = "#50fa7b", icon = " " },  # Python
+    { name = "*.js", fg = "#f1fa8c", icon = " " },  # JavaScript
+    { name = "*.ts", fg = "#f1fa8c", icon = "ﯤ " },  # TypeScript
+    { name = "*.jsx", fg = "#f1fa8c", icon = " " }, # React
+    { name = "*.tsx", fg = "#f1fa8c", icon = " " }, # React TS
+    { name = "*.vue", fg = "#50fa7b", icon = "﵂ " }, # Vue
+    { name = "*.rb", fg = "#ff5555", icon = " " },  # Ruby
+    { name = "*.php", fg = "#bd93f9", icon = " " }, # PHP
+    { name = "*.java", fg = "#ff5555", icon = " " }, # Java
+    { name = "*.cpp", fg = "#8be9fd", icon = " " }, # C++
+    { name = "*.c", fg = "#8be9fd", icon = " " },   # C
+    { name = "*.cs", fg = "#8be9fd", icon = " " },  # C#
+
+    # Web Teknolojileri
+    { name = "*.html", fg = "#ff79c6", icon = " " },
+    { name = "*.css", fg = "#ff79c6", icon = " " },
+    { name = "*.scss", fg = "#ff79c6", icon = " " },
+    { name = "*.sass", fg = "#ff79c6", icon = " " },
+    { name = "*.less", fg = "#ff79c6", icon = " " },
+
+    # Yapılandırma Dosyaları
+    { name = "*.json", fg = "#f1fa8c", icon = " " },
+    { name = "*.toml", fg = "#f1fa8c", icon = " " },
+    { name = "*.yaml", fg = "#f1fa8c", icon = " " },
+    { name = "*.yml", fg = "#f1fa8c", icon = " " },
+    { name = "*.ini", fg = "#f1fa8c", icon = " " },
+    { name = "*.conf", fg = "#f1fa8c", icon = " " },
+    { name = "*.config", fg = "#f1fa8c", icon = " " },
+
+    # Veri Dosyaları
+    { name = "*.csv", fg = "#50fa7b", icon = " " },
+    { name = "*.sql", fg = "#50fa7b", icon = " " },
+    { name = "*.db", fg = "#50fa7b", icon = " " },
+    { name = "*.sqlite", fg = "#50fa7b", icon = " " },
+
+    # Shell ve Script
+    { name = "*.sh", fg = "#50fa7b", icon = " " },
+    { name = "*.bash", fg = "#50fa7b", icon = " " },
+    { name = "*.fish", fg = "#50fa7b", icon = " " },
+    { name = "*.zsh", fg = "#50fa7b", icon = " " },
+
+    # Git
+    { name = ".git", fg = "#ff5555", icon = " " },
+    { name = ".gitignore", fg = "#ff5555", icon = " " },
+    { name = ".gitmodules", fg = "#ff5555", icon = " " },
+    { name = ".gitattributes", fg = "#ff5555", icon = " " },
+
+    # Docker
+    { name = "Dockerfile", fg = "#8be9fd", icon = " " },
+    { name = "docker-compose.yml", fg = "#8be9fd", icon = " " },
+    { name = "docker-compose.yaml", fg = "#8be9fd", icon = " " },
+
+    # Paket Yöneticisi
+    { name = "package.json", fg = "#f1fa8c", icon = " " },
+    { name = "package-lock.json", fg = "#f1fa8c", icon = " " },
+    { name = "yarn.lock", fg = "#f1fa8c", icon = " " },
+    { name = "Cargo.toml", fg = "#ff5555", icon = " " },
+    { name = "Cargo.lock", fg = "#ff5555", icon = " " },
+    { name = "requirements.txt", fg = "#50fa7b", icon = " " },
+    { name = "composer.json", fg = "#bd93f9", icon = " " },
+    { name = "Gemfile", fg = "#ff5555", icon = " " },
+
+    # Font Dosyaları
+    { name = "*.ttf", fg = "#ff79c6", icon = " " },
+    { name = "*.otf", fg = "#ff79c6", icon = " " },
+    { name = "*.woff", fg = "#ff79c6", icon = " " },
+    { name = "*.woff2", fg = "#ff79c6", icon = " " }
+]
