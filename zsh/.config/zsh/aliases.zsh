@@ -161,7 +161,7 @@ alias clean='clear; seq 1 $(tput cols) | sort -R | sparklines | lolcat'
 alias rg="rg --sort path"
 alias update-fc="sudo fc-cache -fv"
 alias merge="xrdb -merge ~/.Xresources"
-alias k="/usr/bin/yazi"
+#alias k="/usr/bin/yazi"
 alias kk="/usr/bin/ranger"
 alias probe="sudo -E hw-probe -all -upload"
 alias ssp="sudo systemctl poweroff -i"
@@ -177,14 +177,29 @@ alias snapli-all="sudo snapper list --all"
 alias snapcr="sudo snapper -c root create"
 alias snapch="sudo snapper -c home create"
 
+# cb
+alias cbp='cb paste'
+alias cbc='cb copy'
+alias cbs='cb show'
+
 # Media & Download
 alias ytdl="yt-dlp"
+
+# Audio Downloads
 alias yta-aac="yt-dlp --extract-audio --audio-format aac"
 alias yta-best="yt-dlp --extract-audio --audio-format best"
 alias yta-flac="yt-dlp --extract-audio --audio-format flac"
 alias yta-mp3="yt-dlp --extract-audio --audio-format mp3"
+
+# Video Downloads
 alias ytv-best="yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4"
 alias y="ytdl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4"
+
+# Playlist Downloads
+alias ytp-mp3="yt-dlp --yes-playlist --extract-audio --audio-format mp3 -o '%(playlist_index)s-%(title)s.%(ext)s'"
+alias ytp-mp4="yt-dlp --yes-playlist -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4 -o '%(playlist_index)s-%(title)s.%(ext)s'"
+alias ytp-best="yt-dlp --yes-playlist -f 'bestvideo+bestaudio' -o '%(playlist_index)s-%(title)s.%(ext)s'"
+
 alias record='gpu-screen-recorder -w HDMI-0 -f 60 -o ~/Videos/recording-$(date +"%Y-%m-%d-%H-%M-%S").mp4 -a default_input -q ultra -ac aac'
 alias wsimplescreenrecorder="wf-recorder -a"
 

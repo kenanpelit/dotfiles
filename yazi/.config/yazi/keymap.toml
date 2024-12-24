@@ -361,3 +361,15 @@ keymap = [
 	{ on = "f", run = "filter", desc = "Apply a filter for the help items" },
 ]
 
+[[manager.prepend_keymap]]
+on = [ "'", ";" ]
+run = "plugin custom-shell --args='zsh --no-block --orphan --no-interactive'"
+# OR
+# run = "plugin custom-shell --args='zsh -nb -o -ni'"
+desc = "custom-shell as default with specified arguments"
+
+[[manager.prepend_keymap]]
+on = [ "'", "h" ]
+run = "plugin custom-shell --args=history"
+desc = "Show Custom-shell history"
+

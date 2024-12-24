@@ -72,6 +72,15 @@ export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude .git --exclude
 [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
+# cb - https://github.com/Slackadays/Clipboard
+# -----------------------------------------------------------------------------
+export CLIPBOARD_EDITOR=vim # Editör ayarlama
+export CLIPBOARD_THEME=dark # Tema değiştirme
+export CLIPBOARD_HISTORY=50000  # Son 1000 girdiyi tut
+#export CLIPBOARD_HISTORY=50gb # Maksimum geçmiş boyutu ayarlama
+export CLIPBOARD_PERSISTDIR=$HOME/.clipboards # Kalıcı clipboard konumu değiştirme
+export CLIPBOARD_TMPDIR=$HOME/.clipboards/tmp
+
 # Path Configuration / Yol Yapılandırması
 # -----------------------------------------------------------------------------
 typeset -U path  # Unique paths only / Tekrar eden yolları engelle

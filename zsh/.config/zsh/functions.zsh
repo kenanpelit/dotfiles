@@ -106,3 +106,26 @@ fgco() {
   commit=$(echo "$commits" | fzf --tac +s +m -e) &&
   git checkout $(echo "$commit" | sed "s/ .*//")
 }
+
+# Yazi - https://yazi-rs.github.io/docs/quick-start/
+function k() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+
+  fi
+	rm -f -- "$tmp"
+}
+
+# VPN container başlatma
+function vpnstart() {
+#    sudo ./incus-setup.sh \
+    incus-setup.sh \
+        --name vpn \
+        --share-source "$HOME/.share" \
+        --share-path "/home/sysadmin/share" \
+        --vpnbin-source "$HOME/.vpnbin" \
+        --vpnbin-path "/home/sysadmin/.bin"
+}
+

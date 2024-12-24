@@ -187,3 +187,8 @@ sort_by = "none"
 sort_sensitive = false
 sort_reverse = false
 sort_translit = false
+
+# Plugins
+[[plugin.prepend_previewers]]
+mime = "application/x-bittorrent"
+run = "torrent-preview"
