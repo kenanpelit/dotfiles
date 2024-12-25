@@ -56,7 +56,7 @@ color = "#ffb3c1"
 index = 17
 
 [colors.primary]
-background = "#282a36"
+background = "#24283B"
 foreground = "#d8dae9"
 dim_foreground = "#6272a4"
 bright_foreground = "#ffffff"

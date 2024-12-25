@@ -54,19 +54,19 @@ ncmpcpp/.config/ncmpcpp/error.log
 
 # Özel scriptler (sadece wofi scriptleri dahil)
 bin/.bin/*
-!bin/.bin/wofi-*
-!bin/.bin/waybar-*
-!bin/.bin/hypr-*
-!bin/.bin/starship-switch.sh
-!bin/.bin/theme-*
+!bin/.bin/dotfiles-manager.sh
 !bin/.bin/font*
 !bin/.bin/gnome-*
+!bin/.bin/hypr-*
+!bin/.bin/publicip.sh
+!bin/.bin/satty-screenshot.sh
 !bin/.bin/semsumo*
-!bin/.bin/dotfiles-manager.sh
+!bin/.bin/starship-switch.sh
 !bin/.bin/t1
 !bin/.bin/t2
 !bin/.bin/t3
 !bin/.bin/t4
+!bin/.bin/theme-*
 !bin/.bin/tm
 !bin/.bin/tmux*
 !bin/.bin/todo
@@ -74,9 +74,10 @@ bin/.bin/*
 !bin/.bin/tsm.sh
 !bin/.bin/tsms.sh
 !bin/.bin/turbo*
-!bin/.bin/zen*
+!bin/.bin/waybar-*
 !bin/.bin/wlsunset-toggle.sh
-!bin/.bin/satty-screenshot.sh
+!bin/.bin/wofi-*
+!bin/.bin/zen*
 
 # Terminal geçmişi ve cache
 .bash_history

@@ -202,7 +202,8 @@ start_anote() {
     hyprctl dispatch focuswindow "address:$window_address"
     notify-send -t 1000 "Anote" "Mevcut Anote penceresine odaklanıldı."
   else
-    alacritty --class anotes --title anotes -e ~/.bin/anote.sh >>/dev/null 2>&1 &
+    #alacritty --class anotes --title anotes -e ~/.bin/anote.sh >>/dev/null 2>&1 &
+    foot -a anotes --title anotes -e ~/.bin/anote.sh >>/dev/null 2>&1 &
     disown
     notify-send -t 1000 "Anote" "Anote başlatılıyor..."
   fi
@@ -221,7 +222,8 @@ start_anotes() {
     hyprctl dispatch focuswindow "address:$window_address"
     notify-send -t 1000 "Anotes" "Mevcut Anotes penceresine odaklanıldı."
   else
-    alacritty --class notes --title notes -e ~/.bin/anotes.sh >>/dev/null 2>&1 &
+    #alacritty --class anotes --title anotes -e ~/.bin/anotes.sh >>/dev/null 2>&1 &
+    foot -a anotes --title anotes -e ~/.bin/anotes.sh >>/dev/null 2>&1 &
     disown
     notify-send -t 1000 "Anotes" "Anotes başlatılıyor..."
   fi

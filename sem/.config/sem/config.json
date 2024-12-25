@@ -48,6 +48,28 @@
       ],
       "vpn_mode": "always"
     },
+    "wkenp": {
+      "command": "/usr/bin/wezterm",
+      "args": [
+        "start",
+        "--class",
+        "TmuxKenp",
+        "-e",
+        "/home/kenan/.bin/tmux_kenp.sh"
+      ],
+      "vpn_mode": "never"
+    },
+    "wcta": {
+      "command": "/usr/bin/wezterm",
+      "args": [
+        "start",
+        "--class",
+        "TmuxCta",
+        "-e",
+        "/home/kenan/.bin/tmux_cta.sh"
+      ],
+      "vpn_mode": "always"
+    },
     "akenp": {
       "command": "/usr/bin/alacritty",
       "args": [
@@ -79,6 +101,15 @@
         "foot",
         "-T",
         "foot"
+      ],
+      "vpn_mode": "default"
+    },
+    "wezterm": {
+      "command": "/usr/bin/wezterm",
+      "args": [
+        "start",
+        "--class",
+        "wezterm"
       ],
       "vpn_mode": "default"
     },
