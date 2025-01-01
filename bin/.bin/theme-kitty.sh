@@ -12,9 +12,14 @@
 #
 # - 9 Farklı Tema Desteği:
 #   - Kenp (Özel tema)
-#   - Tokyo
-#   - Mocha
-#   - Dracula
+#   - Tokyo Night
+#   - Catppuccin Mocha
+#   - Dracula Enhanced
+#   - Rosé Pine Moon
+#   - Kanagawa
+#   - Nord
+#   - Gruvbox Dark
+#   - Everforest Dark
 #
 # - Tema Yönetimi:
 #   - Tema değiştirme
@@ -79,7 +84,7 @@ THEME_MARKER="# Current theme: "
 read -r -d '' KENP <<'EOF'
 # Kenp Theme
 ## Basic Colors
-background              #24283B
+background              #282a36
 foreground              #d8dae9
 selection_foreground    #282a36
 selection_background    #bd93f9
@@ -191,7 +196,7 @@ color15 #c0caf5
 EOF
 
 # Catppuccin Mocha Theme
-read -r -d '' MOCHA <<'EOF'
+read -r -d '' CATPPUCCIN_MOCHA <<'EOF'
 # Catppuccin Mocha Theme
 ## Basic Colors
 background              #1e1e2e
@@ -311,12 +316,307 @@ cursor_stop_blinking_after 5.0
 #background_opacity      0.95
 EOF
 
+# Rosé Pine Moon Theme
+read -r -d '' ROSE_PINE_MOON <<'EOF'
+# Rosé Pine Moon Theme
+## Basic Colors
+background              #232136
+#foreground              #e0def4
+foreground              #c0caf5
+selection_foreground    #e0def4
+selection_background    #44415a
+## Cursor Colors
+cursor                  #56526e
+cursor_text_color       #e0def4
+## URL Color
+url_color              #c4a7e7
+## Window Border Colors
+active_border_color     #3e8fb0
+inactive_border_color   #44415a
+bell_border_color      #ea9a97
+## Tab Bar Colors
+active_tab_foreground   #e0def4
+active_tab_background   #393552
+inactive_tab_foreground #908caa
+inactive_tab_background #2a273f
+tab_bar_background      #232136
+## Mark Colors
+mark1_foreground       #232136
+mark1_background       #c4a7e7
+mark2_foreground       #232136
+mark2_background       #ea9a97
+mark3_foreground       #232136
+mark3_background       #f6c177
+## Terminal Colors
+# Black
+color0  #393552
+color8  #6e6a86
+# Red
+color1  #eb6f92
+color9  #eb6f92
+# Green
+color2  #3e8fb0
+color10 #3e8fb0
+# Yellow
+color3  #f6c177
+color11 #f6c177
+# Blue
+color4  #9ccfd8
+color12 #9ccfd8
+# Magenta
+color5  #c4a7e7
+color13 #c4a7e7
+# Cyan
+color6  #ea9a97
+color14 #ea9a97
+# White
+color7  #e0def4
+color15 #e0def4
+EOF
+
+# Kanagawa Theme
+read -r -d '' KANAGAWA <<'EOF'
+# Kanagawa Theme
+## Basic Colors
+background              #1f1f28
+#foreground              #dcd7ba
+foreground              #c0caf5
+selection_foreground    #dcd7ba
+selection_background    #2d4f67
+## Cursor Colors
+cursor                  #c8c093
+cursor_text_color       #1f1f28
+## URL Color
+url_color              #7e9cd8
+## Window Border Colors
+active_border_color     #957fb8
+inactive_border_color   #2d4f67
+bell_border_color      #ffa066
+## Tab Bar Colors
+active_tab_foreground   #dcd7ba
+active_tab_background   #2d4f67
+inactive_tab_foreground #727169
+inactive_tab_background #1f1f28
+tab_bar_background      #16161d
+## Mark Colors
+mark1_foreground       #1f1f28
+mark1_background       #7e9cd8
+mark2_foreground       #1f1f28
+mark2_background       #957fb8
+mark3_foreground       #1f1f28
+mark3_background       #98bb6c
+## Terminal Colors
+# Black
+color0  #16161d
+color8  #727169
+# Red
+color1  #c34043
+color9  #ff5d62
+# Green
+color2  #76946a
+color10 #98bb6c
+# Yellow
+color3  #c0a36e
+color11 #ffa066
+# Blue
+color4  #7e9cd8
+color12 #7fb4ca
+# Magenta
+color5  #957fb8
+color13 #938aa9
+# Cyan
+color6  #6a9589
+color14 #7aa89f
+# White
+color7  #dcd7ba
+color15 #c8c093
+EOF
+
+# Nord Theme
+read -r -d '' NORD <<'EOF'
+# Nord Theme
+## Basic Colors
+background              #2e3440
+#foreground              #d8dee9
+foreground              #c0caf5
+selection_foreground    #d8dee9
+selection_background    #4c566a
+## Cursor Colors
+cursor                  #d8dee9
+cursor_text_color       #2e3440
+## URL Color
+url_color              #88c0d0
+## Window Border Colors
+active_border_color     #88c0d0
+inactive_border_color   #4c566a
+bell_border_color      #ebcb8b
+## Tab Bar Colors
+active_tab_foreground   #2e3440
+active_tab_background   #88c0d0
+inactive_tab_foreground #d8dee9
+inactive_tab_background #3b4252
+tab_bar_background      #2e3440
+## Mark Colors
+mark1_foreground       #2e3440
+mark1_background       #88c0d0
+mark2_foreground       #2e3440
+mark2_background       #81a1c1
+mark3_foreground       #2e3440
+mark3_background       #a3be8c
+## Terminal Colors
+# Black
+color0  #3b4252
+color8  #4c566a
+# Red
+color1  #bf616a
+color9  #bf616a
+# Green
+color2  #a3be8c
+color10 #a3be8c
+# Yellow
+color3  #ebcb8b
+color11 #ebcb8b
+# Blue
+color4  #81a1c1
+color12 #81a1c1
+# Magenta
+color5  #b48ead
+color13 #b48ead
+# Cyan
+color6  #88c0d0
+color14 #8fbcbb
+# White
+color7  #e5e9f0
+color15 #eceff4
+EOF
+
+# Gruvbox Dark Theme
+read -r -d '' GRUVBOX_DARK <<'EOF'
+# Gruvbox Dark Theme
+## Basic Colors
+background              #282828
+#foreground              #ebdbb2
+foreground              #c0caf5
+selection_foreground    #ebdbb2
+selection_background    #504945
+## Cursor Colors
+cursor                  #ebdbb2
+cursor_text_color       #282828
+## URL Color
+url_color              #83a598
+## Window Border Colors
+active_border_color     #83a598
+inactive_border_color   #504945
+bell_border_color      #fe8019
+## Tab Bar Colors
+active_tab_foreground   #282828
+active_tab_background   #83a598
+inactive_tab_foreground #ebdbb2
+inactive_tab_background #3c3836
+tab_bar_background      #282828
+## Mark Colors
+mark1_foreground       #282828
+mark1_background       #83a598
+mark2_foreground       #282828
+mark2_background       #d3869b
+mark3_foreground       #282828
+mark3_background       #b8bb26
+## Terminal Colors
+# Black
+color0  #282828
+color8  #928374
+# Red
+color1  #cc241d
+color9  #fb4934
+# Green
+color2  #98971a
+color10 #b8bb26
+# Yellow
+color3  #d79921
+color11 #fabd2f
+# Blue
+color4  #458588
+color12 #83a598
+# Magenta
+color5  #b16286
+color13 #d3869b
+# Cyan
+color6  #689d6a
+color14 #8ec07c
+# White
+color7  #a89984
+color15 #ebdbb2
+EOF
+
+# Everforest Dark Theme
+read -r -d '' EVERFOREST_DARK <<'EOF'
+# Everforest Dark Theme
+## Basic Colors
+background              #2b3339
+#foreground              #d3c6aa
+foreground              #c0caf5
+selection_foreground    #d3c6aa
+selection_background    #503946
+## Cursor Colors
+cursor                  #d3c6aa
+cursor_text_color       #2b3339
+## URL Color
+url_color              #7fbbb3
+## Window Border Colors
+active_border_color     #7fbbb3
+inactive_border_color   #503946
+bell_border_color      #e69875
+## Tab Bar Colors
+active_tab_foreground   #2b3339
+active_tab_background   #7fbbb3
+inactive_tab_foreground #d3c6aa
+inactive_tab_background #374247
+tab_bar_background      #2b3339
+## Mark Colors
+mark1_foreground       #2b3339
+mark1_background       #7fbbb3
+mark2_foreground       #2b3339
+mark2_background       #d699b6
+mark3_foreground       #2b3339
+mark3_background       #dbbc7f
+## Terminal Colors
+# Black
+color0  #4b565c
+color8  #5c6a72
+# Red
+color1  #e67e80
+color9  #e67e80
+# Green
+color2  #a7c080
+color10 #a7c080
+# Yellow
+color3  #dbbc7f
+color11 #dbbc7f
+# Blue
+color4  #7fbbb3
+color12 #7fbbb3
+# Magenta
+color5  #d699b6
+color13 #d699b6
+# Cyan
+color6  #83c092
+color14 #83c092
+# White
+color7  #d3c6aa
+color15 #d3c6aa
+EOF
+
 # Available themes array
 declare -A THEMES=(
   ["kenp"]="$KENP"
   ["tokyo"]="$TOKYO"
-  ["catppuccin_mocha"]="$MOCHA"
+  ["catppuccin_mocha"]="$CATPPUCCIN_MOCHA"
   ["dracula"]="$DRACULA"
+  ["rose_pine_moon"]="$ROSE_PINE_MOON"
+  ["kanagawa"]="$KANAGAWA"
+  ["nord"]="$NORD"
+  ["gruvbox_dark"]="$GRUVBOX_DARK"
+  ["everforest_dark"]="$EVERFOREST_DARK"
 )
 
 # Function to list available themes

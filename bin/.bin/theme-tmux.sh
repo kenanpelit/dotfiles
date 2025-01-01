@@ -64,7 +64,7 @@ declare -A kenp=(
 )
 
 # Tokyo Night theme definition
-declare -A tokyo=(
+declare -A tokyo_night=(
   # Background colors
   [1]="#1a1b26" # terminal black (main background)
   [2]="#24283b" # darker blue
@@ -117,8 +117,62 @@ declare -A dracula=(
   [18]="#f8f8f2" # white
 )
 
+# Kanagawa theme definition
+declare -A kanagawa=(
+  # Background colors
+  [1]="#1f1f28" # background
+  [2]="#16161d" # darker background
+  [3]="#363646" # selection
+
+  # Foreground colors
+  [4]="#dcd7ba" # foreground
+  [5]="#dcd7ba" # bright foreground
+  [6]="#54546d" # comment
+
+  # Accent colors
+  [7]="#ff5d62"  # red
+  [8]="#ffa066"  # orange
+  [9]="#ffa066"  # yellow
+  [10]="#98bb6c" # green
+  [11]="#98bb6c" # light green
+  [12]="#7aa89f" # cyan
+  [13]="#7fb4ca" # blue cyan
+  [14]="#7e9cd8" # blue
+  [15]="#7fb4ca" # light blue
+  [16]="#957fb8" # purple
+  [17]="#7fb4ca" # ice blue
+  [18]="#dcd7ba" # white
+)
+
+# Nord theme definition
+declare -A nord=(
+  # Background colors
+  [1]="#2e3440" # background
+  [2]="#3b4252" # darker background
+  [3]="#434c5e" # selection
+
+  # Foreground colors
+  [4]="#eceff4" # foreground
+  [5]="#eceff4" # bright foreground
+  [6]="#4c566a" # comment
+
+  # Accent colors
+  [7]="#bf616a"  # red
+  [8]="#d08770"  # orange
+  [9]="#ebcb8b"  # yellow
+  [10]="#a3be8c" # green
+  [11]="#a3be8c" # light green
+  [12]="#8fbcbb" # cyan
+  [13]="#88c0d0" # blue cyan
+  [14]="#81a1c1" # blue
+  [15]="#88c0d0" # light blue
+  [16]="#b48ead" # purple
+  [17]="#88c0d0" # ice blue
+  [18]="#eceff4" # white
+)
+
 # Catppuccin Mocha theme definition
-declare -A mocha=(
+declare -A catppuccin_mocha=(
   # Background colors
   [1]="#1e1e2e" # background
   [2]="#181825" # darker background
@@ -147,9 +201,11 @@ declare -A mocha=(
 # Available themes array
 THEMES=(
   "kenp"
-  "tokyo"
+  "tokyo_night"
   "dracula"
-  "mocha"
+  "kanagawa"
+  "nord"
+  "catppuccin_mocha"
 )
 
 TMUX_C="/home/kenan/.config/tmux/tmux.conf"

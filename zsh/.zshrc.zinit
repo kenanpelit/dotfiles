@@ -1,0 +1,182 @@
+# =============================================================================
+# ZSH Configuration File with Zinit / ZSH Yapılandırma Dosyası (Zinit ile)
+#
+# Version: 1.0.3
+# Author: Kenan Pelit
+# Repository: github.com/kenanpelit/dotfiles
+#
+# Last Updated / Son Güncelleme: 2024
+# =============================================================================
+
+# XDG Base Directory Specification / XDG Temel Dizin Tanımlamaları
+# -----------------------------------------------------------------------------
+export XDG_CONFIG_HOME="$HOME/.config"         # Config directory / Ayar dizini
+export XDG_CACHE_HOME="$HOME/.cache"           # Cache directory / Önbellek dizini
+export XDG_DATA_HOME="$HOME/.local/share"      # Data directory / Veri dizini
+
+# Create Required Directories / Gerekli Dizinleri Oluştur
+# -----------------------------------------------------------------------------
+mkdir -p "$XDG_CONFIG_HOME/zsh" "$XDG_CACHE_HOME/zsh" "$XDG_DATA_HOME/zsh"
+
+# Zinit Installation Check / Zinit Kurulum Kontrolü
+# -----------------------------------------------------------------------------
+ZINIT_HOME="${XDG_DATA_HOME}/zinit/zinit.git"
+if [[ ! -f ${ZINIT_HOME}/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$(dirname $ZINIT_HOME)"
+    command git clone https://github.com/zdharma-continuum/zinit "$ZINIT_HOME" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "${ZINIT_HOME}/zinit.zsh"
+
+# System Variables / Sistem Değişkenleri
+# -----------------------------------------------------------------------------
+export EDITOR='vim'                      # Default text editor / Varsayılan metin düzenleyici
+export VISUAL='vim'                      # Visual editor / Görsel düzenleyici
+export PAGER='most'                      # Pager for manual pages / Manual sayfaları için sayfalayıcı
+export TERM=xterm-256color               # Terminal type / Terminal tipi
+export HISTCONTROL=ignoreboth:erasedups  # History control / Geçmiş kontrolü
+
+# History Settings / Geçmiş Ayarları
+# -----------------------------------------------------------------------------
+# History File / Geçmiş Dosyası
+HISTFILE="$XDG_CONFIG_HOME/zsh/history"  # History file location / Geçmiş dosyası konumu
+HISTSIZE=50000                           # History size in memory / Bellekteki geçmiş boyutu
+SAVEHIST=50000                           # History size on disk / Diskteki geçmiş boyutu
+
+# History Options / Geçmiş Seçenekleri
+setopt BANG_HIST                 # Treat the '!' character specially during expansion
+setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history
+setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate
+setopt HIST_FIND_NO_DUPS         # Do not display a line previously found
+setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space
+setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry
+setopt HIST_VERIFY               # Don't execute immediately upon history expansion
+setopt SHARE_HISTORY             # Share history between all sessions
+setopt HIST_FCNTL_LOCK          # Use modern file-locking mechanisms
+setopt HIST_BEEP                # Beep when accessing nonexistent history
+
+# Configure history command output format / Geçmiş komutu çıktı formatını yapılandır
+alias history='fc -il 1'
+
+# Ignore Patterns / Yoksayma Desenleri
+export HISTORY_IGNORE="(ls|pwd|cd|pirate-get|tsm|exit|clear|history)*"
+
+# Zinit Snippets for Oh-My-Zsh / Oh-My-Zsh için Zinit Snippet'leri
+# -----------------------------------------------------------------------------
+# Core Oh-My-Zsh Libraries / Temel Oh-My-Zsh Kütüphaneleri
+zinit snippet OMZL::git.zsh
+zinit snippet OMZL::completion.zsh
+zinit snippet OMZL::key-bindings.zsh
+zinit snippet OMZL::theme-and-appearance.zsh
+
+# Oh-My-Zsh Plugins / Oh-My-Zsh Eklentileri
+zinit snippet OMZP::git
+zinit snippet OMZP::sudo
+zinit snippet OMZP::command-not-found
+zinit snippet OMZP::history
+zinit snippet OMZP::copypath
+zinit snippet OMZP::dirhistory
+zinit snippet OMZP::colored-man-pages
+zinit snippet OMZP::podman
+zinit snippet OMZP::ssh-agent
+
+# Core Zinit Plugins / Temel Zinit Eklentileri
+zinit wait lucid light-mode for \
+    zdharma-continuum/fast-syntax-highlighting \
+    zsh-users/zsh-autosuggestions \
+    zsh-users/zsh-completions
+
+# FZF Configuration / FZF Yapılandırması
+# -----------------------------------------------------------------------------
+# Load existing FZF installation / Mevcut FZF kurulumunu yükle
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# FZF Settings / FZF Ayarları
+export FZF_DEFAULT_OPTS="--height 80% --layout=reverse --border --cycle --marker='✓' --pointer='▶'"
+export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}' \
+                       --preview-window 'right:60%:wrap'"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+
+# Use fd for file and directory search if available / Mevcutsa fd kullan
+if command -v fd > /dev/null; then
+    export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude node_modules --exclude .cache'
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git --exclude node_modules --exclude .cache'
+else
+    export FZF_DEFAULT_COMMAND='find . -type f'
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    export FZF_ALT_C_COMMAND='find . -type d'
+fi
+
+# Clipboard Settings / Pano Ayarları
+# -----------------------------------------------------------------------------
+export CLIPBOARD_EDITOR=vim               # Editor setting / Editör ayarı
+export CLIPBOARD_THEME=dark              # Theme setting / Tema ayarı
+export CLIPBOARD_HISTORY=50000           # History size / Geçmiş boyutu
+export CLIPBOARD_PERSISTDIR=$HOME/.clipboards  # Persistent clipboard location / Kalıcı pano konumu
+export CLIPBOARD_TMPDIR=$HOME/.clipboards/tmp # Temporary directory / Geçici dizin
+
+# Path Configuration / Yol Yapılandırması
+# -----------------------------------------------------------------------------
+typeset -U path  # Unique paths only / Tekrar eden yolları engelle
+path=(
+    "$HOME/.bin"
+    "$HOME/.local/bin"
+    "/usr/local/bin"
+    "$HOME/.cargo/bin"
+    $path
+)
+
+# Completion Settings / Tamamlama Ayarları
+# -----------------------------------------------------------------------------
+autoload -Uz compinit
+compinit
+
+zstyle ':completion:*' accept-exact '*(N)'     # Speed up completion / Tamamlamayı hızlandır
+zstyle ':completion:*' accept-exact-dirs true  # Directory completion / Dizin tamamlama
+zstyle ':completion:*' use-cache on            # Enable cache / Önbelleği etkinleştir
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh"
+zstyle ':completion:*:*:*:*:*' menu select    # Interactive menu / Etkileşimli menü
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'  # Case insensitive / Büyük-küçük harf duyarsız
+zstyle ':completion:*' special-dirs true       # Special directories / Özel dizinler
+
+# Additional Configurations / Ek Yapılandırmalar
+# -----------------------------------------------------------------------------
+# Load personal settings / Kişisel ayarları yükle
+[[ -f "$XDG_CONFIG_HOME/zsh/aliases.zsh" ]] && source "$XDG_CONFIG_HOME/zsh/aliases.zsh"
+[[ -f "$XDG_CONFIG_HOME/zsh/functions.zsh" ]] && source "$XDG_CONFIG_HOME/zsh/functions.zsh"
+
+# SSH Cache Management / SSH Önbellek Yönetimi
+[[ -f "$XDG_CONFIG_HOME/zsh/completions/_assh" ]] && source "$XDG_CONFIG_HOME/zsh/completions/_assh"
+if [[ ! -f "$XDG_CACHE_HOME/assh/hosts" ]] || find "$XDG_CACHE_HOME/assh/hosts" -mtime +1 -print0 | grep -q .; then
+    assh-manager.sh -u >/dev/null 2>&1
+fi
+
+# Terminal Settings / Terminal Ayarları
+# -----------------------------------------------------------------------------
+unset zle_bracketed_paste  # Disable bracketed paste / Parantezli yapıştırmayı devre dışı bırak
+
+# Key Bindings / Tuş Atamaları
+bindkey "^[[1~" beginning-of-line  # Home key / Home tuşu
+bindkey "^[[4~" end-of-line        # End key / End tuşu
+
+# Path Cleanup / Yol Temizleme
+path=("${path[@]:#*/nonexistent/*}")  # Remove nonexistent paths / Var olmayan yolları kaldır
+
+# Prompt Configuration (Starship) / Prompt Yapılandırması (Starship)
+# -----------------------------------------------------------------------------
+zinit ice as"command" from"gh-r" \
+    atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+    atpull"%atclone" src"init.zsh"
+zinit light starship/starship
+
+# Load Colors / Renkleri Yükle
+# -----------------------------------------------------------------------------
+[[ -x /usr/bin/dircolors ]] && eval "$(dircolors -b)"

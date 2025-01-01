@@ -203,7 +203,8 @@ start_anote() {
     notify-send -t 1000 "Anote" "Mevcut Anote penceresine odaklanıldı."
   else
     #alacritty --class anotes --title anotes -e ~/.bin/anote.sh >>/dev/null 2>&1 &
-    foot -a anotes --title anotes -e ~/.bin/anote.sh >>/dev/null 2>&1 &
+    #foot -a anotes --title anotes -e ~/.bin/anote.sh >>/dev/null 2>&1 &
+    wezterm start --class anotes -e ~/.bin/anote.sh >>/dev/null 2>&1 &
     disown
     notify-send -t 1000 "Anote" "Anote başlatılıyor..."
   fi
