@@ -105,6 +105,7 @@ cheese
 chitose
 chromedriver
 clipboard-git
+cliphist
 clipman
 clipmenu-git
 clonezilla
@@ -484,6 +485,7 @@ python-musicbrainzngs
 python-pip
 python-pipx
 python-pywal
+qemu-full
 qt5ct
 qtwebflix-git
 quadrapassel
