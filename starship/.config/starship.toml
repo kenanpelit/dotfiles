@@ -1,32 +1,123 @@
 format = """
-$username$hostname$directory$git_branch$git_status$nodejs$python$rust$jobs$status
+$shell\
+$sudo\
+$vcsh\
+$fossil_branch\
+$fossil_metrics\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$pijul_channel\
+$docker_context\
+$package\
+$line_break\
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$directory\
+$fill\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$gleam\
+$golang\
+$guix_shell\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$gradle\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$quarto\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$typst\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$nats\
+$direnv\
+$env_var\
+$crystal\
+$custom\
+$cmd_duration\
+$jobs\
+$battery\
+$os\
+$container\
+$time\
+$status\
+$line_break\
 $character"""
 
-right_format = "$cmd_duration"
+add_newline = true
+palette = "nord"
 
 [directory]
-style = "blue"
-read_only = " 🔒"
-read_only_style = "red"
+style = "bold fg:dark_blue"
+format = "[$path ]($style)"
 truncation_length = 3
+truncation_symbol = "…/"
 truncate_to_repo = true
 fish_style_pwd_dir_length = 1
+read_only = "🔒"
+read_only_style = "red"
 
-[package]
-disabled = true
-
-[character]
-success_symbol = "[❯](purple)"
-error_symbol = "[❯](red)"
-vimcmd_symbol = "[❮](green)"
+[directory.substitutions]
+'Documents' = '󰈙'
+'Downloads' = ' '
+'Music' = ' '
+'Pictures' = ' '
 
 [git_branch]
-format = "[$branch]($style)"
-style = "bright-black"
+style = "fg:green"
+symbol = " "
+format = "[$symbol$branch]($style) "
 
 [git_status]
-format = '[\($all_status$ahead_behind\)]($style) '
 style = "bright-black"
+format = '[\($all_status$ahead_behind\)]($style) '
 conflicted = "🏳"
 ahead = "⇡${count}"
 behind = "⇣${count}"
@@ -38,23 +129,47 @@ staged = "+${count}"
 renamed = "»${count}"
 deleted = "✘${count}"
 
-[cmd_duration]
-format = "[󰔟 $duration]($style)"
-style = "yellow dimmed"
-min_time = 2000
-show_milliseconds = false
-
-[nodejs]
-format = "[$symbol($version )]($style)"
-style = "green"
+[fill]
+symbol = " "
 
 [python]
-format = "[$symbol($version )]($style)"
 style = "yellow"
+symbol = " "
+format = "[$symbol($version )]($style)"
+
+[nodejs]
+style = "green"
+symbol = " "
+format = "[$symbol($version )]($style)"
 
 [rust]
+style = "orange"
+symbol = " "
 format = "[$symbol($version )]($style)"
+
+[docker_context]
+symbol = " "
+style = "fg:#06969A"
+format = "[$symbol]($style) $path"
+detect_files = ['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile']
+detect_extensions = ['Dockerfile']
+
+[jobs]
+symbol = "⚙️"
 style = "red"
+number_threshold = 1
+format = "[$symbol$number]($style) "
+
+[cmd_duration]
+min_time = 500
+style = "yellow dimmed"
+format = "[󰔟 $duration]($style)"
+show_milliseconds = false
+
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
 
 [memory_usage]
 format = "[$symbol${ram}]($style) "
@@ -76,12 +191,20 @@ threshold = 30
 style = "yellow"
 
 [time]
-disabled = false
-format = '🕙 [$time]($style) '
+disabled = true
+format = "🕙 [$time]($style) "
 time_format = "%R"
 style = "bright-black"
 
-[jobs]
-symbol = "⚙️"
-number_threshold = 1
-format = "[$symbol$number]($style) "
+[palettes.nord]
+dark_blue = "#5E81AC"
+blue = "#81A1C1"
+teal = "#88C0D0"
+red = "#BF616A"
+orange = "#D08770"
+green = "#A3BE8C"
+yellow = "#EBCB8B"
+purple = "#B48EAD"
+gray = "#434C5E"
+black = "#2E3440"
+white = "#D8DEE9"

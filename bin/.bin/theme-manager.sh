@@ -9,7 +9,7 @@
 # Repository: github.com/kenany/dotfiles
 #
 # Description:
-#   Merkezi tema yönetim aracı. Alacritty, Kitty, Tmux, Waybar ve Starship için tema
+#   Merkezi tema yönetim aracı. Alacritty, Kitty, Tmux ve Waybar için tema
 #   geçişlerini tek bir noktadan yönetir. Her uygulama için ayrı tema
 #   seçilebilir veya tüm uygulamalara aynı anda tema uygulanabilir.
 #
@@ -18,7 +18,6 @@
 #   - Kitty terminal teması yönetimi
 #   - Tmux teması yönetimi
 #   - Waybar teması yönetimi
-#   - Starship prompt teması yönetimi
 #   - Tokyo Night, Dracula, Mocha, Kenp ve diğer temalar
 #   - Tek komutla tüm uygulamalara tema uygulama
 #   - Tema değişiminde otomatik bildirim
@@ -29,7 +28,6 @@
 #   - theme-kitty.sh
 #   - theme-tmux.sh
 #   - theme-waybar.sh
-#   - theme-starship.sh
 #   - notify-send (bildirimler için)
 #
 # Usage Examples:
@@ -37,7 +35,6 @@
 #   ./theme-manager.sh -a tokyo          # Tüm uygulamalara Tokyo temasını uygula
 #   ./theme-manager.sh kitty dracula     # Sadece Kitty'ye Dracula temasını uygula
 #   ./theme-manager.sh tmux -t           # Tmux'ta sonraki temaya geç
-#   ./theme-manager.sh starship -l       # Starship temalarını listele
 #
 #=============================================================================
 
@@ -56,7 +53,6 @@ declare -A APP_SCRIPTS=(
   ["kitty"]="theme-kitty.sh"
   ["tmux"]="theme-tmux.sh"
   ["waybar"]="theme-waybar.sh"
-  ["starship"]="theme-starship.sh"
 )
 
 # Yardım mesajını göster
@@ -76,7 +72,6 @@ UYGULAMALAR:
     kitty           Kitty terminal
     tmux            Tmux
     waybar          Waybar
-    starship        Starship prompt
     all             Tüm uygulamalar
 
 TEMALAR:
@@ -93,7 +88,6 @@ TEMALAR:
     $(basename "$0") -l                 # Tüm temaları listele
     $(basename "$0") -a dracula         # Tüm uygulamalara Dracula temasını uygula
     $(basename "$0") -c tmux            # Tmux'un mevcut temasını göster
-    $(basename "$0") starship -l        # Starship temalarını listele
 EOF
 }
 

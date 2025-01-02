@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -x
+
 #===============================================================================
 #
 #   Script: Hybrid Workspace Session Launcher
@@ -25,7 +27,7 @@ trap 'echo "Hata oluştu. Satır: $LINENO, Komut: $BASH_COMMAND"' ERR
 
 # Uygulama Grupları - workspace ve başlatma stratejisine göre gruplandırılmış
 declare -A APP_GROUPS
-APP_GROUPS["core"]="start-fkenp"                                              # Terminal & Dev
+APP_GROUPS["core"]="start-wkenp"                                              # Terminal & Dev
 APP_GROUPS["browsers"]="start-zen-kenp start-zen-novpn start-zen-compecta"    # Ana browserlar
 APP_GROUPS["communication"]="start-zen-discord start-webcord start-zen-whats" # İletişim
 APP_GROUPS["media"]="start-spotify"                                           # Medya
@@ -33,7 +35,7 @@ APP_GROUPS["media"]="start-spotify"                                           # 
 # Uygulama Yapılandırması - workspace:fullscreen:togglegroup:vpn:sleep
 declare -A APP_CONFIGS
 # Terminal & Dev (Core)
-APP_CONFIGS["start-fkenp"]="2:no:no:always:2" # Tmux session
+APP_CONFIGS["start-wkenp"]="2:no:no:always:2" # Tmux session
 # Browsers
 APP_CONFIGS["start-zen-kenp"]="1:yes:no:always:2"     # Main browser
 APP_CONFIGS["start-zen-novpn"]="3:yes:no:always:2"    # No VPN browser
@@ -68,13 +70,52 @@ check_vpn_status() {
   local app_name=$2
 
   if [[ "$vpn_mode" == "always" ]]; then
-    if ! pgrep -x "openvpn" >/dev/null; then
+    # OpenVPN process kontrolü
+    local openvpn_active=false
+    if pgrep -x "openvpn" >/dev/null || ip link show tun0 >/dev/null 2>&1; then
+      openvpn_active=true
+    fi
+
+    # Mullvad WireGuard kontrolü
+    local mullvad_active=false
+    if ip link show wg0-mullvad >/dev/null 2>&1; then
+      mullvad_active=true
+    fi
+
+    # En az bir VPN bağlantısı aktif mi?
+    if ! $openvpn_active && ! $mullvad_active; then
       log "VPN" "$app_name için VPN bağlantısı gerekli fakat aktif değil!" "true" 10000
       return 1
     fi
-    log "VPN" "$app_name için VPN bağlantısı aktif ✓" "false"
+
+    # Hangi VPN'lerin aktif olduğunu logla
+    local active_vpns=""
+    $openvpn_active && active_vpns+="OpenVPN "
+    $mullvad_active && active_vpns+="Mullvad "
+    log "VPN" "$app_name için VPN bağlantısı aktif (${active_vpns}✓)" "false"
   fi
   return 0
+}
+
+# İsteğe bağlı: Detaylı VPN bilgisi alma fonksiyonu
+get_vpn_details() {
+  echo "VPN Bağlantı Durumu:"
+
+  # OpenVPN kontrolü
+  if pgrep -x "openvpn" >/dev/null || ip link show tun0 >/dev/null 2>&1; then
+    echo "- OpenVPN: Aktif"
+    ip addr show tun0 2>/dev/null || echo "  (process running)"
+  else
+    echo "- OpenVPN: Pasif"
+  fi
+
+  # Mullvad WireGuard kontrolü
+  if ip link show wg0-mullvad >/dev/null 2>&1; then
+    echo "- Mullvad WireGuard: Aktif"
+    ip addr show wg0-mullvad
+  else
+    echo "- Mullvad WireGuard: Pasif"
+  fi
 }
 
 # CPU Frekans Ayarı

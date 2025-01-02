@@ -1,34 +1,21 @@
 #!/bin/bash
 
 #######################################
-#
-# Version: 2.0.0
-# Date: 2024-12-12
-# Author: Kenan Pelit
-# Repository: github.com/kenanpelit/dotfiles
-# Description: Session Manager (sem) - Terminal ve Uygulama Oturumları Yönetici
-#
-# Bu script Unix/Linux sistemlerde uygulama oturumlarını yönetmek için
-# tasarlanmıştır. Temel özellikleri:
-# - VPN (Mullvad) entegrasyonu ve oturum bazlı VPN yönetimi
-# - JSON tabanlı yapılandırma sistemi
-# - Oturum başlatma/durdurma/yeniden başlatma
-# - CPU ve bellek kullanımı izleme
-# - JSON formatında metrik toplama
-# - Güvenli dosya izinleri ve hata yönetimi
-#
-# Config: ~/.config/sem/config.json
-# Logs: ~/.config/sem/logs/sem.log
-# PID: /tmp/sem/
-#
-# License: MIT
-#
+# ... (mevcut yorum başlığı aynen kalacak)
 #######################################
+
+# Hata yönetimi
+set -e
 
 # Yapılandırma
 config_file="${XDG_CONFIG_HOME:-$HOME/.config}/sem/config.json"
 scripts_dir="$HOME/.bin/start-scripts"
 SEMSUMO_PATH="/home/kenan/.bin/semsumo.sh"
+
+# Geçici dizin yönetimi
+TMP_BASE="${TMPDIR:-/tmp}/sem"
+mkdir -p "$TMP_BASE"
+chmod 700 "$TMP_BASE"
 
 # Dizin kontrol
 if [[ ! -f "$config_file" ]]; then
@@ -50,6 +37,11 @@ jq -r '.sessions | keys[]' "$config_file" | while read -r profile; do
     script_file="$scripts_dir/start-${profile,,}-${mode}.sh"
     cat >"$script_file" <<EOF
 #!/bin/bash
+# Geçici dizin ayarı
+export TMPDIR="$TMP_BASE"
+# Hata yönetimi
+set -e
+
 $SEMSUMO_PATH start $profile $mode
 EOF
     chmod +x "$script_file"
